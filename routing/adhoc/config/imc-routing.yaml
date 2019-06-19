@@ -1,0 +1,8 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: InMemoryChannel
+metadata:
+  name: test-routing
+spec:
+  routable:
+    router:
+      routerURI: http://routing-choice.default.svc.cluster.local
