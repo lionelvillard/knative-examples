@@ -1,8 +1,7 @@
 # Prerequites
 
 - Knative HEAD + [this PR](https://github.com/knative/eventing/pull/1436)
-- DOCKER_USER set.
-- [kapp](https://get-kapp.io/)
+- DOCKER_USER set. 
 
 # deploy
 
