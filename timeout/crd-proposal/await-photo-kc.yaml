@@ -1,0 +1,8 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: KafkaChannel
+metadata:
+  name: wait-photo
+spec:
+  timeout: 10m
+  numPartitions: 2
+  replicationFactor: 1
