@@ -14,7 +14,7 @@ kubectl apply -f config/
 In one terminal, watch for send-message and wait-assignment logs:
 
 ```sh
-stern send-message -c user-container
+stern 'send-message|wait' -c user-container
 ```
 
 Send true event:
