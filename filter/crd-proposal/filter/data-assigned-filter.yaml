@@ -1,0 +1,20 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: Filter
+metadata:
+  name: data-assigned
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+  filter:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: data-assigned
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: send-notice
+  # optional reply
+  # reply:

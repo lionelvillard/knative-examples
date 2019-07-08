@@ -1,0 +1,20 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: Filter
+metadata:
+  name: data-not-assigned
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+  filter:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: data-not-assigned
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: wait-assignment
+  # optional reply
+  # reply:

@@ -1,0 +1,17 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: data-not-assigned
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+  steps:
+  - ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: check-data-not-assigned
+  - ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: send-message
