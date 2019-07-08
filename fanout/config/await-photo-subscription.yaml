@@ -1,0 +1,15 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Subscription
+metadata:
+  name: await-photo
+spec:
+  channel:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+    name: wait-photo
+  subscriber:
+    ref:
+      apiVersion: messaging.knative.dev/v1alpha1
+      kind: Sequence
+      name: await-photo
+

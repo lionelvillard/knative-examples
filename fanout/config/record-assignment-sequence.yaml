@@ -1,0 +1,14 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: Sequence
+metadata:
+  name: record-assignment
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+  steps:
+  - ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: record-assignment
+

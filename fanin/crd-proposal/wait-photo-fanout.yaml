@@ -1,0 +1,19 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: Parallel
+metadata:
+  name: wait-photo
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+  fanOut:
+  - ref:
+      apiVersion: messaging.knative.dev/v1alpha1
+      kind: Sequence
+      name: await-photo
+  - ref:
+      apiVersion: messaging.knative.dev/v1alpha1
+      kind: Sequence
+      name: record-assignment
+  fanIn:
+    # channel..
