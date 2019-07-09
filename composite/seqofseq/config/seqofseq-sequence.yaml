@@ -1,0 +1,22 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: Sequence
+metadata:
+  name: seqofseq
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+  steps:
+  - ref:
+      apiVersion: messaging.knative.dev/v1alpha1
+      kind: Sequence
+      name: oneseq
+  - ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: identity
+  reply:
+    apiVersion: serving.knative.dev/v1alpha1
+    kind: Service
+    name: dumper
+

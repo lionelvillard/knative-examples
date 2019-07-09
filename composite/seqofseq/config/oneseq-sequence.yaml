@@ -1,0 +1,17 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: Sequence
+metadata:
+  name: oneseq
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+  steps:
+  - ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: identity
+  - ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: last-step

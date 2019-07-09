@@ -1,0 +1,33 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: Catch
+metadata:
+  name: assign-photographer
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+  routes:
+  - filter:
+      ref:
+        apiVersion: serving.knative.dev/v1alpha1
+        kind: Service
+        name: data-assigned
+    subscriber:
+      ref:
+        apiVersion: serving.knative.dev/v1alpha1
+        kind: Service
+        name: send-notice
+    # optional reply
+    # reply:
+  - filter:
+      ref:
+        apiVersion: serving.knative.dev/v1alpha1
+        kind: Service
+        name: data-not-assigned
+    subscriber:
+      ref:
+        apiVersion: serving.knative.dev/v1alpha1
+        kind: Service
+        name: wait-assignment
+    # optional reply
+    # reply:
