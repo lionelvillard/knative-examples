@@ -4,3 +4,4 @@ filter/config/check-data-not-assigned-ksvc.yaml
 fanout/config/record-assignment-ksvc.yaml
 fanout/config/receive-activity-ksvc.yaml
 node_modules
+.history
