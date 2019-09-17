@@ -86,12 +86,18 @@ function k8s::wait_until_pods_running() {
 }
 
 function k8s::wait_log_contains() {
-    local podname="$1"
+    local label="$1"
     local cname="$2"
     local str="$3"
-    echo -n "monitoring logs in container ${cname} in pod ${podname}"
+    echo -n "monitoring logs in container ${cname} with label ${label}"
     for i in {1..300}; do  # timeout after 10 minutes
-        local logs="$(kubectl logs ${podname} ${cname})"
+        local logs="$(kubectl logs -l${label} -c ${cname})"
+
+        if [[ $logs == *${str}* ]]; then
+            printf $CHECKMARK
+            echo "found."
+            return 0
+        fi
 
         echo -n "."
         sleep 2

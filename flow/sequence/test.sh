@@ -25,5 +25,5 @@ u::header "install flow"
 kubectl config set-context --current --namespace=examples-sequence
 kone apply -f config/
 
-
+k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container photographers
 
