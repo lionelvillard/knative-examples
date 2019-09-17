@@ -22,8 +22,8 @@ addons:
 
 before_script:
   - sudo microk8s.status --wait-ready
-  - snap alias microk8s.kubectl kubectl
-  - ls -la /snap/microk8s/current
+  - sudo snap alias microk8s.kubectl kubectl
+  - sudo ls -la /snap/microk8s/current
   - sudo microk8s.enable knative
   - sudo microk8s.status
   - go get github.com/ibm/kone/cmd/kone

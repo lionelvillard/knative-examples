@@ -84,3 +84,19 @@ function k8s::wait_until_pods_running() {
     echo -e "ERROR: timeout waiting for pods to come up\n${pods}"
     return 1
 }
+
+function k8s::wait_log_contains() {
+    local podname="$1"
+    local cname="$2"
+    local str="$3"
+    echo -n "monitoring logs in container ${cname} in pod ${podname}"
+    for i in {1..300}; do  # timeout after 10 minutes
+        local logs="$(kubectl logs ${podname} ${cname})"
+
+        echo -n "."
+        sleep 2
+    done
+    printf "$CROSSMARK"
+    echo -e "ERROR: timeout waiting for pod log to contain\b${str}"
+    return 1
+}
