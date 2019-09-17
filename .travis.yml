@@ -13,5 +13,7 @@ env:
 before_script:
 - bin/setup-minikube.sh
 
-script:
--
+jobs:
+  include:
+  - script:
+    - bin/setup-knative-minikube.sh 0.8.1 0.8.0
