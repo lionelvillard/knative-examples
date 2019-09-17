@@ -36,13 +36,16 @@ function knative::install() {
 
   u::header "installing knative"
 
-  kubectl apply \
-    --filename https://github.com/knative/serving/releases/download/v${serving_version}/serving.yaml \
-    --filename https://github.com/knative/eventing/releases/download/v${eventing_version}/release.yaml \
-    --filename https://github.com/knative/serving/releases/download/v${serving_version}/monitoring.yaml
-
+  kubectl apply -f https://github.com/knative/serving/releases/download/v${serving_version}/serving.yaml
   k8s::wait_until_pods_running knative-serving
-  k8s::wait_until_pods_running knative-monitoring
+
+  kubectl apply -f https://github.com/knative/eventing/releases/download/v${eventing_version}/release.yaml
   k8s::wait_until_pods_running knative-eventing
+
+  kubectl apply -f  https://github.com/knative/serving/releases/download/v${serving_version}/monitoring.yaml
+  kubectl patch -n knative-monitoring statefulsets.apps prometheus-system -p '{"spec":{"replicas":1}}'
+  kubectl patch -n knative-monitoring statefulsets.apps elasticsearch-logging -p '{"spec":{"replicas":1}}'
+  k8s::wait_until_pods_running knative-monitoring
+
   return 0
 }
