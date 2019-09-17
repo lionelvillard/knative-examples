@@ -15,13 +15,6 @@ In one terminal, watch for service logs:
 ```sh
 stern 'assign|send|wait|event' -c user-container
 ```
-
-Send an event:
-
-```sh
-./sendevent.sh
-```
-
 Observe the log:
 
 ```

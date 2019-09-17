@@ -15,5 +15,15 @@
 # limitations under the License.
 set -e
 
-ROOT=$(dirname $BASH_SOURCE[0])/../../..
+ROOT=$(dirname $BASH_SOURCE[0])/../../
 source $ROOT/bin/lib/library.sh
+
+u::header "install flow"
+
+[[ $(kubectl get ns | grep examples-sequence) == "" ]] && kubectl create ns examples-sequence
+
+kubectl config set-context --current --namespace=examples-sequence
+kone apply -f config/
+
+
+
