@@ -35,12 +35,14 @@ function minikube::start() {
   fi
 
   local vmdriver=none
+  local sudo=sudo
   if [[ "$(uname)" == "Darwin" ]]; then
       vmdriver=hyperkit
+      sudo=
   fi
 
   u::header "starting minikube"
-  minikube start --memory=8192 --cpus=6 --kubernetes-version=v1.15.2 \
+  ${sudo} minikube start --memory=8192 --cpus=6 --kubernetes-version=v1.15.2 \
       --vm-driver=$vmdriver --disk-size=30g \
       -p $profile \
       --extra-config=apiserver.enable-admission-plugins="LimitRanger,NamespaceExists,NamespaceLifecycle,ResourceQuota,ServiceAccount,DefaultStorageClass,MutatingAdmissionWebhook"
