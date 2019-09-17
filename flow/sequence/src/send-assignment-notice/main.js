@@ -8,8 +8,9 @@ app.use(bodyParser.json())
 
 app.post("/", (req, res) => {
   console.log('send assignment notice')
+
   const event = req.body
-  console.log(`Hello ${event.photographer.name}! Please snap a pic of: ${event.data.name} Created by: ${event.data.brand}`)
+  console.log(`Hello ${event.photographer.name}! Please snap a pic of: ${event.name} Created by: ${event.brand}`)
 
   res.set(req.headers)
   res.status(200).send(req.body)

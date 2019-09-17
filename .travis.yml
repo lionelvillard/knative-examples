@@ -3,22 +3,29 @@ addons:
   snaps:
     - name: helm
       confinement: classic
+    - name: microk8s
+      confinement: classic
 
 sudo: required
 
-env:
-  global:
-    - CHANGE_MINIKUBE_NONE_USER=true
-    - MINIKUBE_WANTUPDATENOTIFICATION=false
-    - MINIKUBE_WANTREPORTERRORPROMPT=false
-    - MINIKUBE_HOME=$HOME
-    - CHANGE_MINIKUBE_NONE_USER=true
-    - KUBECONFIG=$HOME/.kube/config
+# env:
+#   global:
+#     - CHANGE_MINIKUBE_NONE_USER=true
+#     - MINIKUBE_WANTUPDATENOTIFICATION=false
+#     - MINIKUBE_WANTREPORTERRORPROMPT=false
+#     - MINIKUBE_HOME=$HOME
+#     - CHANGE_MINIKUBE_NONE_USER=true
+#     - KUBECONFIG=$HOME/.kube/config
 
 before_script:
-- bin/setup-minikube.sh
+  - microk8s.status
+  - snap alias microk8s.kubectl kubectl
+  - ls -la /snap/microk8s/current
+  - microk8s.enable knative
+  - microk8s.status
+  #- bin/setup-minikube.sh
 
-jobs:
-  include:
-  - script:
-    - bin/setup-knative-minikube.sh 0.8.1 0.8.0
+# jobs:
+#   include:
+#   - script:
+#     - n/setup-knative-minikube.sh 0.8.1 0.8.0
