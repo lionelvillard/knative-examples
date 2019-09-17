@@ -1,4 +1,5 @@
 # Knative Eventing Examples
+[![Build Status](https://travis-ci.org/lionelvillard/knative-examples.svg?branch=master)](https://travis-ci.org/lionelvillard/knative-examples)
 
 This project contains various Knative Eventing examples.
 
