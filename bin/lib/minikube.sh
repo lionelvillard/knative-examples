@@ -22,6 +22,18 @@ function minikube::install_linux() {
 
   mkdir -p $HOME/.kube $HOME/.minikube
   touch $KUBECONFIG
+
+
+# env:
+#   global:
+#     - CHANGE_MINIKUBE_NONE_USER=true
+#     - MINIKUBE_WANTUPDATENOTIFICATION=false
+#     - MINIKUBE_WANTREPORTERRORPROMPT=false
+#     - MINIKUBE_HOME=$HOME
+#     - CHANGE_MINIKUBE_NONE_USER=true
+#     - KUBECONFIG=$HOME/.kube/config
+
+
   return 0
 }
 

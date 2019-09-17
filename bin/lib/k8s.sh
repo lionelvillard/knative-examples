@@ -89,13 +89,12 @@ function k8s::wait_log_contains() {
     local label="$1"
     local cname="$2"
     local str="$3"
-    echo -n "monitoring logs in container ${cname} with label ${label}"
+    echo -n "monitoring logs in container ${cname} with label ${label}."
     for i in {1..300}; do  # timeout after 10 minutes
-        local logs="$(kubectl logs -l${label} -c ${cname})"
+        local logs="$(kubectl logs -l${label} -c ${cname} 2>/dev/null)"
 
         if [[ $logs == *${str}* ]]; then
-            printf $CHECKMARK
-            echo "found."
+            printf "found $CHECKMARK\n"
             return 0
         fi
 

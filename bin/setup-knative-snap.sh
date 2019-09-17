@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+ #!/usr/bin/env bash
 
 # Copyright 2019 IBM Corporation
 #
@@ -13,20 +13,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 set -e
 
-ROOT=$(dirname $BASH_SOURCE[0])/../../
-source $ROOT/bin/lib/library.sh
-
-u::header "install flow"
-
-[[ $(kubectl get ns | grep examples-sequence) == "" ]] && kubectl create ns examples-sequence
-
-kubectl config set-context --current --namespace=examples-sequence
-kone apply -f config/
-
-k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container photographers
-
-u::header "cleanup"
-kubectl delete ns examples-sequence
-
+sudo snap install microk8s --classic
+sudo microk8s.status --wait-ready
+sudo snap alias microk8s.kubectl kubectl
+sudo microk8s.enable knative
+sudo microk8s.status
