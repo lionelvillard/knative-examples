@@ -18,12 +18,11 @@ sudo: required
 #     - KUBECONFIG=$HOME/.kube/config
 
 before_script:
-  - sudo usermod -a -G microk8s travis
-  - microk8s.status
+  - sudo microk8s.status
   - snap alias microk8s.kubectl kubectl
   - ls -la /snap/microk8s/current
-  - microk8s.enable knative
-  - microk8s.status
+  - sudo microk8s.enable knative
+  - sudo microk8s.status
   #- bin/setup-minikube.sh
 
 # jobs:
