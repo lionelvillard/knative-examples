@@ -19,16 +19,5 @@ set -e
 ROOT=$(dirname $BASH_SOURCE[0])/..
 source $ROOT/bin/lib/library.sh
 
-KNATIVE_SERVING_VERSION=$1
-KNATIVE_EVENTING_VERSION=$2
-if [[ $KNATIVE_SERVING_VERSION == "" || $KNATIVE_EVENTING_VERSION == "" ]]; then
-  u::fatal "usage: setup-knative-kind.sh <knative-serving-version> <knative-eventing-version>"
-fi
-
-PROFILE=mk-s${KNATIVE_SERVING_VERSION}-e${KNATIVE_EVENTING_VERSION}
-
-minikube::start $PROFILE
-echo "targetting $(kubectl config current-context)"
-
-istio::install_lean 1.1.7
-knative::install $KNATIVE_SERVING_VERSION $KNATIVE_EVENTING_VERSION
+k8s::install_kubectl
+minikube::install_linux

@@ -25,10 +25,15 @@ if [[ $KNATIVE_SERVING_VERSION == "" || $KNATIVE_EVENTING_VERSION == "" ]]; then
   u::fatal "usage: setup-knative-kind.sh <knative-serving-version> <knative-eventing-version>"
 fi
 
-PROFILE=mk-s${KNATIVE_SERVING_VERSION}-e${KNATIVE_EVENTING_VERSION}
+PROFILE=knative-s${KNATIVE_SERVING_VERSION}-e${KNATIVE_EVENTING_VERSION}
 
-minikube::start $PROFILE
-echo "targetting $(kubectl config current-context)"
+# Check profile exists already
+if [ "$(kind get clusters | grep ${PROFILE})" == "" ]; then
+  kind::start $PROFILE
+fi
+
+kind::update-context $PROFILE
+echo "targeting $(kubectl config current-context)"
 
 istio::install_lean 1.1.7
 knative::install $KNATIVE_SERVING_VERSION $KNATIVE_EVENTING_VERSION
