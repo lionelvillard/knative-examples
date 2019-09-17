@@ -21,14 +21,12 @@ function k8s::install_kubectl() {
       return 0
 }
 
-
 function k8s::install_helm() {
       curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/linux/amd64/kubectl
       chmod +x kubectl
       sudo mv kubectl /usr/local/bin/
       return 0
 }
-
 
 # wait for resource to be ready
 function k8s::wait_resource_online() {
