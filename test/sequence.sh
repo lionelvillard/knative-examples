@@ -30,7 +30,7 @@ done
 kubectl config set-context --current --namespace=examples-sequence
 kone apply -f config/
 
-sleep 30
+sleep 5
 
 kubectl -n examples-sequence get pods
 kubectl -n examples-sequence get sequences.messaging.knative.dev

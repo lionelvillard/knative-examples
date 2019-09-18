@@ -10,6 +10,6 @@ spec:
     kind: Sequence
     name:  acquire-photo
   resources:
-    requests:
+    limits:
       cpu: 25m
       memory: 50Mi
