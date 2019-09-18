@@ -70,7 +70,7 @@ function k8s::wait_until_pods_running() {
                 [[ ${status[0]} -ne ${status[1]} ]] && all_ready=0 && break
             done <<< $(echo "${pods}" | grep -v Completed)
             if (( all_ready )); then
-                printf $CHECKMARK
+                printf "$CHECKMARK\n"
                 echo -e "All pods are up:\n${pods}"
                 return 0
             fi
