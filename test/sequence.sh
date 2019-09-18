@@ -29,7 +29,13 @@ sleep 5
 kubectl -n examples-sequence get pods -oyaml
 kubectl -n examples-sequence get sequences.messaging.knative.dev -oyaml
 
+
+set +e
 k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container photographers
+kubectl -n examples-sequence get pods -oyaml
+kubectl -n examples-sequence get sequences.messaging.knative.dev -oyaml
+
+
 
 u::header "cleanup"
 kubectl delete ns examples-sequence
