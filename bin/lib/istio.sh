@@ -67,6 +67,7 @@ function istio::install_lean() {
     > ./istio-lean.yaml
 
   kubectl apply -f istio-lean.yaml
+  kubectl patch -n istio-system deployments.apps istio-pilot -p '{"spec": {"template": {"spec": {"containers": [{"name": "discovery", "resources": {"requests": {"cpu":"100m"}}}]}}}}'
 
   popd
 
