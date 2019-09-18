@@ -13,6 +13,8 @@ addons:
       channel: "8/stable"
       confinement: classic
 
+install: false
+
 before_script:
   - go env
   - GO111MODULE="on" go get sigs.k8s.io/kind@v0.5.1
