@@ -18,5 +18,4 @@ before_script:
 jobs:
   include:
   - script:
-    - bin/setup-knative-kind.sh 0.8.1 0.8.0
-    - flow/sequence/test.sh
+    - test/e2e.sh 0.8.1 0.8.0
