@@ -20,6 +20,12 @@ u::testsuite "Sequence"
 [[ $(kubectl get ns | grep examples-sequence) == "" ]] && kubectl create ns examples-sequence
 
 cd $ROOT/flow/sequence
+dirs=./src/*
+for d in $dirs
+do
+    name=$(basename $d)
+    (cd src/$name && npm i)
+done
 
 kubectl config set-context --current --namespace=examples-sequence
 kone apply -f config/
