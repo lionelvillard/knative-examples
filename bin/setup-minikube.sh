@@ -19,6 +19,5 @@ set -e
 ROOT=$(dirname $BASH_SOURCE[0])/..
 source $ROOT/bin/lib/library.sh
 
-k8s::install_kubectl
 minikube::install_linux
 
