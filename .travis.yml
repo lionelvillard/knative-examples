@@ -11,6 +11,7 @@ addons:
       confinement: classic
     - name: go
       confinement: classic
+      channel: 1.13/stable
 
 
 before_script:
