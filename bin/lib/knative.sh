@@ -37,13 +37,9 @@ function knative::install() {
   u::header "installing knative"
 
   kubectl apply -f https://github.com/knative/serving/releases/download/v${serving_version}/serving.yaml
-  # kubectl patch -n knative-serving deployments.apps istio-pilot -p '{"spec": {"template": {"spec": {"containers": [{"name": "discovery", "resources": {"requests": {"cpu":"100m"}}}]}}}}'
-
   set +e
   k8s::wait_until_pods_running knative-serving
   set -e
-  kubectl logs -lapp=networking-istio -n knative-serving
-  kubectl get pod -lapp=networking-istio -n knative-serving -oyaml
 
   kubectl apply -f https://github.com/knative/eventing/releases/download/v${eventing_version}/release.yaml
   k8s::wait_until_pods_running knative-eventing
