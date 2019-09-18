@@ -28,8 +28,16 @@ fi
 PROFILE=knative-s${KNATIVE_SERVING_VERSION}-e${KNATIVE_EVENTING_VERSION}
 
 # Check profile exists already
-if [ "$(kind get clusters | grep ${PROFILE})" == "" ]; then
-  kind::start $PROFILE
+if [[ "$(kind get clusters | grep ${PROFILE})" != "" ]]; then
+  kind::update-context $PROFILE
+  set +e;  kubectl cluster-info 2>> /dev/null; set -e
+  code=$?
+  if [[ code != 0 ]]; then
+    kind delete cluster --name $PROFILE
+    kind create cluster --name $PROFILE
+  fi
+else
+    kind create cluster --name $PROFILE
 fi
 
 kind::update-context $PROFILE

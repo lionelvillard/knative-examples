@@ -24,6 +24,11 @@ cd $ROOT/flow/sequence
 kubectl config set-context --current --namespace=examples-sequence
 kone apply -f config/
 
+sleep 5
+
+kubectl -n examples-sequence get pods -oyaml
+kubectl -n examples-sequence get sequences.messaging.knative.dev -oyaml
+
 k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container photographers
 
 u::header "cleanup"
