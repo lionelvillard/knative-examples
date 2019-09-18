@@ -54,7 +54,7 @@ function k8s::wait_resource_online() {
 function k8s::wait_until_pods_running() {
     local ns="$1"
     echo -n "Waiting until all pods in namespace $ns are up"
-    for i in {1..300}; do  # timeout after 10 minutes
+    for i in {1..150}; do  # timeout after 5 minutes
         local pods="$(kubectl get pods --no-headers -n $ns 2>/dev/null)"
         # All pods must be running
         local not_running=$(echo "${pods}" | grep -v Running | grep -v Completed | wc -l)

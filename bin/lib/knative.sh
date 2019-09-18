@@ -36,16 +36,23 @@ function knative::install() {
 
   u::header "installing knative"
 
+  sudo apt install -y socat
+
   kubectl apply -f https://github.com/knative/serving/releases/download/v${serving_version}/serving.yaml
+  set +e
   k8s::wait_until_pods_running knative-serving
+  set -e
+  kubectl logs -lapp=networking-istio -n knative-serving
+  kubectl get pod -lapp=networking-istio -n knative-serving -oyaml
 
   kubectl apply -f https://github.com/knative/eventing/releases/download/v${eventing_version}/release.yaml
   k8s::wait_until_pods_running knative-eventing
 
-  kubectl apply -f  https://github.com/knative/serving/releases/download/v${serving_version}/monitoring.yaml
-  kubectl patch -n knative-monitoring statefulsets.apps prometheus-system -p '{"spec":{"replicas":1}}'
-  kubectl patch -n knative-monitoring statefulsets.apps elasticsearch-logging -p '{"spec":{"replicas":1}}'
-  k8s::wait_until_pods_running knative-monitoring
+  # kubectl apply -f  https://github.com/knative/serving/releases/download/v${serving_version}/monitoring.yaml
+  # kubectl patch -n knative-monitoring statefulsets.apps prometheus-system -p '{"spec":{"replicas":1}}'
+  # kubectl patch -n knative-monitoring statefulsets.apps elasticsearch-logging -p '{"spec":{"replicas":1}}'
+  # kubectl delete -n knative-monitoring deployments.apps grafana
+  # k8s::wait_until_pods_running knative-monitoring
 
   return 0
 }
