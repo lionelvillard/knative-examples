@@ -36,6 +36,7 @@ function knative::install() {
 
   u::header "installing knative"
 
+  sudo apt-get update
   sudo apt install -y socat
 
   kubectl apply -f https://github.com/knative/serving/releases/download/v${serving_version}/serving.yaml
