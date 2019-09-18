@@ -1,3 +1,4 @@
+language: go
 sudo: required
 dist: xenial
 addons:
@@ -9,10 +10,8 @@ addons:
     - name: node
       channel: "8/stable"
       confinement: classic
-    - name: go
-      confinement: classic
-      channel: 1.13/stable
 
+install: false
 
 before_script:
   - go env
