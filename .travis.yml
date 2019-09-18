@@ -30,4 +30,4 @@ before_script:
 jobs:
   include:
   - script:
-    - bin/setup-knative-minikube.sh # bin/setup-knative-kind.sh 0.8.1 0.8.0
+    - bin/setup-knative-minikube.sh 0.8.1 0.8.0 # bin/setup-knative-kind.sh 0.8.1 0.8.0
