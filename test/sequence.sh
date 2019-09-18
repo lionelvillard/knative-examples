@@ -32,15 +32,8 @@ kone apply -f config/
 
 sleep 5
 
-kubectl -n examples-sequence get pods
-kubectl -n examples-sequence get sequences.messaging.knative.dev
-kubectl -n examples-sequence get ksvc
-
-set +e
 k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container photographers
 
-kubectl -n knative-eventing logs -lmessaging.knative.dev/channel=in-memory-channel
-
 u::header "cleanup"
-kubectl delete ns examples-sequence
+kubectl delete ns examples-sequence --wait=false
 
