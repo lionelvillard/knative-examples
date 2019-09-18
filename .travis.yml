@@ -1,4 +1,3 @@
-language: go
 sudo: required
 dist: xenial
 addons:
@@ -10,6 +9,9 @@ addons:
     - name: node
       channel: "8/stable"
       confinement: classic
+    - name: go
+      confinement: classic
+
 
 before_script:
   - GO111MODULE="on" go get sigs.k8s.io/kind@v0.5.1
