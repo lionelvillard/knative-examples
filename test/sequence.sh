@@ -19,6 +19,8 @@ u::testsuite "Sequence"
 
 [[ $(kubectl get ns | grep examples-sequence) == "" ]] && kubectl create ns examples-sequence
 
+cd $ROOT/examples/sequence
+
 kubectl config set-context --current --namespace=examples-sequence
 kone apply -f config/
 
