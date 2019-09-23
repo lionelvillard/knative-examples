@@ -22,11 +22,18 @@ u::testsuite "Sequence"
 cd $ROOT/examples/sequence
 
 kubectl config set-context --current --namespace=examples-sequence
+
+u::header "Deploying V1"
 kone apply -f config/
 
 sleep 5
 
 k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container photographers
 
-u::header "cleanup"
+# Failing in 0.9.0 and before
+# u::header "Deploying V2"
+# kone apply -f config-v2/
+# k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container john1505
+
+#u::header "cleanup"
 kubectl delete ns examples-sequence --wait=false
