@@ -17,12 +17,12 @@
 set -e
 
 ROOT=$(dirname $BASH_SOURCE[0])/..
-source $ROOT/bin/lib/library.sh
+source $ROOT/hack/lib/library.sh
 
 docker login -p $DOCKER_PASS -u $DOCKER_USER docker.io
 
 u::header "Starting kind cluster"
-. $ROOT/bin/setup-knative-kind.sh $1 $2
+. $ROOT/hack/setup-knative-kind.sh $1 $2
 
 u::header "Testing..."
 . $ROOT/test/sequence.sh

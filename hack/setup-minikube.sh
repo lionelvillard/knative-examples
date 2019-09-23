@@ -17,7 +17,7 @@
 set -e
 
 ROOT=$(dirname $BASH_SOURCE[0])/..
-source $ROOT/bin/lib/library.sh
+source $ROOT/hack/lib/library.sh
 
 minikube::install_linux
 

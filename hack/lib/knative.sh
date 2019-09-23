@@ -28,18 +28,16 @@ function knative::install() {
   # there is a bug in kubectl .. must do it twice.
   set +e
   kubectl apply --selector knative.dev/crd-install=true -f https://github.com/knative/serving/releases/download/v${serving_version}/serving.yaml
-  set -e
   kubectl apply --selector knative.dev/crd-install=true -f https://github.com/knative/serving/releases/download/v${serving_version}/serving.yaml
   kubectl apply --selector knative.dev/crd-install=true -f https://github.com/knative/eventing/releases/download/v${eventing_version}/release.yaml
+  set -e
 
   sleep 2
 
   u::header "installing knative"
 
   kubectl apply -f https://github.com/knative/serving/releases/download/v${serving_version}/serving.yaml
-  set +e
   k8s::wait_until_pods_running knative-serving
-  set -e
 
   kubectl apply -f https://github.com/knative/eventing/releases/download/v${eventing_version}/release.yaml
   k8s::wait_until_pods_running knative-eventing

@@ -17,7 +17,7 @@
 set -e
 
 ROOT=$(dirname $BASH_SOURCE[0])/..
-source $ROOT/bin/lib/library.sh
+source $ROOT/hack/lib/library.sh
 
 KNATIVE_SERVING_VERSION=$1
 KNATIVE_EVENTING_VERSION=$2
@@ -25,23 +25,10 @@ if [[ $KNATIVE_SERVING_VERSION == "" || $KNATIVE_EVENTING_VERSION == "" ]]; then
   u::fatal "usage: setup-knative-kind.sh <knative-serving-version> <knative-eventing-version>"
 fi
 
-PROFILE=knative-s${KNATIVE_SERVING_VERSION}-e${KNATIVE_EVENTING_VERSION}
+PROFILE=mk-s${KNATIVE_SERVING_VERSION}-e${KNATIVE_EVENTING_VERSION}
 
-# Check profile exists already
-if [[ "$(kind get clusters | grep ${PROFILE})" != "" ]]; then
-  kind::update-context $PROFILE
-  set +e;  kubectl cluster-info 2>> /dev/null; set -e
-  code=$?
-  if [[ code != 0 ]]; then
-    kind delete cluster --name $PROFILE
-    kind create cluster --name $PROFILE
-  fi
-else
-    kind create cluster --name $PROFILE
-fi
-
-kind::update-context $PROFILE
-echo "targeting $(kubectl config current-context)"
+minikube::start $PROFILE
+echo "targetting $(kubectl config current-context)"
 
 istio::install_lean 1.1.7
 knative::install $KNATIVE_SERVING_VERSION $KNATIVE_EVENTING_VERSION
