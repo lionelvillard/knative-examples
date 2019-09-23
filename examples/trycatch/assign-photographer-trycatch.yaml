@@ -1,0 +1,27 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: TryCatch
+metadata:
+  name: assign-photographer
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+    spec:
+      delivery:
+        retry: 2
+        backoffPolicy: linear
+        backoffDelay: 2
+  try:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: assign-photographer
+  catch:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: assign-photographer-fail
+  reply:
+    apiVersion: serving.knative.dev/v1alpha1
+    kind: Service
+    name: check-assignment

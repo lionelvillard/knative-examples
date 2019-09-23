@@ -19,14 +19,21 @@ set -e
 ROOT=$(dirname $BASH_SOURCE[0])/..
 source $ROOT/hack/lib/library.sh
 
-docker login -p $DOCKER_PASS -u $DOCKER_USER docker.io
+pushd $ROOT/src
+dirs=./*
+for d in $dirs
+do
+    name=$(basename $d)
+    (cd $name && npm i)
+done
+popd
 
-u::header "Starting kind cluster"
-. $ROOT/hack/setup-knative-kind.sh $1 $2
-
-u::header "Installing dependencies"
-$ROOT/hack/npm-install.sh
-
-u::header "Testing..."
-. $ROOT/test/sequence.sh
+pushd $ROOT/examples/sequence/src
+dirs=./*
+for d in $dirs
+do
+    name=$(basename $d)
+    (cd $name && npm i)
+done
+popd
 
