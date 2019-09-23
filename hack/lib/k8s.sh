@@ -100,6 +100,6 @@ function k8s::wait_log_contains() {
         sleep 2
     done
     printf "$CROSSMARK"
-    echo -e "ERROR: timeout waiting for pod log to contain\b${str}"
+    echo -e "ERROR: timeout waiting for pod log to contain \b${str}"
     return 1
 }
