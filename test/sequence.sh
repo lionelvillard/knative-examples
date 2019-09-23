@@ -19,7 +19,7 @@ u::testsuite "Sequence"
 
 [[ $(kubectl get ns | grep examples-sequence) == "" ]] && kubectl create ns examples-sequence
 
-cd $ROOT/flow/sequence
+cd $ROOT/examples/sequence
 dirs=./src/*
 for d in $dirs
 do

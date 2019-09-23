@@ -1,0 +1,9 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: assign-photographer
+spec:
+  template:
+    spec:
+      containers:
+      - image: ../../src/assign-photographer
