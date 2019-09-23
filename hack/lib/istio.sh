@@ -48,6 +48,7 @@ function istio::install_lean() {
     `# Pilot doesn't need a sidecar.` \
     --set pilot.sidecar=false \
     --set pilot.resources.requests.memory=128Mi \
+    --set pilot.resources.requests.cpu=100m \
     `# Disable galley (and things requiring galley).` \
     --set galley.enabled=false \
     --set global.useMCP=false \
@@ -67,7 +68,26 @@ function istio::install_lean() {
     > ./istio-lean.yaml
 
   kubectl apply -f istio-lean.yaml
-  kubectl patch -n istio-system deployments.apps istio-pilot -p '{"spec": {"template": {"spec": {"containers": [{"name": "discovery", "resources": {"requests": {"cpu":"100m"}}}]}}}}'
+  # kubectl patch -n istio-system deployments.apps istio-pilot -p '{"spec": {"template": {"spec": {"containers": [{"name": "discovery", "resources": {"requests": {"cpu":"100m"}}}]}}}}'
+
+  echo "install local cluster gateway"
+
+  helm template --namespace=istio-system \
+    --set gateways.custom-gateway.autoscaleMin=1 \
+    --set gateways.custom-gateway.autoscaleMax=1 \
+    --set gateways.custom-gateway.cpu.targetAverageUtilization=60 \
+    --set gateways.custom-gateway.labels.app='cluster-local-gateway' \
+    --set gateways.custom-gateway.labels.istio='cluster-local-gateway' \
+    --set gateways.custom-gateway.type='ClusterIP' \
+    --set gateways.istio-ingressgateway.enabled=false \
+    --set gateways.istio-egressgateway.enabled=false \
+    --set gateways.istio-ilbgateway.enabled=false \
+    install/kubernetes/helm/istio \
+    -f install/kubernetes/helm/istio/example-values/values-istio-gateways.yaml \
+    | sed -e "s/custom-gateway/cluster-local-gateway/g" -e "s/customgateway/clusterlocalgateway/g" \
+    > ./istio-local-gateway.yaml
+
+  kubectl apply -f istio-local-gateway.yaml
 
   popd
 

@@ -30,9 +30,7 @@ done
 kubectl config set-context --current --namespace=examples-sequence
 kone apply -f config/
 
-sleep 30
-
-kubectl -n examples-sequence get pods -oyaml
+sleep 5
 
 k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container photographers
 
