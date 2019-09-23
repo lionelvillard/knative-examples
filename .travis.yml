@@ -16,7 +16,8 @@ addons:
 install: skip
 
 before_script:
-  - GO111MODULE="on" go get sigs.k8s.io/kind@v0.5.1
+  # - GO111MODULE="on" go get sigs.k8s.io/kind@v0.5.1
+  - sudo mv bin/linux/amd64/kind /usr/local/bin
   - go get github.com/ibm/kone/cmd/kone
 
 jobs:
