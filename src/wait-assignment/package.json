@@ -1,4 +1,5 @@
 {
+  "name": "wait-assignment",
   "scripts": {
     "start": "node main.js"
   },

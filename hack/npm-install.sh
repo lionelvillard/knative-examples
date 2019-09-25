@@ -19,21 +19,18 @@ set -e
 ROOT=$(dirname $BASH_SOURCE[0])/..
 source $ROOT/hack/lib/library.sh
 
-pushd $ROOT/src
-dirs=./*
-for d in $dirs
-do
-    name=$(basename $d)
-    (cd $name && npm i)
-done
-popd
+function npm_install {
+    local root="$"
+    pushd $root
+        dirs=./*
+        for d in $dirs
+        do
+            name=$(basename $d)
+            (cd $name && npm i)
+        done
+    popd
+    return 0
+}
 
-pushd $ROOT/examples/sequence/src
-dirs=./*
-for d in $dirs
-do
-    name=$(basename $d)
-    (cd $name && npm i)
-done
-popd
-
+npm_install $ROOT/src
+npm_install $ROOT/examples/sequence/src

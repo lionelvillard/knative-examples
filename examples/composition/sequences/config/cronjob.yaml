@@ -1,0 +1,15 @@
+apiVersion: sources.eventing.knative.dev/v1alpha1
+kind: CronJobSource
+metadata:
+  name: add-product
+spec:
+  schedule: "*/1 * * * *"
+  data: '{"message": "Hello"}'
+  sink:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: Sequence
+    name:  main
+  resources:
+    limits:
+      cpu: 25m
+      memory: 50Mi

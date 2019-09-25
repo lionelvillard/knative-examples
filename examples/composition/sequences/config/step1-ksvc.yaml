@@ -1,0 +1,12 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: step1
+spec:
+  template:
+    spec:
+      containers:
+        - image: ../../../../src/replace
+          env:
+            name: REPLACEMENT
+            value: "subsequence"

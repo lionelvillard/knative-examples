@@ -13,9 +13,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-set -e
-
 ROOT=$(dirname $BASH_SOURCE[0])/..
 source $ROOT/hack/lib/library.sh
 
@@ -28,5 +25,6 @@ u::header "Installing dependencies"
 $ROOT/hack/npm-install.sh
 
 u::header "Testing..."
-. $ROOT/test/sequence.sh
+$ROOT/test/sequence.sh
+#$ROOT/test/parallel.sh
 

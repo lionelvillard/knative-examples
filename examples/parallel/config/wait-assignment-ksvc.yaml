@@ -6,4 +6,4 @@ spec:
   template:
     spec:
       containers:
-      - image: ../src/wait-assignment
+      - image: ../../../src/wait-assignment

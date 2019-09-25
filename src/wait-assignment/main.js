@@ -4,8 +4,8 @@ const bodyParser = require("body-parser")
 app.use(bodyParser.json());
 
 app.post("/", (req, res) => {
-  console.log(`assignment received (${req.body._id})`)
-  res.header(req.header).status(200).send(req.body)
+  console.log(`wait for assigment`)
+  res.set(req.headers).status(200).send(req.body)
 })
 
 app.listen(8080)

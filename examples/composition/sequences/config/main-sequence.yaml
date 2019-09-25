@@ -1,0 +1,17 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: Sequence
+metadata:
+  name: main
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+  steps:
+  - ref:
+      apiVersion: messaging.knative.dev/v1alpha1
+      kind: Sequence
+      name: sub
+  reply:
+    apiVersion: serving.knative.dev/v1alpha1
+    kind: Service
+    name: event-display

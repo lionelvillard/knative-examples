@@ -1,16 +1,11 @@
 #!/usr/bin/env bash
 
-CHANNEL_HOSTNAME=$(kubectl get parallels.messaging.knative.dev check-assignment -o=jsonpath='{.status.address.url}')
+TARGET=$(kubectl get parallels.messaging.knative.dev check-assignment -o=jsonpath='{.status.address.url}')
 
-kubectl exec shell -- curl $CHANNEL_HOSTNAME \
-  -X POST \
-  -H 'Content-Type: application/json' \
-  -H "CE-CloudEventsVersion: 0.1" \
-  -H "CE-EventType: dev.knative.foo.bar" \
-  -H "CE-EventTime: 2018-04-05T03:56:24Z" \
-  -H "CE-EventID: 45a8b444-3213-4758-be3f-540bf93f85ff" \
-  -H "CE-Source: dev.knative.example" \
-  -d '{ "assigned": false }'
+kubectl run sendevent -it --image=villardl/sendevent-2e4a9de951897fc25b3c07443d373b90 --generator=run-pod/v1 -- \
+  -sink $TARGET \
+  -event-type dev.knative.foo.bar \
+  -data '{ "assigned": false }'
 
 
 

@@ -6,4 +6,4 @@ spec:
   template:
     spec:
       containers:
-      - image: ../src/check-data-not-assigned
+      - image: ../../../src/check-data-not-assigned

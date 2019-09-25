@@ -28,6 +28,14 @@ function k8s::install_helm() {
       return 0
 }
 
+# Create given namespace and set current context. Does not fail if exist already
+function k8s::create_and_set_ns() {
+    local ns="$1"
+    [[ $(kubectl get ns | grep $ns) == "" ]] && kubectl create ns $ns
+    kubectl config set-context --current --namespace=$ns
+    return 0
+}
+
 # wait for resource to be ready
 function k8s::wait_resource_online() {
     local kind="$1"
