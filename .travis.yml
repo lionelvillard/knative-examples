@@ -30,3 +30,7 @@ jobs:
     name: "Serving 0.9.0 / Eventing 0.9.0"
     script:
     - test/e2e.sh 0.9.0 0.9.0
+  - install: skip
+    name: "Serving 0.9.0 / Eventing nightly"
+    script:
+    - test/e2e.sh 0.9.0 nightly
