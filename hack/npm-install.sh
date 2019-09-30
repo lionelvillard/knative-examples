@@ -20,7 +20,7 @@ ROOT=$(dirname $BASH_SOURCE[0])/..
 source $ROOT/hack/lib/library.sh
 
 function npm_install {
-    local root="$"
+    local root="$1"
     pushd $root
         dirs=./*
         for d in $dirs
