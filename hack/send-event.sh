@@ -13,12 +13,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 set -e
 
-ROOT=$(dirname $BASH_SOURCE[0])/../..
+ROOT=$(dirname $BASH_SOURCE[0])/..
 source $ROOT/hack/lib/library.sh
 
-TARGET=$(kubectl get parallels.messaging.knative.dev check-assignment -o=jsonpath='{$.status.address.url}')
-
-knative::send_event ${TARGET:7} '{"assigned":true}'
+knative::send_event $1 $2

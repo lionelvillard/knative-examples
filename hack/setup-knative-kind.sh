@@ -34,10 +34,10 @@ if [[ "$(kind get clusters | grep ${PROFILE})" != "" ]]; then
   code=$?
   if [[ code != 0 ]]; then
     kind delete cluster --name $PROFILE
-    kind create cluster --name $PROFILE
+    kind create cluster --name $PROFILE --config $ROOT/hack/kind-config.yaml
   fi
 else
-    kind create cluster --name $PROFILE
+    kind create cluster --name $PROFILE --config $ROOT/hack/kind-config.yaml
 fi
 
 kind::update-context $PROFILE

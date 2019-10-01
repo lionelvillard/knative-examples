@@ -54,3 +54,38 @@ function knative::install() {
 
   return 0
 }
+
+function knative::install_send_event() {
+  if [[ -z $(kubectl get -n default ksvc send-event 2> /dev/null) ]]; then
+    pushd $ROOT
+    cat << EOF | kone apply -f -
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: send-event
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: ./src/send-event
+EOF
+    popd
+  fi
+}
+
+function knative::send_event() {
+  local target=$1
+  local event=$2
+  if [[ $target == "" || $event == "" ]]; then
+      u::fatal "missing argument. send_event <target> <event>"
+  fi
+
+  knative::install_send_event
+
+  curl -v -H "host: send-event.default.example.com" \
+    -H "target: $target" \
+    -H 'content-type: application/json' \
+    -d $event \
+    localhost:8080
+}
