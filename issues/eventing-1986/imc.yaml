@@ -1,0 +1,6 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: InMemoryChannel
+metadata:
+  name: issue-1986
+spec:
+  subscribable:

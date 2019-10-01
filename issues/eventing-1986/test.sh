@@ -13,26 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-ROOT=$(dirname $BASH_SOURCE[0])/..
-source $ROOT/hack/lib/library.sh
-NS=examples-sequence
 
-u::testsuite "Sequence"
-k8s::create_and_set_ns $NS
+kubectl apply -f .
 
-cd $ROOT/examples/sequence
-
-u::header "Deploying V1"
-kone apply -f config/
-
-sleep 5
-
-k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container photographers
-
-# Failing in 0.9.0 and before
-# u::header "Deploying V2"
-# kone apply -f config-v2/
-# k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container john1505
-
-u::header "cleanup"
-#k8s::delete_ns $NS
+k8s::wait_log_contains "serving.knative.dev/configuration=issue-1986" user-container boo
