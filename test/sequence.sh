@@ -35,4 +35,4 @@ k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-co
 # k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container john1505
 
 u::header "cleanup"
-#k8s::delete_ns $NS
+k8s::delete_ns $NS

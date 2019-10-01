@@ -45,3 +45,8 @@ function u::testsuite() {
     u::header "$1"
     u::header "${BOLD}====${NORMAL}"
 }
+
+function u::abs_path() {
+    local path="$1"
+    echo "$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
+}

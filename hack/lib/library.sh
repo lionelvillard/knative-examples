@@ -16,9 +16,10 @@
 set -e
 
 LIBROOT=$(dirname $BASH_SOURCE[0])
+source $LIBROOT/utils.sh
+LIBROOT=$(u::abs_path $LIBROOT)
 source $LIBROOT/istio.sh
 source $LIBROOT/k8s.sh
 source $LIBROOT/knative.sh
-source $LIBROOT/utils.sh
 source $LIBROOT/minikube.sh
 source $LIBROOT/kind.sh

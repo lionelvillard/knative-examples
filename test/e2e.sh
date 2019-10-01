@@ -26,7 +26,7 @@ $ROOT/hack/npm-install.sh
 
 u::header "Testing..."
 $ROOT/test/sequence.sh
-#$ROOT/test/parallel.sh
+$ROOT/test/parallel.sh
 
 u::header "Running Regression Test..."
 $ROOT/issues/test.sh

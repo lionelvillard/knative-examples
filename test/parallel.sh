@@ -26,7 +26,12 @@ cd $ROOT/examples/parallel
 u::header "Deploying..."
 kone apply -f config/
 
-# k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container photographers
+k8s::wait_resource_ready parallels.messaging.knative.dev check-assignment
+
+target=$(kubectl get parallels.messaging.knative.dev check-assignment -o=jsonpath='{$.status.address.url}')
+
+knative::send_event ${target:7} '{"assigned":true}'
+k8s::wait_log_contains "serving.knative.dev/configuration=send-message" user-container 'assignment received'
 
 u::header "cleanup"
 k8s::delete_ns $NS

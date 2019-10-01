@@ -45,7 +45,7 @@ function k8s::delete_ns() {
     return 0
 }
 
-# wait for resource to be ready
+# wait for resource to be online
 function k8s::wait_resource_online() {
     local kind="$1"
     local name="$2"
@@ -55,6 +55,30 @@ function k8s::wait_resource_online() {
     local i
     for i in $(seq 1 "$retries"); do
         if [ "$(kubectl get $kind $name -o=jsonpath='{.status.state}')" == "Online" ]; then
+            printf $CHECKMARK
+            echo ""
+            return 0
+        fi
+        printf "."
+        sleep 2
+    done
+
+    printf "timeout $CROSSMARK"
+    echo ""
+    return 1
+}
+
+
+# wait for resource to be ready
+function k8s::wait_resource_ready() {
+    local kind="$1"
+    local name="$2"
+    local retries="${3:-120}"
+
+    printf "waiting for $kind $name to be ready ."
+    local i
+    for i in $(seq 1 "$retries"); do
+        if [ "$(kubectl get $kind $name -o=jsonpath='{.status.conditions[?(@.type=="Ready")].status}')" == "True" ]; then
             printf $CHECKMARK
             echo ""
             return 0

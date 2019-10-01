@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 # install Knative
 function knative::install() {
   local serving_version=$1
@@ -56,19 +57,19 @@ function knative::install() {
 }
 
 function knative::install_send_event() {
-  if [[ -z $(kubectl get -n default ksvc send-event 2> /dev/null) ]]; then
-    pushd $ROOT
+  if [[ -z $(kubectl get -n default ksvc dispatch-event 2> /dev/null) ]]; then
+    pushd ${LIBROOT}/../../src
     cat << EOF | kone apply -f -
 apiVersion: serving.knative.dev/v1alpha1
 kind: Service
 metadata:
-  name: send-event
+  name: dispatch-event
   namespace: default
 spec:
   template:
     spec:
       containers:
-      - image: ./src/send-event
+      - image: ./send-event
 EOF
     popd
   fi
@@ -83,7 +84,7 @@ function knative::send_event() {
 
   knative::install_send_event
 
-  curl -v -H "host: send-event.default.example.com" \
+  curl -v -H "host: dispatch-event.default.example.com" \
     -H "target: $target" \
     -H 'content-type: application/json' \
     -d $event \
