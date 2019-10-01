@@ -36,6 +36,15 @@ function k8s::create_and_set_ns() {
     return 0
 }
 
+
+# Delete ns and set current context to default
+function k8s::delete_ns() {
+    local ns="$1"
+    kubectl delete namespace $ns --wait=false
+    kubectl config set-context --current --namespace=default
+    return 0
+}
+
 # wait for resource to be ready
 function k8s::wait_resource_online() {
     local kind="$1"
