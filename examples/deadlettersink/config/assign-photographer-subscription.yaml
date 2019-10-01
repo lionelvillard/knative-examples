@@ -7,14 +7,14 @@ spec:
     apiVersion: messaging.knative.dev/v1alpha1
     kind: InMemoryChannel
     name: assign-photographer
-  subscriber:
-    ref:
-      apiVersion: serving.knative.dev/v1alpha1
-      kind: Service
-      name: assign-photographer
   delivery:
     deadLetterSink:
       apiVersion: serving.knative.dev/v1alpha1
       kind: Service
       name: assign-photographer-deadletter
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: assign-photographer
 

@@ -13,22 +13,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ROOT=$(dirname $BASH_SOURCE[0])/..
 source $ROOT/hack/lib/library.sh
 
-docker login -p $DOCKER_PASS -u $DOCKER_USER docker.io
+pushd $ROOT/issues
 
-u::header "Starting kind cluster"
-. $ROOT/hack/setup-knative-kind.sh $1 $2
+dirs=./eventing-*
+for d in $dirs
+do
+    name=$(basename $d)
+    u::header "Testing issue $name"
 
-u::header "Installing dependencies"
-$ROOT/hack/npm-install.sh
+    (cd $name && ./test.sh)
+done
 
-u::header "Testing..."
-$ROOT/test/sequence.sh
-#$ROOT/test/parallel.sh
-
-u::header "Running Regression Test..."
-$ROOT/issues/test.sh
-
-
+popd
