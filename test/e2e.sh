@@ -30,12 +30,10 @@ $ROOT/hack/npm-install.sh
 u::header "Testing..."
 $ROOT/test/sequence.sh
 
-if [ "${eventing_version}" == "nightly" || $(semver::less_than 0.8.0 ${eventing_version}) ]
+if [[ "${eventing_version}" == "nightly" || $(semver::less_than 0.8.0 ${eventing_version}) ]]
 then
     $ROOT/test/parallel.sh
 fi
 
-u::header "Running Regression Test..."
-$ROOT/issues/test.sh
 
 

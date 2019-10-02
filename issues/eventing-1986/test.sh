@@ -13,7 +13,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+ROOT=$(dirname $BASH_SOURCE[0])/../..
+source $ROOT/hack/lib/library.sh
+ROOT=$(u::abs_path $ROOT)
 
-kubectl apply -f .
+if [[ "${eventing_version}" == "nightly" || $(semver::less_than 0.8.0 ${eventing_version}) ]]
+then
 
-k8s::wait_log_contains "serving.knative.dev/configuration=issue-1986" user-container boo
+    pushd $ROOT/issues/eventing-1986
+
+    kubectl apply -f .
+
+    k8s::wait_log_contains "serving.knative.dev/configuration=issue-1986" user-container boo
+
+    popd
+
+fi
