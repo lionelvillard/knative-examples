@@ -17,9 +17,8 @@ ROOT=$(dirname $BASH_SOURCE[0])/../..
 source $ROOT/hack/lib/library.sh
 ROOT=$(u::abs_path $ROOT)
 
-if [[ "${eventing_version}" == "nightly" || $(semver::less_than 0.8.0 ${eventing_version}) ]]
-then
-
+# 0.9.0 moves subscription in messaging
+if [[ $(semver::gte "${eventing_version}" 0.9.0) ]]; then
     pushd $ROOT/issues/eventing-1986
 
     kubectl apply -f .
@@ -27,5 +26,4 @@ then
     k8s::wait_log_contains "serving.knative.dev/configuration=issue-1986" user-container boo
 
     popd
-
 fi

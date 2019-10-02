@@ -30,8 +30,7 @@ $ROOT/hack/npm-install.sh
 u::header "Testing..."
 $ROOT/test/sequence.sh
 
-if [[ "${eventing_version}" == "nightly" || $(semver::less_than 0.8.0 ${eventing_version}) ]]
-then
+if [[ $(semver::gte ${eventing_version}  0.8.0) ]]; then
     $ROOT/test/parallel.sh
 fi
 

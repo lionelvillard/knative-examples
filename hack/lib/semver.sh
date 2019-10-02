@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-function semver::less_than() {
+function semver::lt() {
     local left="$1"
     local right="$2"
 
@@ -47,3 +47,21 @@ function semver::less_than() {
     echo "" # false
 }
 
+
+function semver::gte() {
+    local left="$1"
+    local right="$2"
+
+    if [[ -z "${left}" || "${left}" == "nightly" || "${left}" == "${right}" ]]; then
+        echo "true"
+        return 0
+    fi
+
+    if [[ $(semver::lt "${left}" "${right}") ]]; then
+        echo ""
+        return 0
+    fi
+
+    echo "true"
+    return 0
+}
