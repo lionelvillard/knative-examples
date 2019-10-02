@@ -68,17 +68,21 @@ function k8s::wait_resource_online() {
     return 1
 }
 
-
-# wait for resource to be ready
-function k8s::wait_resource_ready() {
+# wait for resource to be ready in namespace
+function k8s::wait_resource_ready_ns() {
     local kind="$1"
     local name="$2"
-    local retries="${3:-120}"
+    local ns="$3"
+    local retries="${4:-120}"
 
+    local nsopt=""
+    if [[ -n "$ns" ]]; then
+        nsopt="-n ${ns}"
+    fi
     printf "waiting for $kind $name to be ready ."
     local i
     for i in $(seq 1 "$retries"); do
-        if [ "$(kubectl get $kind $name -o=jsonpath='{.status.conditions[?(@.type=="Ready")].status}')" == "True" ]; then
+        if [ "$(kubectl get ${nsopt} $kind $name -o=jsonpath='{.status.conditions[?(@.type=="Ready")].status}')" == "True" ]; then
             printf $CHECKMARK
             echo ""
             return 0
@@ -91,6 +95,12 @@ function k8s::wait_resource_ready() {
     echo ""
     return 1
 }
+
+# wait for resource to be ready
+function k8s::wait_resource_ready() {
+    k8s::wait_resource_ready_ns $1 $2 "" $3
+}
+
 
 function k8s::wait_until_pods_running() {
     local ns="$1"

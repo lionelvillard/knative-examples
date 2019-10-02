@@ -72,6 +72,8 @@ spec:
       - image: ./send-event
 EOF
     popd
+
+    k8s::wait_resource_ready_ns services.serving.knative.dev dispatch-event default
   fi
 }
 

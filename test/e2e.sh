@@ -18,6 +18,9 @@ source $ROOT/hack/lib/library.sh
 
 docker login -p $DOCKER_PASS -u $DOCKER_USER docker.io
 
+serving_version=$1
+eventing_version=$2
+
 u::header "Starting kind cluster"
 . $ROOT/hack/setup-knative-kind.sh $1 $2
 
@@ -26,7 +29,11 @@ $ROOT/hack/npm-install.sh
 
 u::header "Testing..."
 $ROOT/test/sequence.sh
-$ROOT/test/parallel.sh
+
+if [ "${eventing_version}" == "nightly" || $(semver::less_than 0.8.0 ${eventing_version}) ]
+then
+    $ROOT/test/parallel.sh
+fi
 
 u::header "Running Regression Test..."
 $ROOT/issues/test.sh
