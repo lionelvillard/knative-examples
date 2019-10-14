@@ -1,0 +1,18 @@
+apiVersion: sources.eventing.knative.dev/v1alpha1
+kind: CronJobSource
+metadata:
+  name: add-product
+spec:
+  schedule: "*/1 * * * *"
+  data: '{"brand":"POLO RALPH LAUREN", "name": "Polo Ralph Lauren 3-Pack Socks", "category": "Socks for Men"}'
+  sink:
+    apiVersion: v1
+    kind: Service
+    name:  event-display
+  resources:
+    limits:
+      cpu: 25m
+      memory: 50Mi
+    requests:
+      cpu: 25m
+      memory: 50Mi
