@@ -30,8 +30,13 @@ sleep 5
 k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container photographers
 
 # Failing in 0.9.0 and before
-# u::header "Deploying V2"
-# kone apply -f config-v2/
+# u::header "Changing Service step 1"
+# kone apply -f config/v2
+# k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container john1505
+
+# Failing in 0.9.0 and before
+u::header "Deleting step 3"
+#kone apply -f config/v3
 # k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container john1505
 
 u::header "cleanup"
