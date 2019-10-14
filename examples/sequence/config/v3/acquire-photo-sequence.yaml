@@ -1,0 +1,21 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: Sequence
+metadata:
+  name: acquire-photo
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+  steps:
+  - ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: assign-photographer
+  - ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: send-assignment-notice
+  reply:
+    kind: Service
+    apiVersion: serving.knative.dev/v1alpha1
+    name: event-display

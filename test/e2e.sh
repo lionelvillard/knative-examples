@@ -30,7 +30,7 @@ $ROOT/hack/npm-install.sh
 u::header "Testing..."
 $ROOT/test/sequence.sh
 
-if [[ $(semver::gte ${eventing_version}  0.8.0) ]]; then
+if [[ $(semver::gte ${eventing_version} 0.9.0) ]]; then
     $ROOT/test/parallel.sh
 fi
 
