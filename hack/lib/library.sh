@@ -25,3 +25,5 @@ source $LIBROOT/knative.sh
 source $LIBROOT/minikube.sh
 source $LIBROOT/kind.sh
 source $LIBROOT/semver.sh
+source $LIBROOT/couchdb.sh
+source $LIBROOT/ic.sh
