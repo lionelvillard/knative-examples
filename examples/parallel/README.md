@@ -1,7 +1,7 @@
 # Prerequites
 
 - Knative 0.9+
- [Kone](https://github.com/ibm/kone)
+- [Kone](https://github.com/ibm/kone)
 - Optional: [stern](https://github.com/wercker/stern)
 
 # deploy
