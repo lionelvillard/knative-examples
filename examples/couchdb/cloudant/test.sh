@@ -23,7 +23,7 @@ k8s::create_and_set_ns $NS
 
 cd $ROOT/examples/couchdb
 
-#./create-secret.sh hello-retail
+./create-secret.sh hello-retail
 
 u::header "Deploying..."
 kone apply -f config/

@@ -5,7 +5,7 @@ metadata:
 spec:
   database: photographers
   credentials:
-    name: couchdb-binding
+    name: cloudant
   sink:
     apiVersion: serving.knative.dev/v1alpha1
     kind: Service
