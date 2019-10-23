@@ -14,35 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+ROOT=$(dirname $BASH_SOURCE[0])/../../..
+source $ROOT/hack/lib/library.sh
 
-function couchdb::get_document() {
-  local url=$1
-  local database=$2
-  local id=$3
-  curl -s "$url/$database/$id"
-}
+if [[ $1 == "" ]]; then
+  echo "usage: create-document.sh <service-key> <doc_id>"
+fi
 
-function couchdb::create_document() {
-  local url=$1
-  local database=$2
-  local data=$3
+url=$(bx resource service-key $1 --output json | jq -r ".[0].credentials.url")
 
-  curl "$url/$database" \
-    -H "Content-Type: application/json" \
-    -d "$data"
-
-  return 0
-}
-
-function couchdb::delete_document() {
-  local url=$1
-  local database=$2
-  local id=$3
-
-  local doc=$(couchdb::get_document "$url" "$database" "$id")
-  local rev=$(echo $doc | jq -r "._rev")
-
-
-  curl -X DELETE -s "$url/$database/$id?rev=$rev"
-  return 0
-}
+couchdb::delete_document $url "photographers" $2
