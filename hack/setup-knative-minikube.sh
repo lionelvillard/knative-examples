@@ -22,7 +22,7 @@ source $ROOT/hack/lib/library.sh
 KNATIVE_SERVING_VERSION=$1
 KNATIVE_EVENTING_VERSION=$2
 if [[ $KNATIVE_SERVING_VERSION == "" || $KNATIVE_EVENTING_VERSION == "" ]]; then
-  u::fatal "usage: setup-knative-kind.sh <knative-serving-version> <knative-eventing-version>"
+  u::fatal "usage: setup-knative-minikube.sh <knative-serving-version> <knative-eventing-version>"
 fi
 
 PROFILE=mk-s${KNATIVE_SERVING_VERSION}-e${KNATIVE_EVENTING_VERSION}

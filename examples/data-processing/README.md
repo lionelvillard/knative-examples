@@ -13,15 +13,16 @@ This example is the Knative version of [Cloudant data processing with IBM Cloud 
 ## Prerequites
 
 - A Kubernetes cluster with
-    - [Knative Serving and Eventing](https://knative.dev) 0.9+ 
+    - [Knative Serving and Eventing](https://knative.dev) 0.9+
     - [Knative Eventing CouchDB event source](https://github.com/knative/eventing-contrib/tree/master/couchdb)
     - [IBM Cloud Operator](https://github.com/IBM/cloud-operators) (optional)
 - [Kone](https://github.com/ibm/kone) installed and configured.
 - [stern](https://github.com/wercker/stern) (optional)
 - The IBM Cloud CLI (optional)
 
-
 ## Deployment steps
+
+Make sure your current working directory is `examples/data-processing`.
 
 ### Creating k8s namespace
 
@@ -31,7 +32,7 @@ kubectl create namespace knative-dataprocessing
 
 ### Provisioning Cloudant
 
-#### With IBM Cloud Operator
+#### With the IBM Cloud Operator
 
 1. Configure the IBM Cloud Operator by creating a secret with your [API key](https://cloud.ibm.com/iam/apikeys) and your region (eg. `us-south`):
 
@@ -42,13 +43,13 @@ kubectl create secret generic seed-secret -n knative-dataprocessing \
 kubectl label secret seed-secret -n knative-dataprocessing seed.ibm.com/ibmcloud-token=apikey
 ```
 
-1. Deploy the IBM Cloud Operator objects:
+2. Deploy the IBM Cloud Operator objects:
 
 ```sh
 kubectl apply -n knative-dataprocessing -f config/operator
 ```
 
-#### With the ibmcloud CLI
+#### With the IBM Cloud CLI
 
 Go to [IBM Cloudant Documentation](https://cloud.ibm.com/docs/services/Cloudant?topic=cloudant-getting-started) to learn how to create service credential for your service instance.
 
@@ -62,13 +63,14 @@ kubectl create secret generic cloudant -n knative-dataprocessing \
 ### Deploying the application
 
 ```sh
+pushd src/write-to-cloudant/ && npm install && popd # install dependencies
+
 kone apply -n knative-dataprocessing -f config
 ```
 
 ## Verifying
 
 Verify that all services are ready:
-
 
 ```sh
 kubectl get -n knative-dataprocessing services.serving.knative.dev
