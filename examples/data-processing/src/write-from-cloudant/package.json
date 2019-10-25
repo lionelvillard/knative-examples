@@ -1,5 +1,5 @@
 {
-  "name": "identity",
+  "name": "write-from-cloudant",
   "kone": {
     "defaultBaseImage": "docker.io/villardl/function"
   }

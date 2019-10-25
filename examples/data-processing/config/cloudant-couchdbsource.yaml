@@ -1,0 +1,13 @@
+apiVersion: sources.eventing.knative.dev/v1alpha1
+kind: CouchDbSource
+metadata:
+  name: dataprocessing
+  namespace: knative-dataprocessing
+spec:
+  database: dataproc
+  credentials:
+    name: cloudant
+  sink:
+    apiVersion: serving.knative.dev/v1alpha1
+    kind: Service
+    name:  write-from-cloudant

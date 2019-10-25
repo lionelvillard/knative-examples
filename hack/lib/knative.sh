@@ -92,3 +92,19 @@ function knative::send_event() {
     -d $event \
     localhost:8080
 }
+
+function knative::invoke() {
+  local host="$1"
+  local body="$2"
+
+  if [[ -z $ISTIO_IP_ADDRESS ]]; then
+    ISTIO_IP_ADDRESS=$(kubectl get svc istio-ingressgateway --namespace istio-system --output 'jsonpath={.status.loadBalancer.ingress[0].ip}')
+  fi
+
+  local data=
+  if [[ -n ${body} ]]; then
+    data="-d ${body}"
+  fi
+
+  curl -s -X POST -H "Host: $host" http://$ISTIO_IP_ADDRESS "$data"
+}

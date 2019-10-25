@@ -1,0 +1,7 @@
+apiVersion: ibmcloud.ibm.com/v1alpha1
+kind: Binding
+metadata:
+    name: cloudant
+    namespace: knative-dataprocessing
+spec:
+  serviceName: cloudant
