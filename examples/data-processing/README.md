@@ -13,7 +13,8 @@ This example is the Knative version of [Cloudant data processing with IBM Cloud 
 ## Prerequites
 
 - A Kubernetes cluster with
-    - [Knative Serving and Eventing](https://knative.dev) 0.10+
+    - [Knative Serving and Eventing](https://knative.dev) 0.9+ 
+    - [Knative Eventing CouchDB event source](https://github.com/knative/eventing-contrib/tree/master/couchdb)
     - [IBM Cloud Operator](https://github.com/IBM/cloud-operators) (optional)
 - [Kone](https://github.com/ibm/kone) installed and configured.
 - [stern](https://github.com/wercker/stern) (optional)
