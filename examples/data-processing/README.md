@@ -4,7 +4,7 @@ This example shows how serverless, event-driven architectures can be used to exe
 
 This application shows you two Knative functions (written in JavaScript) that write and read text and image data to Cloudant, a hosted Apache CouchDB service. The scenario demonstrates how Knative functions can work with data services and execute logic in response to database changes.
 
-One function connects to Cloudant and inserts text and binary data as an attachment. The function configuration mounts the Cloudant credential produced by the [IBM cloud operator](https://github.com/IBM/cloud-operators/).
+One function connects to Cloudant and inserts text and binary data as an attachment. The function configuration mounts the Cloudant credentials produced by the [IBM cloud operator](https://github.com/IBM/cloud-operators/).
 
 A second function responds to the changes that were inserted into Cloudant by the first function. Instead of being manually invoked, the developer defines a Knative CouchDB source listening to Cloudant changes.
 
