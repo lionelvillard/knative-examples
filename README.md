@@ -50,4 +50,4 @@ bin/setup-addon-operators.sh
 
 ### Event Source
 
-- CouchDB using [IBM Cloudant](./examples/couchdb/cloudand/README.md)
+- CouchDB using [IBM Cloudant](./examples/couchdb/cloudant/README.md)
