@@ -34,7 +34,7 @@ This creates a kind cluster named `knative-s<knative-serving-version>-e<knative-
 To install add-ons operators
 
 ```sh
-bin/setup-addon-operatirs.sh
+bin/setup-addon-operators.sh
 ```
 
 ## Examples
