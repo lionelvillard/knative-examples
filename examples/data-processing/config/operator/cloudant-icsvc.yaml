@@ -2,6 +2,7 @@ apiVersion: ibmcloud.ibm.com/v1alpha1
 kind: Service
 metadata:
   name: cloudant
+  namespace: knative-dataprocessing
 spec:
   plan: Alias
   serviceClass: cloudantnosqldb

@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: write-from-cloudant
+  namespace: knative-dataprocessing
+spec:
+  template:
+    spec:
+      containers:
+        - image: ../src/write-from-cloudant

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: seed-defaults
+  namespace: knative-dataprocessing
+data:
+  resourceGroup: default
+  region: us-south
+
+  # dummy value
+  org: org
+  space: space

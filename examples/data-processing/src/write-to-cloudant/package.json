@@ -1,0 +1,10 @@
+{
+  "name": "write-from-cloudant",
+  "dependencies": {
+    "@cloudant/cloudant": "^4.2.2",
+    "request": "^2.88.0"
+  },
+  "kone": {
+    "defaultBaseImage": "docker.io/villardl/function"
+  }
+}
