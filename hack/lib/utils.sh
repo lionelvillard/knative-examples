@@ -35,7 +35,7 @@ function u::header() {
 # print error in red and exit
 function u::fatal() {
     echo ""
-    echo ${COLOR_RED}${1}${NORMAL}
+    printf "${COLOR_RED}${1}${NORMAL}\n"
     exit 1
 }
 

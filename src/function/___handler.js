@@ -9,14 +9,9 @@ async function handleRequest(req, res) {
     }
 
     // http => event
-    const event = Object.keys(req.headers).reduce((event, key) => {
-        if (key.startsWith('ce-')) {
-            event[key.substr(3)] = req.headers[key]
-        }
-        return event
-    }, {})
+    const event = httptoce(req.headers)
 
-    // read body
+    // Setup event handlers
     const body = []
     req.on('data', data => {
         body.push(data)
@@ -40,13 +35,12 @@ async function handleRequest(req, res) {
             const reply = await fn(event)
 
             if (reply) {
-                const headers = Object.keys(reply).reduce((headers, key) => {
-                    if (key !== "data")
-                        headers[`ce-${key}`] = reply[key]
-                    return headers
-                }, reply.data ? { 'Content-Type': 'application/json' } : {})
-
+                const headers = cetohttp(reply)
+                if (reply.data) {
+                    headers['Content-Type'] = 'application/json'
+                }
                 res.writeHead(200, headers)
+
                 if (reply.data) {
                     res.write(JSON.stringify(reply.data))
                 }
@@ -62,6 +56,31 @@ async function handleRequest(req, res) {
             return
         }
     })
+
+    req.on('error', err => {
+        res.statusCode = 500
+        res.write(e.toString())
+        res.end()
+    })
+}
+
+// Convert HTTP header to CloudEvents (without data)
+function httptoce(headers) {
+    return Object.keys(headers).reduce((event, key) => {
+        if (key.startsWith('ce-')) {
+            event[key.substr(3)] = headers[key]
+        }
+        return event
+    }, {})
+}
+
+// Convert CloudEvents attributes to HTTP headers
+function cetohttp(ce) {
+    return Object.keys(ce).reduce((headers, key) => {
+        if (key !== "data")
+            headers[`ce-${key}`] = ce[key]
+        return headers
+    }, {})
 }
 
 module.exports = handleRequest

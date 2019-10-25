@@ -16,7 +16,6 @@ addons:
 install: skip
 
 before_script:
-  # - GO111MODULE="on" go get sigs.k8s.io/kind@v0.5.1
   - sudo mv bin/linux/amd64/kind /usr/local/bin
   - go get github.com/ibm/kone/cmd/kone
 
@@ -34,3 +33,7 @@ jobs:
     name: "Serving 0.9.0 / Eventing nightly"
     script:
     - test/e2e.sh 0.9.0 nightly
+  - install: skip
+    name: "Unit testing"
+    script:
+    - test/src/function.sh

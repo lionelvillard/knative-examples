@@ -24,7 +24,6 @@ function cleanup {
 }
 trap cleanup EXIT
 
-
 u::testsuite "Function"
 
 cd $ROOT/src/function
@@ -54,7 +53,22 @@ printf "$CHECKMARK\n"
 printf "Should return empty body "
 o3=$(curl -s localhost:8080 -X POST)
 if  [[ "$o3" != '' ]]; then
-    u::fatal 'expected empty body, got'$o3
+    u::fatal 'expected empty body, got '$o3
+fi
+printf "$CHECKMARK\n"
+
+# Unicode
+printf "data with unicode "
+o4=$(curl -s localhost:8080 -d '{"message":"†˙ˆß ˆß çøø¬"}')
+if  [[ "$o4" != '{"message":"†˙ˆß ˆß çøø¬"}' ]]; then
+    u::fatal 'expected {"message":"†˙ˆß ˆß çøø¬"}, got '$o4
+fi
+printf "$CHECKMARK\n"
+
+printf "Invalid JSON data "
+o4=$(curl -s localhost:8080 -d '{"message":"missing bracket}')
+if  [[ "$o4" != 'invalid JSON: SyntaxError: Unexpected end of JSON input' ]]; then
+    u::fatal "Unexpected result ${o4}"
 fi
 printf "$CHECKMARK\n"
 
