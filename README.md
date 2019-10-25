@@ -41,13 +41,14 @@ bin/setup-addon-operators.sh
 
 ### Full Applications
 
-- [Cloudant Data Processing with Knative](./examples/data-processing/README.md)
+- [Cloudant Data Processing with Knative](./examples/data-processing)
 
 ### Composition
 
-- [Simple Sequence](./examples/sequence/README.md)
-- [Simple Parallel](./examples/parallel/README.md)
+- [Simple Sequence](./examples/sequence)
+- [Simple Parallel](./examples/parallel)
 
 ### Event Source
 
-- CouchDB using [IBM Cloudant](./examples/couchdb/cloudant/README.md)
+- [CronJob targeting "plain" Kubernetes Service](./examples/k8sservice)
+- CouchDB using [IBM Cloudant](./examples/couchdb/cloudant)

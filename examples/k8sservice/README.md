@@ -1,7 +1,6 @@
-# Prerequites
+# CronJob targeting "plain" Kubernetes Service
 
-- Knative 0.7+
-- Optional: [stern](https://github.com/wercker/stern)
+ See [prerequisites](../../README.md#prerequisites)
 
 # Deploy
 
@@ -13,10 +12,6 @@ Observe events:
 
 ```sh
 stern event-display
-```
-Observe the log:
-
-```
 + event-display-589879cf88-flgxh › event-display
 event-display-589879cf88-flgxh event-display ☁️  cloudevents.Event
 event-display-589879cf88-flgxh event-display Validation: valid
