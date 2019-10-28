@@ -50,5 +50,6 @@ bin/setup-addon-operators.sh
 
 ### Event Source
 
-- [CronJob targeting "plain" Kubernetes Service](./examples/k8sservice)
+- [API Server Source Examples](./examples/apiserversource)
+- [CronJob Targeting "Plain" Kubernetes Service](./examples/k8sservice)
 - CouchDB using [IBM Cloudant](./examples/couchdb/cloudant)
