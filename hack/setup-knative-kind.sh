@@ -45,3 +45,6 @@ echo "targeting $(kubectl config current-context)"
 
 istio::install_lean 1.1.7
 knative::install $KNATIVE_SERVING_VERSION $KNATIVE_EVENTING_VERSION
+
+echo To access your newly created cluster, run:
+echo export KUBECONFIG="$(kind get kubeconfig-path --name=knative-s${KNATIVE_SERVING_VERSION}-e${KNATIVE_EVENTING_VERSION})"

@@ -30,7 +30,7 @@ k8s::wait_resource_ready parallels.messaging.knative.dev check-assignment
 
 target=$(kubectl get parallels.messaging.knative.dev check-assignment -o=jsonpath='{$.status.address.url}')
 
-knative::send_event ${target:7} '{"assigned":true}'
+knative::send_event ${target:7} '{"assigned":true}' anid ansource atype
 k8s::wait_log_contains "serving.knative.dev/configuration=send-message" user-container 'assignment received'
 
 u::header "cleanup"

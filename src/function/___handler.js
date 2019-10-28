@@ -1,11 +1,24 @@
 const fn = require('./function')
+const dispatch = typeof fn !== 'function'
 
 // handle POST request
 async function handleRequest(req, res) {
-    if (req.method !== 'POST' || req.url !== '/') {
+    if (req.method !== 'POST' || (!dispatch && req.url !== '/') || (dispatch && req.url == '/')) {
         res.statusCode = 404
         res.end()
         return
+    }
+
+    // Resolve actual function
+    let actualfn = fn
+    if (dispatch) {
+        const fname = req.url.substr(1)
+        actualfn = fn[fname]
+        if (!actualfn) {
+            res.statusCode = 404
+            res.end()
+            return
+        }
     }
 
     // http => event
@@ -32,7 +45,7 @@ async function handleRequest(req, res) {
         }
 
         try {
-            const reply = await fn(event)
+            const reply = await actualfn(event)
 
             if (reply) {
                 const headers = cetohttp(reply)
