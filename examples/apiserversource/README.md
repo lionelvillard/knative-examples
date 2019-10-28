@@ -1,6 +1,6 @@
 # API Server Source Examples
 
-This folder contains several examples using the Knative Eventing [API Server source])(https://github.com/knative/eventing/blob/master/pkg/apis/sources/v1alpha1/apiserver_types.go).
+This folder contains several examples using the Knative Eventing [API Server source](https://github.com/knative/eventing/blob/master/pkg/apis/sources/v1alpha1/apiserver_types.go).
 
 See [Prerequisites](../../README.md#prerequisites).
 
