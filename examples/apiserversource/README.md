@@ -1,8 +1,36 @@
-# API Server Source Examples
+# API Server Source Example
 
-This folder contains several examples using the Knative Eventing [API Server source](https://github.com/knative/eventing/blob/master/pkg/apis/sources/v1alpha1/apiserver_types.go).
+This folder contains an example using the Knative Eventing [API Server source](https://github.com/knative/eventing/blob/master/pkg/apis/sources/v1alpha1/apiserver_types.go).
 
 See [Prerequisites](../../README.md#prerequisites).
+
+This example creates an API server source object watching for Knative serving `revision` objects:
+
+```yaml
+apiVersion: sources.eventing.knative.dev/v1alpha1
+kind: ApiServerSource
+metadata:
+  name: revision
+  namespace: apiserversource-example
+spec:
+  mode: Ref
+  resources:
+  - apiVersion: serving.knative.dev/v1alpha1
+    kind: Revision
+  serviceAccountName: apiserversource-example
+  sink:
+    apiVersion: serving.knative.dev/v1alpha1
+    kind: Service
+    name: event-display
+```
+
+`mode` can either be `Ref` or `Resource`. In the `Ref` mode, only the object reference is sent in the CloudEvents payload. In the `Resource` mode, the entire object is included.
+
+`resources` specifies the list of resources to watch for. Here we are just watching for revisions.
+
+The `serviceAccountName` points to the service account allowing `get`, `watch` and `list` on all the resources we are interested in, in this particular case revisions. See [100-apiserversource-example-sa.yaml](./config/100-apiserversource-example-sa.yaml)
+
+Finally, `sink` specifies where to send events.
 
 ## Deploying
 
