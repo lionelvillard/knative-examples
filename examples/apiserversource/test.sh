@@ -13,25 +13,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-ROOT=$(dirname $BASH_SOURCE[0])/..
+ROOT=$(dirname $BASH_SOURCE[0])/../..
 source $ROOT/hack/lib/library.sh
+cd $ROOT/examples/apiserversource
 
-docker login -p $DOCKER_PASS -u $DOCKER_USER docker.io
+NS=apiserversource-example
+k8s::create_and_set_ns $NS
 
-serving_version=$1
-eventing_version=$2
+u::testsuite "API Server Source"
 
-u::header "Starting kind cluster"
-. $ROOT/hack/setup-knative-kind.sh $1 $2
+u::header "Deploying ..."
+kubectl apply -f config/
 
-u::header "Installing dependencies"
-$ROOT/hack/npm-install.sh
+k8s::wait_resource_ready_ns APIServerSource revision $NS
 
-u::header "Testing..."
-$ROOT/test/sequence.sh
+kubectl apply -f dummy-ksvc.yaml
 
-if [[ $(semver::gte ${eventing_version} 0.9.0) ]]; then
-    $ROOT/test/parallel.sh
-fi
+k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container dummy
 
-$ROOT/examples/apiserversource/test.sh
+u::header "cleanup"
+k8s::delete_ns $NS
