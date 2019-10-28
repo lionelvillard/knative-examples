@@ -77,18 +77,27 @@ EOF
   fi
 }
 
+# send event to the given target channel.
+# rely on an helper service, dispath-event to access non-exposed channels.
 function knative::send_event() {
   local target=$1
-  local event=$2
-  if [[ $target == "" || $event == "" ]]; then
-      u::fatal "missing argument. send_event <target> <event>"
+  local event=$2  # event data
+  local eid=$3   # event id  https://github.com/cloudevents/spec/blob/v1.0/spec.md#id
+  local esource=$4   # event source https://github.com/cloudevents/spec/blob/v1.0/spec.md#source-1
+  local etype=$4 # event type  https://github.com/cloudevents/spec/blob/v1.0/spec.md#type
+  if [[ $target == "" || $event == "" || $eid == "" || $esource == "" || $etype == "" ]]; then
+      u::fatal "missing argument. send_event <target> <event> <id> <source> <type>"
   fi
 
   knative::install_send_event
 
   curl -v -H "host: dispatch-event.default.example.com" \
     -H "target: $target" \
-    -H 'content-type: application/json' \
+    -H "content-type: application/json" \
+    -H "ce-id: ${eid}" \
+    -H "ce-source: ${esource}" \
+    -H "ce-type: ${etype}" \
+    -H "ce-specversion: 0.3" \
     -d $event \
     localhost:8080
 }

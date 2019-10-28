@@ -4,6 +4,6 @@ nodes:
 - role: control-plane
 - role: worker
   extraPortMappings:
-  - containerPort: 31380
+  - containerPort: 31380 # istio-ingressgateway
     hostPort: 8080
     listenAddress: "127.0.0.1"

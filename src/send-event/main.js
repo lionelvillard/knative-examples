@@ -8,13 +8,21 @@ app.post("/", (req, res) => {
   const host = req.headers.target
   console.log(host)
   const data = JSON.stringify(req.body)
+  console.log(data)
+
+  // Forward all ce-XX x-XX headers
+
+  const forward = {'content-type': 'application/json; charset=utf-8'}
+  for (const key in req.headers) {
+    if (key.startsWith('ce-')) {
+      forward[key] = req.headers[key]
+    }
+  }
 
   const options = {
     hostname: host,
     method: 'POST',
-    headers: {
-      'content-type': 'application/json'
-    }
+    headers: forward,
   }
 
   console.log(options)
@@ -24,7 +32,7 @@ app.post("/", (req, res) => {
 
     let rawData = ''
     response.on('data', chunk => {
-      console.log(chunk)
+      console.log(chunk.toString())
       rawData += chunk
     })
     response.on('end', () => {

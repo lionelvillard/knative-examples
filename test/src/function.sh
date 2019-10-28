@@ -24,52 +24,97 @@ function cleanup {
 }
 trap cleanup EXIT
 
-u::testsuite "Function"
+u::testsuite "Function - single"
 
-cd $ROOT/src/function
+# setting up directory structure
+
+single=$(mktemp -d)
+dispatch=$(mktemp -d)
+cp $ROOT/src/function/* $single
+cp $ROOT/src/function/* $dispatch
+cp $ROOT/test/src/dispatch-test.js $dispatch/function.js
+
+cd $single
 
 node main.js &
 pid=$!
 
 sleep 1
 
-# Check Bad Method
-printf "Should return 404 "
+printf "should return 404 (bad method)"
 o1=$(curl -sw "%{response_code}" localhost:8080)
-if  [[ $o1 != "404" ]]; then
+if [[ $o1 != "404" ]]; then
     u::fatal "expected 404 http code"
 fi
 printf "$CHECKMARK\n"
 
-# Check identity
-printf "Should return event "
+printf "should return event "
 o2=$(curl -s localhost:8080 -d '{"message":"hello"}')
-if  [[ "$o2" != '{"message":"hello"}' ]]; then
-    u::fatal 'expected {"message":"hello"}, got $o2'
+if [[ "$o2" != '{"message":"hello"}' ]]; then
+    u::fatal "unexpected response $o2"
 fi
 printf "$CHECKMARK\n"
 
-# Empty data
 printf "Should return empty body "
 o3=$(curl -s localhost:8080 -X POST)
-if  [[ "$o3" != '' ]]; then
-    u::fatal 'expected empty body, got '$o3
+if [[ "$o3" != '' ]]; then
+   u::fatal "unexpected response $o3"
 fi
 printf "$CHECKMARK\n"
 
 # Unicode
 printf "data with unicode "
 o4=$(curl -s localhost:8080 -d '{"message":"†˙ˆß ˆß çøø¬"}')
-if  [[ "$o4" != '{"message":"†˙ˆß ˆß çøø¬"}' ]]; then
-    u::fatal 'expected {"message":"†˙ˆß ˆß çøø¬"}, got '$o4
+if [[ "$o4" != '{"message":"†˙ˆß ˆß çøø¬"}' ]]; then
+    u::fatal "unexpected response $o4"
 fi
 printf "$CHECKMARK\n"
 
 printf "Invalid JSON data "
-o4=$(curl -s localhost:8080 -d '{"message":"missing bracket}')
-if  [[ "$o4" != 'invalid JSON: SyntaxError: Unexpected end of JSON input' ]]; then
-    u::fatal "Unexpected result ${o4}"
+o=$(curl -s localhost:8080 -d '{"message":"missing bracket}')
+if  [[ "$o" != 'invalid JSON: SyntaxError: Unexpected end of JSON input' ]]; then
+    u::fatal "unexpected response $o"
 fi
 printf "$CHECKMARK\n"
+
+kill $pid
+
+u::testsuite "Function - dispatch"
+
+cd $dispatch
+
+node main.js &
+pid=$!
+
+sleep 1
+
+printf "dispatch - should return 404 (root) "
+o=$(curl -X POST -sw "%{response_code}" localhost:8080)
+if  [[ $o != "404" ]]; then
+    u::fatal "expected 404 http code"
+fi
+printf "$CHECKMARK\n"
+
+printf "dispatch - should return 404 (invalid function name) "
+o=$(curl -X POST -sw "%{response_code}" localhost:8080/invalid/path)
+if  [[ $o != "404" ]]; then
+    u::fatal "expected 404 http code"
+fi
+printf "$CHECKMARK\n"
+
+printf "dispatch - should evaluate content filter  "
+o=$(curl -s localhost:8080/content-filter -d '{"filter":true}')
+if  [[ $o != "" ]]; then
+    u::fatal "expected empty event"
+fi
+printf "$CHECKMARK\n"
+
+printf "dispatch - should evaluate attribute type filter  "
+o=$(curl -s localhost:8080/attr-type-filter -H 'ce-type: my.event.type' -d '{"message":"hello"}')
+if  [[ $o != '{"message":"hello"}' ]]; then
+    u::fatal "unexpected response $o"
+fi
+printf "$CHECKMARK\n"
+
 
 u::header "cleanup"
