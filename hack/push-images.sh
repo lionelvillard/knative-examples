@@ -19,5 +19,7 @@ set -e
 ROOT=$(dirname $BASH_SOURCE[0])/..
 source $ROOT/hack/lib/library.sh
 
+export KO_DOCKER_REPO=docker.io/knativefunctions
+
 cd $ROOT
 kone publish src/function

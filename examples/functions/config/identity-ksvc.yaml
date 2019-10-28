@@ -1,9 +1,9 @@
 apiVersion: serving.knative.dev/v1alpha1
 kind: Service
 metadata:
-  name: filters
+  name: identity
 spec:
   template:
     spec:
       containers:
-        - image: ../src/filters
+        - image: ../src/identity

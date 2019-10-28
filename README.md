@@ -52,4 +52,8 @@ bin/setup-addon-operators.sh
 
 - [API Server Source Examples](./examples/apiserversource)
 - [CronJob Targeting "Plain" Kubernetes Service](./examples/k8sservice)
-- CouchDB using [IBM Cloudant](./examples/couchdb/cloudant)
+- [CouchDB Event source with IBM Cloudant](./examples/couchdb/cloudant)
+
+### Misc.
+
+- [Knative Eventing Functions in Node.js](./examples/functions/), the easy way.
