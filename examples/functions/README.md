@@ -16,10 +16,10 @@ module.exports = event => event
 The function:
 - must reside in the file named `function.js`.
 - must be exported.
-- should take a CloudEvent as input. The CloudEvents follows the [JSON Event Format](https://github.com/cloudevents/spec/blob/v1.0/json-format.md#json-event-format-for-cloudevents---version-10).
--  can optionally return CloudEvent. If it does the event us send back to the Knative Eventing system. The identity function returns the same event.
+- should take a CloudEvent as input. The CloudEvent follows the [JSON Event Format](https://github.com/cloudevents/spec/blob/v1.0/json-format.md#json-event-format-for-cloudevents---version-10).
+-  can optionally return a CloudEvent. If it does the event is send back to the Knative Eventing system. 
 
-In order to deploy it, we need to tell `kone` what image name to give to the function itself and what base image to use:
+In order to deploy it, we need to tell `kone` what image name to give to the function and what base image to use:
 
 `package.json`:
 
