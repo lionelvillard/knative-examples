@@ -14,14 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ROOT=$(dirname $BASH_SOURCE[0])/../..
+ROOT=$(dirname $BASH_SOURCE[0])/../../..
 source $ROOT/hack/lib/library.sh
 NS=examples-couchdb
 
 u::testsuite "CouchDB"
 k8s::create_and_set_ns $NS
 
-cd $ROOT/examples/couchdb
+cd $ROOT/examples/cloudant/couchdb
 
 ./create-secret.sh hello-retail
 

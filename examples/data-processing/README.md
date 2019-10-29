@@ -98,7 +98,7 @@ cloudant   Online   5m1s
 In one terminal, run:
 
 ```sh
-stern -n knative-dataprocessing write
+stern -n knative-dataprocessing -c user write
 ```
 
 Then in another terminal, invoke `write-to-cloudant`:

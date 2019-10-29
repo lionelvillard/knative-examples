@@ -4,10 +4,11 @@ metadata:
   name: dataprocessing
   namespace: knative-dataprocessing
 spec:
-  database: dataprocnotexist
+  database: dataproc
   credentials:
     name: cloudant
   sink:
-    apiVersion: serving.knative.dev/v1alpha1
-    kind: Service
-    name:  write-from-cloudant
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: write-from-cloudant
