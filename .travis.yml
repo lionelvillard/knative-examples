@@ -13,6 +13,10 @@ addons:
       channel: "8/stable"
       confinement: classic
 
+branches:
+  only:
+    - "master"
+
 install: skip
 
 before_script:
@@ -41,3 +45,4 @@ jobs:
     name: "Unit testing"
     script:
     - test/src/function.sh
+
