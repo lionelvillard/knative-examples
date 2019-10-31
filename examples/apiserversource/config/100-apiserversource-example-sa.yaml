@@ -5,12 +5,12 @@ metadata:
   namespace: apiserversource-example
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
+kind: Role
 metadata:
   name: apiserversource-example
 rules:
   - apiGroups:
-       - serving.knative.dev
+      - serving.knative.dev
     resources:
       - revisions
     verbs: # The source only need get, list and watch
@@ -19,12 +19,12 @@ rules:
       - watch
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
+kind: RoleBinding
 metadata:
   name: apiserversource-example
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
+  kind: Role
   name: apiserversource-example
 subjects:
   - kind: ServiceAccount
