@@ -17,7 +17,7 @@ The function:
 - must reside in the file named `function.js`.
 - must be exported.
 - should take a CloudEvent as input. The CloudEvent follows the [JSON Event Format](https://github.com/cloudevents/spec/blob/v1.0/json-format.md#json-event-format-for-cloudevents---version-10).
--  can optionally return a CloudEvent. If it does the event is send back to the Knative Eventing system. 
+-  can optionally return a CloudEvent. If it does the event is send back to the Knative Eventing system.
 
 In order to deploy it, we need to tell `kone` what image name to give to the function and what base image to use:
 
@@ -61,4 +61,4 @@ Then deploy it using `kone`, which takes care of making the docker image for the
 kone apply -f config/identity-ksvc.yaml
 ```
 
-
+Voila!
