@@ -1,0 +1,7 @@
+apiVersion: ibmcloud.ibm.com/v1alpha1
+kind: Service
+metadata:
+  name: cloudant
+spec:
+  plan: Alias
+  serviceClass: cloudantnosqldb

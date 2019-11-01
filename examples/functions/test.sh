@@ -49,4 +49,4 @@ printf "$CHECKMARK\n"
 
 
 u::header "cleanup..."
-# k8s::delete_ns $NS
+k8s::delete_ns $NS

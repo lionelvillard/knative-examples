@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: check-assign
+  namespace: hello-retail
+spec:
+  template:
+    spec:
+      containers:
+      - image: ../src/check-assign/

@@ -97,7 +97,14 @@ function knative::send_event() {
 
   knative::install_send_event
 
-  curl -v -H "host: dispatch-event.default.example.com" \
+  if [[ -z $ISTIO_IP_ADDRESS ]]; then
+    ISTIO_IP_ADDRESS=$(kubectl get svc istio-ingressgateway --namespace istio-system --output 'jsonpath={.status.loadBalancer.ingress[0].ip}')
+    if [[ -z $ISTIO_IP_ADDRESS ]]; then
+      ISTIO_IP_ADDRESS=localhost:8080
+    fi
+  fi
+
+  curl -s -H "host: dispatch-event.default.example.com" \
     -H "target: $target" \
     -H "content-type: application/json" \
     -H "ce-id: ${eid}" \
@@ -105,36 +112,12 @@ function knative::send_event() {
     -H "ce-type: ${etype}" \
     -H "ce-specversion: 0.3" \
     -d "$event" \
-    localhost:8080
+    http://${ISTIO_IP_ADDRESS}
 }
 
 function knative::send_event_ingress() {
-  local target=$1
-  local event=$2  # event data
-  local eid=$3   # event id  https://github.com/cloudevents/spec/blob/v1.0/spec.md#id
-  local esource=$4   # event source https://github.com/cloudevents/spec/blob/v1.0/spec.md#source-1
-  local etype=$4 # event type  https://github.com/cloudevents/spec/blob/v1.0/spec.md#type
-  if [[ $target == "" || $event == "" || $eid == "" || $esource == "" || $etype == "" ]]; then
-      u::fatal "missing argument. send_event <target> <event> <id> <source> <type>"
-  fi
-
-  knative::install_send_event
-
-  if [[ -z $ISTIO_IP_ADDRESS ]]; then
-    ISTIO_IP_ADDRESS=$(kubectl get svc istio-ingressgateway --namespace istio-system --output 'jsonpath={.status.loadBalancer.ingress[0].ip}')
-  fi
-
-  curl -v -H "host: ${DISPATCH_URL}" \
-    -H "target: $target" \
-    -H "content-type: application/json" \
-    -H "ce-id: ${eid}" \
-    -H "ce-source: ${esource}" \
-    -H "ce-type: ${etype}" \
-    -H "ce-specversion: 0.3" \
-    -d "$event" \
-    http://$ISTIO_IP_ADDRESS
+  knative::send_event $*
 }
-
 
 function knative::invoke_service() {
   local name="$1"

@@ -7,6 +7,22 @@ This project contains various Knative Eventing examples.
 
 A Kubernetes cluster with Knative installed. Each example has its own Knative version requirement
 
+### Kind
+
+To install Knative in [kind](https://github.com/kubernetes-sigs/kind), run:
+
+```sh
+bin/setup-knative-kind.sh <knative-serving-version> <knative-eventing-version>
+```
+
+For instance:
+
+```sh
+bin/setup-knative-kind.sh 0.10.0 0.10.0
+```
+
+This creates a kind cluster named `knative-s0.10.0-e0.10.0` and installs Knative.
+
 ### Minikube
 
 To install Knative in minikube, run:
@@ -18,16 +34,6 @@ bin/setup-knative-minikube.sh <knative-serving-version> <knative-eventing-versio
 `knative-version` must have 3 version digits, eg `0.8.0`
 
 This creates a minikube VM with the profile named `k-s<knative-serving-version>-e<knative-eventing-version>` and installs Knative.
-
-### Kind
-
-To install Knative in [kind](https://github.com/kubernetes-sigs/kind), run:
-
-```sh
-bin/setup-knative-kind.sh <knative-serving-version> <knative-eventing-version>
-```
-
-This creates a kind cluster named `knative-s<knative-serving-version>-e<knative-eventing-version>` and installs Knative.
 
 ### Add-ons (optional)
 

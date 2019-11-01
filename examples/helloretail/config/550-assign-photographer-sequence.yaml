@@ -1,0 +1,19 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: Sequence
+metadata:
+  name: assign-photographer
+  namespace: hello-retail
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+  steps:
+  - ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: assign
+  reply:
+    ref:
+      apiVersion: messaging.knative.dev/v1alpha1
+      kind: Parallel
+      name: check-assignment
