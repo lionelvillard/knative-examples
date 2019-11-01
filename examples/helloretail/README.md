@@ -36,7 +36,7 @@ kone apply -f config
 Verify that all services are ready:
 
 ```sh
-k get ksvc
+kubectl get ksvc
 NAME            URL                                             LATESTCREATED         LATESTREADY           READY   REASON
 assign          http://assign.hello-retail.example.com          assign-d7vhz          assign-d7vhz          True
 check-assign    http://check-assign.hello-retail.example.com    check-assign-jmrhz    check-assign-jmrhz    True
