@@ -1,28 +1,27 @@
+const url = require('url')
+const querystring = require('querystring')
 const fn = require('./function')
 const dispatch = typeof fn !== 'function'
 
 // handle POST request
 async function handleRequest(req, res) {
-    if (req.method !== 'POST' || (!dispatch && req.url !== '/') || (dispatch && req.url == '/')) {
+    const parsedurl = url.parse(req.url)
+    if (req.method !== 'POST' || (!dispatch && parsedurl.pathname !== '/') || (dispatch && parsedurl.pathname == '/')) {
         res.statusCode = 404
         res.end()
         return
     }
 
     // Resolve actual function
-    let actualfn = fn
-    if (dispatch) {
-        const fname = req.url.substr(1)
-        actualfn = fn[fname]
-        if (!actualfn) {
-            res.statusCode = 404
-            res.end()
-            return
-        }
-    }
+    let actualfn = resolvefn(req, res)
+    if (!actualfn)
+        return
 
     // http => event
     const event = httptoce(req.headers)
+
+    // http => params
+    const params = httptoparams(parsedurl)
 
     // Setup event handlers
     const body = []
@@ -45,7 +44,7 @@ async function handleRequest(req, res) {
         }
 
         try {
-            const reply = await actualfn(event)
+            const reply = await actualfn(event, params)
 
             if (reply) {
                 const headers = cetohttp(reply)
@@ -94,6 +93,30 @@ function cetohttp(ce) {
             headers[`ce-${key}`] = ce[key]
         return headers
     }, {})
+}
+
+
+// Convert HTTP request to parameters
+function httptoparams(parsedurl) {
+    if (parsedurl.search && parsedurl.search.length >= 1) {
+        return querystring.parse(parsedurl.search.substr(1))
+    }
+    return {}
+}
+
+// Resolve actual function
+function resolvefn(req, res) {
+    if (dispatch) {
+        const fname = req.url.substr(1)
+        const actualfn = fn[fname]
+        if (!actualfn) {
+            res.statusCode = 404
+            res.end()
+            return null
+        }
+        return actualfn
+    }
+    return fn
 }
 
 module.exports = handleRequest

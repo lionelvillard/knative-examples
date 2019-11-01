@@ -35,3 +35,4 @@ if [[ $(semver::gte ${eventing_version} 0.9.0) ]]; then
 fi
 
 $ROOT/examples/apiserversource/test.sh
+$ROOT/examples/functions/test.sh

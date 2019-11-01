@@ -29,10 +29,17 @@ u::testsuite "Function - single"
 # setting up directory structure
 
 single=$(mktemp -d)
+params=$(mktemp -d)
 dispatch=$(mktemp -d)
+
 cp $ROOT/src/function/* $single
+cp $ROOT/src/function/* $params
 cp $ROOT/src/function/* $dispatch
+
+cp $ROOT/test/src/params-test.js $params/function.js
 cp $ROOT/test/src/dispatch-test.js $dispatch/function.js
+
+# SINGLE TESTS
 
 cd $single
 
@@ -76,6 +83,32 @@ if  [[ "$o" != 'invalid JSON: SyntaxError: Unexpected end of JSON input' ]]; the
     u::fatal "unexpected response $o"
 fi
 printf "$CHECKMARK\n"
+
+kill $pid
+
+u::testsuite "Function - params"
+
+cd $params
+
+node main.js &
+pid=$!
+
+sleep 1
+
+printf "should replace event data to be world"
+resp=$(curl -s localhost:8080?data=world -d '{}')
+if [[ $resp != '"world"' ]]; then
+     u::fatal "unexpected response $resp"
+fi
+printf "$CHECKMARK\n"
+
+printf "should not replace anything"
+resp=$(curl -s localhost:8080? -d '{}')
+if [[ $resp != '{}' ]]; then
+     u::fatal "unexpected response $resp"
+fi
+printf "$CHECKMARK\n"
+
 
 kill $pid
 
