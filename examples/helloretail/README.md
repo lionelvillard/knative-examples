@@ -3,7 +3,9 @@
 Hello, Retail! is a [Nordstrom Technology open-source project](https://github.com/Nordstrom/hello-retail). Hello, Retail! is a 100% serverless, event-driven framework and functional proof-of-concept showcasing a central unified log approach as applied to the retail problem space. All code and patterns are intended to be re-usable for scalable applications large and small.
 
 This example focuses on [Product Photos](https://github.com/Nordstrom/hello-retail/tree/master/product-photos) which is a workflow
-aiming at ensuring a photo is taken of a new product.
+aiming at ensuring a photo is taken for a new product.
+
+Showcase [Sequence](https://knative.dev/development/eventing/sequence/), [Parallel](https://knative.dev/development/eventing/parallel/) and [Knative Eventing Function](../functions)
 
 ## Prerequites
 

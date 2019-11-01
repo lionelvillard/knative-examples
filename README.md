@@ -47,7 +47,8 @@ bin/setup-addon-operators.sh
 
 ### Full Applications
 
-- [Cloudant Data Processing with Knative](./examples/data-processing)
+- [Cloudant Data Processing with Knative](./examples/data-processing): showcase the CouchDB Event Source
+- [Hello Retail](./examples/helloretail): showcase Sequence, Parallel and eventing functions
 
 ### Composition
 
