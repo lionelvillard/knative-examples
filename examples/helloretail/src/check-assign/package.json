@@ -1,5 +1,5 @@
 {
-  "name": "hello-retail-assign",
+  "name": "hello-retail-check-assign",
   "kone": {
     "defaultBaseImage": "docker.io/knativefunctions/function"
   }

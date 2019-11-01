@@ -76,7 +76,7 @@ EOF
     k8s::wait_resource_ready_ns services.serving.knative.dev dispatch-event default
   fi
 
-  if [[ -z $DISPATCH_EVENT_URL ]]; then
+  if [[ -z "${DISPATCH_URL:-}" ]]; then
     DISPATCH_URL=$(kubectl get ksvc dispatch-event -n default -o 'jsonpath={.status.url}')
     DISPATCH_URL=${DISPATCH_URL:7}
   fi
@@ -90,16 +90,16 @@ function knative::send_event() {
   local event=$2  # event data
   local eid=$3   # event id  https://github.com/cloudevents/spec/blob/v1.0/spec.md#id
   local esource=$4   # event source https://github.com/cloudevents/spec/blob/v1.0/spec.md#source-1
-  local etype=$4 # event type  https://github.com/cloudevents/spec/blob/v1.0/spec.md#type
+  local etype=$5 # event type  https://github.com/cloudevents/spec/blob/v1.0/spec.md#type
   if [[ $target == "" || $event == "" || $eid == "" || $esource == "" || $etype == "" ]]; then
       u::fatal "missing argument. send_event <target> <event> <id> <source> <type>"
   fi
 
   knative::install_send_event
 
-  if [[ -z $ISTIO_IP_ADDRESS ]]; then
+  if [[ -z "${ISTIO_IP_ADDRESS:-}" ]]; then
     ISTIO_IP_ADDRESS=$(kubectl get svc istio-ingressgateway --namespace istio-system --output 'jsonpath={.status.loadBalancer.ingress[0].ip}')
-    if [[ -z $ISTIO_IP_ADDRESS ]]; then
+    if [[ -z "${ISTIO_IP_ADDRESS:-}" ]]; then
       ISTIO_IP_ADDRESS=localhost:8080
     fi
   fi
@@ -122,30 +122,30 @@ function knative::send_event_ingress() {
 function knative::invoke_service() {
   local name="$1"
   local body="$2"
-  local query="$3"
+  local query="${3:-}"
 
   local url=$(kubectl get ksvc $name -o 'jsonpath={.status.url}')
-  knative::invoke ${url:7} "$body" "$3"
+  knative::invoke ${url:7} "$body" "$query"
 }
 
 function knative::invoke() {
   local host="$1"
   local body="$2"
-  local query="$3"
+  local query="${3:-}"
 
-  if [[ -z $ISTIO_IP_ADDRESS ]]; then
+  if [[ -z "${ISTIO_IP_ADDRESS:-}" ]]; then
     ISTIO_IP_ADDRESS=$(kubectl get svc istio-ingressgateway --namespace istio-system --output 'jsonpath={.status.loadBalancer.ingress[0].ip}')
-    if [[ -z $ISTIO_IP_ADDRESS ]]; then
+    if [[ -z "${ISTIO_IP_ADDRESS:-}" ]]; then
       ISTIO_IP_ADDRESS=localhost:8080
     fi
   fi
 
-  local data
+  local data=
   if [[ -n ${body} ]]; then
     data="-d ${body}"
   fi
 
-  local querystr
+  local querystr=
   if [[ -n ${query} ]]; then
     querystr="?${query}"
   fi

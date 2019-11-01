@@ -1,5 +1,5 @@
 {
-  "name": "identity",
+  "name": "hello-retail-wait",
   "kone": {
     "defaultBaseImage": "docker.io/knativefunctions/function"
   }
