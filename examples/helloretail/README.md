@@ -7,7 +7,9 @@ aiming at ensuring a photo is taken for a new product.
 
 Showcase [Sequence](https://knative.dev/development/eventing/sequence/), [Parallel](https://knative.dev/development/eventing/parallel/) and [Knative Eventing Function](../functions)
 
-## Prerequites
+Note: this is WIP. 
+
+## Prerequisites
 
 - A Kubernetes cluster with [Knative Serving and Eventing](https://knative.dev) 0.10+.
 - [kone](https://github.com/ibm/kone) installed and configured.
