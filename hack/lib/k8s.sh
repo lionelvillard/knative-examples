@@ -98,7 +98,7 @@ function k8s::wait_resource_ready_ns() {
 
 # wait for resource to be ready
 function k8s::wait_resource_ready() {
-    k8s::wait_resource_ready_ns $1 $2 "" $3
+    k8s::wait_resource_ready_ns $1 $2 "" ${3:-}
 }
 
 
