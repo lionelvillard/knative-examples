@@ -1,0 +1,13 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: assign
+  namespace: hello-retail
+spec:
+  template:
+    spec:
+      containers:
+      - image: ../src/assign/
+        # envFrom:
+        #   - secretRef:
+        #       name: cloudant

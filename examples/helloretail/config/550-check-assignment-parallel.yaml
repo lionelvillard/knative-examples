@@ -1,0 +1,43 @@
+apiVersion: messaging.knative.dev/v1alpha1
+kind: Parallel
+metadata:
+  name: check-assignment
+  namespace: hello-retail
+spec:
+  channelTemplate:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+  branches:
+  - filter:
+      ref:
+        apiVersion: serving.knative.dev/v1alpha1
+        kind: Service
+        name: check-assign
+      uri: "?assigned=false"
+    subscriber:
+      ref:
+        apiVersion: serving.knative.dev/v1alpha1
+        kind: Service
+        name: wait
+      uri: "?seconds=15"
+    reply:
+      ref:
+        apiVersion: messaging.knative.dev/v1alpha1
+        kind: Sequence
+        name: assign-photographer
+  - filter:
+      ref:
+        apiVersion: serving.knative.dev/v1alpha1
+        kind: Service
+        name: check-assign
+      uri: "?assigned=true"
+    subscriber:
+      ref:
+        apiVersion: serving.knative.dev/v1alpha1
+        kind: Service
+        name: event-display
+    # reply:
+    #   ref:
+    #     apiVersion: serving.knative.dev/v1alpha1
+    #     kind: Service
+    #     name: event-display
