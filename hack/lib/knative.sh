@@ -135,18 +135,37 @@ function knative::send_event_ingress() {
     http://$ISTIO_IP_ADDRESS
 }
 
+
+function knative::invoke_service() {
+  local name="$1"
+  local body="$2"
+  local query="$3"
+
+  local url=$(kubectl get ksvc $name -o 'jsonpath={.status.url}')
+  knative::invoke ${url:7} "$body" "$3"
+}
+
 function knative::invoke() {
   local host="$1"
   local body="$2"
+  local query="$3"
 
   if [[ -z $ISTIO_IP_ADDRESS ]]; then
     ISTIO_IP_ADDRESS=$(kubectl get svc istio-ingressgateway --namespace istio-system --output 'jsonpath={.status.loadBalancer.ingress[0].ip}')
+    if [[ -z $ISTIO_IP_ADDRESS ]]; then
+      ISTIO_IP_ADDRESS=localhost:8080
+    fi
   fi
 
-  local data=
+  local data
   if [[ -n ${body} ]]; then
     data="-d ${body}"
   fi
 
-  curl -s -X POST -H "Host: $host" http://$ISTIO_IP_ADDRESS "$data"
+  local querystr
+  if [[ -n ${query} ]]; then
+    querystr="?${query}"
+  fi
+
+  curl -s -X POST -H "Host: $host" http://${ISTIO_IP_ADDRESS}${querystr} "$data"
 }

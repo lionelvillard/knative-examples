@@ -1,0 +1,8 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Broker
+metadata:
+  name: eventstream
+spec:
+  channelTemplateSpec:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: Kafka
