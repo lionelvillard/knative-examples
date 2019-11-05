@@ -1,0 +1,14 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: revision
+  namespace: examples-broker
+spec:
+  filter:
+    attributes:
+      type: dev.knative.apiserver.ref.add
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: event-display
