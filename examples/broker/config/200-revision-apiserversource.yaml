@@ -1,0 +1,15 @@
+apiVersion: sources.eventing.knative.dev/v1alpha1
+kind: ApiServerSource
+metadata:
+  name: revision
+  namespace: examples-broker
+spec:
+  serviceAccountName: broker-example
+  mode: Ref
+  resources:
+  - apiVersion: serving.knative.dev/v1alpha1
+    kind: Revision
+  sink:
+    apiVersion: eventing.knative.dev/v1alpha1
+    kind: Broker
+    name: default

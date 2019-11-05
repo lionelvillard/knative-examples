@@ -40,3 +40,6 @@ $ROOT/examples/functions/test.sh
 if [[ $(semver::gte ${eventing_version} 0.10.0) ]]; then
     $ROOT/examples/helloretail/test.sh
 fi
+
+
+$ROOT/examples/broker/test.sh

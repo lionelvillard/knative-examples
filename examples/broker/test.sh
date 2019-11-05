@@ -23,6 +23,21 @@ u::testsuite "Broker-Trigger"
 
 cd $ROOT/examples/broker
 
+u::header "Deploying..."
+
 kubectl label namespace $NS knative-eventing-injection=enabled
+kubectl apply -f config
 
 k8s::wait_until_pods_running $NS
+
+sleep 3
+kubectl get deploy default-broker-filter -oyaml
+kubectl get pods -oyaml
+kubectl describe pods
+
+kubectl apply -f dummy-ksvc.yaml
+k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container dev.knative.apiserver.ref.add
+k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container Revision
+
+u::header "cleanup"
+k8s::delete_ns $NS
