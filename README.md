@@ -5,11 +5,13 @@ This project contains various Knative Eventing examples.
 
 ## Prerequisites
 
-A Kubernetes cluster with Knative installed. Each example has its own Knative version requirement
+- A Kubernetes cluster with Knative installed. For local testing I recommend [kind](#kind).
+- [kone](https://github.com/ibm/kone) installed and configured. `kone` is like `ko` for Node.js (instead of go).
+- [stern](https://github.com/wercker/stern) for log tailing.
 
 ### Kind
 
-To install Knative in [kind](https://github.com/kubernetes-sigs/kind), run:
+To create a [kind](https://github.com/kubernetes-sigs/kind) cluster and install Knative, run:
 
 ```sh
 bin/setup-knative-kind.sh <knative-serving-version> <knative-eventing-version>
@@ -21,7 +23,7 @@ For instance:
 bin/setup-knative-kind.sh 0.10.0 0.10.0
 ```
 
-This creates a kind cluster named `knative-s0.10.0-e0.10.0` and installs Knative.
+This creates a kind cluster named `knative-s0.10.0-e0.10.0` and installs Knative (no monitoring).
 
 ### Minikube
 
