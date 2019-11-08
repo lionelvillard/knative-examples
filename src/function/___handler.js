@@ -1,7 +1,13 @@
 const url = require('url')
+const fs = require('fs')
+const path = require('path')
 const querystring = require('querystring')
 const fn = require('./function')
+
 const dispatch = typeof fn !== 'function'
+
+const functionConfig = readFunctionConfig()
+console.log(functionConfig)
 
 // handle POST request
 async function handleRequest(req, res) {
@@ -20,8 +26,14 @@ async function handleRequest(req, res) {
     // http => event
     const event = httptoce(req.headers)
 
+    // apply static bindings
+    const staticParams = paramsfromconfig(req.headers['host'])
+
     // http => params
-    const params = httptoparams(parsedurl)
+    const httpParams = httptoparams(parsedurl)
+
+    // Merge
+    const params = { ...staticParams, ...httpParams }
 
     // Setup event handlers
     const body = []
@@ -104,6 +116,17 @@ function httptoparams(parsedurl) {
     return {}
 }
 
+// Get static parameters from given host
+function paramsfromconfig(host) {
+    if (!functionConfig) {
+        return {}
+    }
+
+    const params = functionConfig[host]
+    return params ? params : {}
+}
+
+
 // Resolve actual function
 function resolvefn(req, res) {
     if (dispatch) {
@@ -117,6 +140,24 @@ function resolvefn(req, res) {
         return actualfn
     }
     return fn
+}
+
+function readFunctionConfig() {
+    let bytes
+    try {
+        bytes = fs.readFileSync(path.join(__dirname, '___config.json'))
+    } catch (e) {
+        console.log('no config file read.')
+        return null
+    }
+
+    try {
+        return JSON.parse(bytes)
+    } catch (e) {
+        console.error('error parsing the config file')
+        console.log(e)
+        return null
+    }
 }
 
 module.exports = handleRequest

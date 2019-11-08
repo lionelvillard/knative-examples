@@ -6,4 +6,12 @@ spec:
   template:
     spec:
       containers:
-        - image: ../src/wait
+      - image: ../src/wait
+        volumeMounts:
+        - name: config-wait
+          mountPath: /ko-app/___config.json
+          subPath: ___config.json
+      volumes:
+        - name: config-wait
+          configMap:
+            name: config-wait

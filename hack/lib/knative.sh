@@ -49,6 +49,7 @@ function knative::install() {
 
   kubectl apply -f  ${serving_base}/serving.yaml
   k8s::wait_until_pods_running knative-serving
+  kubectl patch -n knative-serving deployments.apps activator -p '{"spec": {"template": {"spec": {"containers": [{"name": "activator", "resources": {"requests": {"cpu":"50m"}}}]}}}}'
 
   kubectl apply -f ${eventing_base}/release.yaml
   k8s::wait_until_pods_running knative-eventing
@@ -128,6 +129,15 @@ function knative::invoke_service() {
   knative::invoke ${url:7} "$body" "$query"
 }
 
+function knative::invoke_service_time() {
+  local name="$1"
+  local body="$2"
+  local query="${3:-}"
+
+  local url=$(kubectl get ksvc $name -o 'jsonpath={.status.url}')
+  knative::invoke_time ${url:7} "$body" "$query"
+}
+
 function knative::invoke() {
   local host="$1"
   local body="$2"
@@ -151,4 +161,30 @@ function knative::invoke() {
   fi
 
   curl -s -X POST -H "Host: $host" http://${ISTIO_IP_ADDRESS}${querystr} "$data"
+}
+
+# Same as invoke. Return response and time
+function knative::invoke_time() {
+  local host="$1"
+  local body="$2"
+  local query="${3:-}"
+
+  if [[ -z "${ISTIO_IP_ADDRESS:-}" ]]; then
+    ISTIO_IP_ADDRESS=$(kubectl get svc istio-ingressgateway --namespace istio-system --output 'jsonpath={.status.loadBalancer.ingress[0].ip}')
+    if [[ -z "${ISTIO_IP_ADDRESS:-}" ]]; then
+      ISTIO_IP_ADDRESS=localhost:8080
+    fi
+  fi
+
+  local data=
+  if [[ -n ${body} ]]; then
+    data="-d ${body}"
+  fi
+
+  local querystr=
+  if [[ -n ${query} ]]; then
+    querystr="?${query}"
+  fi
+
+  curl -sw "%{time_total}" -X POST -H "Host: $host" http://${ISTIO_IP_ADDRESS}${querystr} "$data"
 }

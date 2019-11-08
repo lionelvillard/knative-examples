@@ -31,8 +31,20 @@ kubectl apply -f config
 k8s::wait_until_pods_running $NS
 
 kubectl apply -f dummy-ksvc.yaml
+
+sleep 5
+
+kubectl describe node
+echo "---"
+kubectl get pods -oyaml
+echo "---"
+kubectl describe pod
+echo "---"
+kubectl describe ksvc
+
 k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container dev.knative.apiserver.ref.add
 k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container Revision
 
 u::header "cleanup"
+kubectl delete -f config
 k8s::delete_ns $NS

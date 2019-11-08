@@ -32,4 +32,5 @@ kubectl apply -f dummy-ksvc.yaml
 k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container dummy
 
 u::header "cleanup"
+kubectl delete -f config
 k8s::delete_ns $NS

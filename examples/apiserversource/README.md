@@ -34,6 +34,9 @@ Finally, `sink` specifies where to send events.
 
 ## Deploying
 
+1. Create `apiserversource-example` namespace
+1. Deploy:
+
 ```sh
 kubectl apply -f config/
 ```

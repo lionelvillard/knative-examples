@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-wait
+data:
+  ___config.json: |
+    {
+      "wait.examples-functions.example.com": {
+        "seconds": 1
+      }
+    }

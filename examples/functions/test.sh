@@ -26,6 +26,7 @@ cd $ROOT/examples/functions
 u::header "Deploying..."
 kone apply -f config/identity-ksvc.yaml
 kone apply -f config/wait-ksvc.yaml
+kone apply -f config/config-wait.yaml
 
 k8s::wait_resource_ready services.serving.knative.dev identity
 k8s::wait_resource_ready services.serving.knative.dev wait
@@ -47,6 +48,13 @@ if [[ ${time:15:1} != '2' ]]; then
 fi
 printf "$CHECKMARK\n"
 
+printf "should return same event after 1 seconds"
+time=$(curl -sw "%{time_total}" -H "host: wait.examples-functions.example.com" localhost:8080 -d '{"msg": "hello"}')
+if [[ ${time:15:1} != '1' ]]; then
+    u::fatal "expected time ${time}"
+fi
+printf "$CHECKMARK\n"
 
 u::header "cleanup..."
+kubectl delete -f config
 k8s::delete_ns $NS
