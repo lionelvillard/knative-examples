@@ -40,4 +40,5 @@ u::header "Deleting step 3"
 # k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container john1505
 
 u::header "cleanup"
+kubectl delete -f config
 k8s::delete_ns $NS

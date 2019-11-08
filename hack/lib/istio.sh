@@ -47,8 +47,8 @@ function istio::install_lean() {
     --set mixer.telemetry.enabled=false \
     `# Pilot doesn't need a sidecar.` \
     --set pilot.sidecar=false \
-    --set pilot.resources.requests.memory=128Mi \
-    --set pilot.resources.requests.cpu=100m \
+    --set pilot.resources.requests.memory=64Mi \
+    --set pilot.resources.requests.cpu=50m \
     `# Disable galley (and things requiring galley).` \
     --set galley.enabled=false \
     --set global.useMCP=false \

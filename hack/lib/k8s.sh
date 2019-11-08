@@ -45,6 +45,25 @@ function k8s::delete_ns() {
     return 0
 }
 
+function k8s::force_delete_ns() {
+    set +e
+    local ns="$1"
+
+    kubectl delete ns $ns --wait=false
+    kubectl get ns $ns -o json | jq '.spec.finalizers=[]' > ns-without-finalizers.json
+
+    kubectl proxy &
+    sleep 1
+
+    PID=$!
+    curl -X PUT http://localhost:8001/api/v1/namespaces/$ns/finalize -H "Content-Type: application/json" --data-binary @ns-without-finalizers.json
+    kill $PID
+
+    kubectl delete ns $ns
+    rm ns-without-finalizers.json
+    set -e
+}
+
 # wait for resource to be online
 function k8s::wait_resource_online() {
     local kind="$1"
@@ -139,16 +158,17 @@ function k8s::wait_log_contains() {
     local cname="$2"
     local str="$3"
     echo -n "monitoring logs in container ${cname} with label ${label}."
-    for i in {1..150}; do  # timeout after 5 minutes
+    for i in {1..150}; do
         local logs="$(kubectl logs -l${label} -c ${cname} --tail=100 2>/dev/null)"
-
+        echo $logs
         if [[ $logs == *${str}* ]]; then
             printf "found $CHECKMARK\n"
             return 0
         fi
 
         echo -n "."
-        sleep 2
+        sleep 5
+
     done
     printf "$CROSSMARK"
     echo -e "ERROR: timeout waiting for pod log to contain \b${str}"

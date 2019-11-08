@@ -41,5 +41,4 @@ if [[ $(semver::gte ${eventing_version} 0.10.0) ]]; then
     $ROOT/examples/helloretail/test.sh
 fi
 
-
-$ROOT/examples/broker/test.sh
+# $ROOT/examples/broker/test.sh

@@ -34,4 +34,5 @@ knative::send_event ${target:7} '{"assigned":true}' anid ansource atype
 k8s::wait_log_contains "serving.knative.dev/configuration=send-message" user-container 'assignment received'
 
 u::header "cleanup"
+kubectl delete -f config
 k8s::delete_ns $NS

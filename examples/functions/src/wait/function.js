@@ -1,2 +1,4 @@
-module.exports = (event, params) =>
-    new Promise( resolve => setTimeout(() => resolve(event), params.seconds * 1000) )
+module.exports = (event, params) => {
+    console.log(`waiting ${params.seconds}`)
+    return new Promise( resolve => setTimeout(() => resolve(event), params.seconds * 1000) )
+}

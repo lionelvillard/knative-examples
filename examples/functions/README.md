@@ -34,6 +34,7 @@ In order to deploy it, we need to tell `kone` what image name to give to the fun
 
 The base image handles most of the boilerplace code for us:
 - it loads our custom function stored in `function.js`
+- it tries to load [default parameter values](#default_parameter_value)
 - it starts an HTTP server listening for POST request on port 8080
 - and it converts HTTP requests to CloudEvents, back and forth.
 
@@ -83,7 +84,7 @@ module.exports = (event, params) => new Promise(
 
 This function takes a CloudEvent and parameters.
 
-### Passing Parameter via URL Query String
+### Passing Parameters via URL Query String
 
 When present the URL query string is converted to a collection of key value pairs and pass to the function.
 
@@ -96,10 +97,41 @@ $ curl -H "host: wait.default.example.com" http://$ISTIO_IP?seconds=5 -d '{"msg"
 {"msg":"hello"}
 ```
 
+### Default Parameter Value
 
-<!--
-### Dispatching mode
+Default values are expected to be stored in the file named `___config.json`. This file must be an object mapping host name to parameters. For instance:
 
-You can select to either dispatch incoming requests based on request `host` name or URL Path.
--->
+```json
+{
+  "wait.default.example.com": {
+    "seconds": 5
+  }
+}
+```
+
+Default parameter values are applied first and are overriden by parameters passed in the URL query string.
+
+#### Mounting ConfigMap
+
+Default parameter values stored in ConfigMap can be mounted as follows:
+
+```yaml
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: wait
+spec:
+  template:
+    spec:
+      containers:
+      - image: ../src/wait
+        volumeMounts:
+        - name: wait-config
+          mountPath: /ko-app/___config.json
+          subPath: config.json
+      volumes:
+        - name: wait-config
+          configMap:
+            name: wait-config  # name of the config map
+```
 

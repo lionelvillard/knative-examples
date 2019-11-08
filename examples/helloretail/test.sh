@@ -43,4 +43,5 @@ knative::send_event ${host:7} "$data" 4579874 asource atype
 k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container '"id": 4579874,'
 
 u::header "cleanup..."
+kubectl delete -f config
 k8s::delete_ns $NS
