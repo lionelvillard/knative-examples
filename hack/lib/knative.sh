@@ -57,6 +57,18 @@ function knative::install() {
   return 0
 }
 
+# install Knative-function (not part of base knative)
+function knative::install_functions() {
+  local version=$1
+
+  local base=https://github.com/lionelvillard/knative-functions-controller/releases/download/v${version}
+
+  u::header "installing knative functions"
+
+  kubectl apply -f  ${base}/function.yaml
+  k8s::wait_until_pods_running knative-functions
+}
+
 function knative::install_send_event() {
   if [[ -z $(kubectl get -n default ksvc dispatch-event 2> /dev/null) ]]; then
     pushd ${LIBROOT}/../../src

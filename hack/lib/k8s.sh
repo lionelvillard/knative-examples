@@ -160,7 +160,7 @@ function k8s::wait_log_contains() {
     echo -n "monitoring logs in container ${cname} with label ${label}."
     for i in {1..150}; do
         local logs="$(kubectl logs -l${label} -c ${cname} --tail=100 2>/dev/null)"
-        echo $logs
+
         if [[ $logs == *${str}* ]]; then
             printf "found $CHECKMARK\n"
             return 0
