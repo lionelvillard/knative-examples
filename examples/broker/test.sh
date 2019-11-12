@@ -26,24 +26,21 @@ cd $ROOT/examples/broker
 u::header "Deploying..."
 
 kubectl label namespace $NS knative-eventing-injection=enabled
-kubectl apply -f config
+sleep 5
 
+kubectl describe deployments default-broker-filter
+
+kubectl apply -f config
 k8s::wait_until_pods_running $NS
+sleep 5
 
 kubectl apply -f dummy-ksvc.yaml
 
-sleep 5
-
-kubectl describe node
-echo "---"
-kubectl get pods -oyaml
-echo "---"
-kubectl describe pod
-echo "---"
-kubectl describe ksvc
-
 k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container dev.knative.apiserver.ref.add
 k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container Revision
+
+kubectl describe ksvc dummy
+kubectl describe apiserversources revision
 
 u::header "cleanup"
 kubectl delete -f config
