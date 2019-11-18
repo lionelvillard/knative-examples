@@ -113,7 +113,6 @@ if [[ $resp != '{}' ]]; then
 fi
 printf "$CHECKMARK\n"
 
-
 kill $pid
 
 
@@ -133,6 +132,12 @@ if [[ $resp != '"world"' ]]; then
 fi
 printf "$CHECKMARK\n"
 
+printf "should replace event data to be world - trim domain"
+resp=$(curl -s -H "host: localhost:8080.com" localhost:8080 -d '{}')
+if [[ $resp != '"world"' ]]; then
+     u::fatal "unexpected response $resp"
+fi
+printf "$CHECKMARK\n"
 
 kill $pid
 

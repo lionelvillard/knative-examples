@@ -7,7 +7,6 @@ const fn = require('./function')
 const dispatch = typeof fn !== 'function'
 
 const functionConfig = readFunctionConfig()
-console.log(functionConfig)
 
 // handle POST request
 async function handleRequest(req, res) {
@@ -122,10 +121,22 @@ function paramsfromconfig(host) {
         return {}
     }
 
-    const params = functionConfig[host]
-    return params ? params : {}
+    while (true) {
+        const params = functionConfig[host]
+        if (params) {
+            return params
+        }
+        host = trimRight(host, '.')
+        if (!host) {
+            return {}
+        }
+    }
 }
 
+function trimRight(str, ch) {
+    const i = str.lastIndexOf(ch)
+    return i == -1 ? null : str.substring(0, i)
+}
 
 // Resolve actual function
 function resolvefn(req, res) {
