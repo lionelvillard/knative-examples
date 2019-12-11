@@ -1,0 +1,11 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: custom
+spec:
+  broker: custom
+  filter:
+    attributes:
+      type: dev.knative.event
+  subscriber:
+    uri: http://doesnotexist.default.svc.cluster.local

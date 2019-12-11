@@ -1,0 +1,16 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Broker
+metadata:
+  name: custom
+spec:
+  channelTemplateSpec:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+
+  # see
+  delivery:
+    deadLetterSink:
+      ref:
+        apiVersion: serving.knative.dev/v1alpha1
+        kind: Service
+        name: event-display

@@ -14,14 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ROOT=$(dirname $BASH_SOURCE[0])/../..
+ROOT=$(dirname $BASH_SOURCE[0])/../../..
 source $ROOT/hack/lib/library.sh
 NS=examples-broker
 k8s::create_and_set_ns $NS
 
-u::testsuite "Broker-Trigger"
+u::testsuite "Broker-Trigger with Namespace Annotation"
 
-cd $ROOT/examples/broker
+cd $ROOT/examples/broker/annotation
 
 u::header "Deploying..."
 

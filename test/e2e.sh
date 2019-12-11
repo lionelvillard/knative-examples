@@ -41,4 +41,5 @@ if [[ $(semver::gte ${eventing_version} 0.10.0) ]]; then
     $ROOT/examples/helloretail/test.sh
 fi
 
-#$ROOT/examples/broker/test.sh
+# not working in travis.
+#$ROOT/examples/broker/annotation/test.sh
