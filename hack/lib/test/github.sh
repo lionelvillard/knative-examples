@@ -13,30 +13,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-ROOT=$(dirname $BASH_SOURCE[0])/../..
-source $ROOT/hack/lib/library.sh
 
-function cleanup {
-    if [[ -n $pid ]]; then
-        kill $pid
-        unset pid
-    fi
-}
-trap cleanup EXIT
+set -e
 
-u::testsuite "Function"
+ROOT=$(dirname $BASH_SOURCE[0])/..
+source $ROOT/github.sh
 
-cd $ROOT/src/function
-
-node main.js &
-pid=$!
-
-sleep 1
-
-printf "Sending 10000 events "
-hey -n 10000 -m POST -d '{"message":"hello"}' http://localhost:8080
-
-printf "Sending 1000 events 1MB body "
-hey -n 1000 -m POST -D ../../test/src/payload-1MB.json http://localhost:8080
-
-u::header "cleanup"
+github::create_release $GITHUB_TOKEN lionelvillard/bash-library v0.1.0
+github::upload_asset $GITHUB_TOKEN lionelvillard/bash-library v0.1.0 $ROOT/test/dummy.yaml

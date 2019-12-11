@@ -1,0 +1,18 @@
+apiVersion: sources.eventing.knative.dev/v1alpha1
+kind: CronJobSource
+metadata:
+  name: add-product
+spec:
+  schedule: "*/1 * * * *"
+  data: '{"brand":"POLO RALPH LAUREN", "name": "Polo Ralph Lauren 3-Pack Socks", "category": "Socks for Men"}'
+  sink:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: Sequence
+    name:  acquire-photo
+  resources:
+    limits:
+      cpu: 10m
+      memory: 25Mi
+    requests:
+      cpu: 10m
+      memory: 25Mi

@@ -11,7 +11,7 @@ const pgs = {
   }
 }
 
-module.exports = async event => {
+module.exports = async (_, event) => {
   event.data.photographers = event.data.photographers || []
 
   const doc = await pgs.find()
