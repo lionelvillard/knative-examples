@@ -1,0 +1,9 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: send-assignment-notice
+spec:
+  template:
+    spec:
+      containers:
+      - image: ../../src/send-assignment-notice

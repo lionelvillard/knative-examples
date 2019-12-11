@@ -19,6 +19,7 @@
 function knative::install() {
   local serving_version=$1
   local eventing_version=$2
+  local multitenant=${3:-no}
 
   local serving_base=https://github.com/knative/serving/releases/download/v${serving_version}
   local eventing_base=https://github.com/knative/eventing/releases/download/v${eventing_version}
@@ -34,13 +35,22 @@ function knative::install() {
     eventing_base=https://storage.googleapis.com/knative-nightly/eventing/latest
   fi
 
+  if [[ $eventing_version == "source" ]]; then
+      echo "install knative eventing from source"
+      if [[ -z "$KNATIVE_EVENTING_ROOT" ]]; then
+        u::fatal "failed to install knative eventing from source, KNATIVE_EVENTING_ROOT is empty"
+      fi
+  fi
+
   u::header "installing knative CRDS"
 
   # there is a bug in kubectl .. must do it twice.
   set +e
   kubectl apply --selector knative.dev/crd-install=true -f ${serving_base}/serving.yaml
   kubectl apply --selector knative.dev/crd-install=true -f ${serving_base}/serving.yaml
-  kubectl apply --selector knative.dev/crd-install=true -f ${eventing_base}/release.yaml
+  if [[ $eventing_version != "source" ]]; then
+    kubectl apply --selector knative.dev/crd-install=true -f ${eventing_base}/release.yaml
+  fi
   set -e
 
   sleep 2
@@ -51,8 +61,17 @@ function knative::install() {
   k8s::wait_until_pods_running knative-serving
   kubectl patch -n knative-serving deployments.apps activator -p '{"spec": {"template": {"spec": {"containers": [{"name": "activator", "resources": {"requests": {"cpu":"50m"}}}]}}}}'
 
-  kubectl apply -f ${eventing_base}/release.yaml
-  k8s::wait_until_pods_running knative-eventing
+  if [[ "$eventing_version" == "source" ]]; then
+    ko apply -f ${KNATIVE_EVENTING_ROOT}/config
+    if [[ "$multitenant" ==  "yes" ]]; then
+      ko apply -f ${KNATIVE_EVENTING_ROOT}/config/channels/in-memory-channel-namespace/
+    else
+      ko apply -f ${KNATIVE_EVENTING_ROOT}/config/channels/in-memory-channel/
+    fi
+  else
+    kubectl apply -f ${eventing_base}/release.yaml
+    k8s::wait_until_pods_running knative-eventing
+  fi
 
   return 0
 }

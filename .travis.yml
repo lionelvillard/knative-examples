@@ -41,8 +41,4 @@ jobs:
     name: "Serving 0.10.0 / Eventing nightly"
     script:
     - test/e2e.sh 0.10.0 nightly
-  - install: skip
-    name: "Unit testing"
-    script:
-    - test/src/function.sh
 

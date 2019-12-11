@@ -20,7 +20,6 @@ spec:
       kind: Service
       name: wait-for-photo
   reply:
-    ref:
-      kind: Service
-      apiVersion: serving.knative.dev/v1alpha1
-      name: event-display
+    kind: Service
+    apiVersion: serving.knative.dev/v1alpha1
+    name: event-display

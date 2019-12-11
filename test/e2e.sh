@@ -28,14 +28,18 @@ u::header "Installing dependencies"
 $ROOT/hack/npm-install.sh
 
 u::header "Testing..."
-$ROOT/test/sequence.sh
+
+if [[ $(semver::gte ${eventing_version} 0.11.0) ]]; then
+    echo $ROOT/examples/sequence/test.sh
+else
+    $ROOT/examples/sequence/test-before-0.11.0.sh
+fi
 
 if [[ $(semver::gte ${eventing_version} 0.9.0) ]]; then
     $ROOT/test/parallel.sh
 fi
 
 $ROOT/examples/apiserversource/test.sh
-$ROOT/examples/functions/test.sh
 
 if [[ $(semver::gte ${eventing_version} 0.10.0) ]]; then
     $ROOT/examples/helloretail/test.sh

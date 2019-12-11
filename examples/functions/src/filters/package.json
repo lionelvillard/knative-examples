@@ -1,6 +1,0 @@
-{
-  "name": "example-function-filters",
-  "kone": {
-    "defaultBaseImage": "docker.io/villardl/function"
-  }
-}

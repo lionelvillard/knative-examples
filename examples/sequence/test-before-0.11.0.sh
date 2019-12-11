@@ -13,17 +13,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-ROOT=$(dirname $BASH_SOURCE[0])/..
+ROOT=$(dirname $BASH_SOURCE[0])/../..
 source $ROOT/hack/lib/library.sh
 NS=examples-sequence
 
-u::testsuite "Sequence"
+u::testsuite "Sequence - prior 0.11.0"
 k8s::create_and_set_ns $NS
 
 cd $ROOT/examples/sequence
 
 u::header "Deploying V1"
-kone apply -f config/
+
+kone apply -f config/before-0.11.0/
 
 sleep 5
 

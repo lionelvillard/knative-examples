@@ -35,3 +35,15 @@ function string::trim_right() {
     local ch="$2"
     echo ${str#*${ch}}
 }
+
+function string::substr() {
+    local str="$1"
+    local from="$2"
+    local length="${3:-0}"
+
+    if [[ -z "$length" ]]; then
+        ${str:$from}
+    else
+        {str:$from:length}
+    fi
+}

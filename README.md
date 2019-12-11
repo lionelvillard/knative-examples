@@ -65,4 +65,4 @@ bin/setup-addon-operators.sh
 
 ### Misc.
 
-- [Knative Eventing Functions in Node.js](./examples/functions/), the easy way.
+- [Node.js Knative Eventing Functions](https://github.com/lionelvillard/knative-functions/tree/master/proxies/nodejs), the easy way.

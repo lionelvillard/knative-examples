@@ -1,6 +1,0 @@
-{
-  "name": "identity",
-  "kone": {
-    "defaultBaseImage": "docker.io/knativefunctions/function"
-  }
-}
