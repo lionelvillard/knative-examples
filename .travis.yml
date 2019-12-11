@@ -38,7 +38,11 @@ jobs:
     script:
     - test/e2e.sh 0.10.0 0.10.0
   - install: skip
-    name: "Serving 0.10.0 / Eventing nightly"
+    name: "Serving 0.11.0 / Eventing 0.11.0"
     script:
-    - test/e2e.sh 0.10.0 nightly
+    - test/e2e.sh 0.11.0 0.11.0
+  - install: skip
+    name: "Serving nightly / Eventing nightly"
+    script:
+    - test/e2e.sh nightly nightly
 
