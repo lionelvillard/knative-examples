@@ -64,14 +64,15 @@ function knative::install() {
   if [[ "$eventing_version" == "source" ]]; then
     ko apply -f ${KNATIVE_EVENTING_ROOT}/config
     if [[ "$multitenant" ==  "yes" ]]; then
-      ko apply -f ${KNATIVE_EVENTING_ROOT}/config/channels/in-memory-channel-namespace/
+      ko apply -f ${KNATIVE_EVENTING_ROOT}/config/channels/in-memory-channel-multitenant/
     else
       ko apply -f ${KNATIVE_EVENTING_ROOT}/config/channels/in-memory-channel/
     fi
   else
     kubectl apply -f ${eventing_base}/release.yaml
-    k8s::wait_until_pods_running knative-eventing
   fi
+  kubectl patch -n knative-eventing deployments.apps imc-dispatcher -p '{"spec": {"template": {"spec": {"containers": [{"name": "dispatcher", "resources": {"requests": {"cpu":"50m"}}}]}}}}'
+  k8s::wait_until_pods_running knative-eventing
 
   return 0
 }
