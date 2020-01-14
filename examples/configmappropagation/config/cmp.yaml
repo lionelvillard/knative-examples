@@ -1,0 +1,8 @@
+apiVersion: configs.knative.dev/v1alpha1
+kind: ConfigMapPropagation
+metadata:
+  name: knative-eventing
+spec:
+  originalNamespace: knative-eventing
+  selector:
+    knative.dev/config-category: eventing
