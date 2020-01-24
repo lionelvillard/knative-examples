@@ -5,4 +5,5 @@ metadata:
 spec:
   originalNamespace: knative-eventing
   selector:
-    knative.dev/config-category: eventing
+    matchLabels:
+      knative.dev/config-category: eventing
