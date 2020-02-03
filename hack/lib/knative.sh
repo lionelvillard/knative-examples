@@ -23,6 +23,11 @@ function knative::install() {
 
   local serving_base=https://github.com/knative/serving/releases/download/v${serving_version}
   local eventing_base=https://github.com/knative/eventing/releases/download/v${eventing_version}
+  local eventing_file=eventing
+
+  if [[ $(semver::lt ${eventing_version} 0.12.0) ]]; then
+    eventing_file=release
+  fi
 
   if [[ $serving_version == "" || $serving_version == "nightly" ]]; then
     echo "install knative serving nightly"
@@ -49,7 +54,7 @@ function knative::install() {
   kubectl apply --selector knative.dev/crd-install=true -f ${serving_base}/serving.yaml
   kubectl apply --selector knative.dev/crd-install=true -f ${serving_base}/serving.yaml
   if [[ $eventing_version != "source" ]]; then
-    kubectl apply --selector knative.dev/crd-install=true -f ${eventing_base}/release.yaml
+    kubectl apply --selector knative.dev/crd-install=true -f ${eventing_base}/${eventing_file}.yaml
   fi
   set -e
 
