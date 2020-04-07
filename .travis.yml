@@ -26,21 +26,13 @@ before_script:
 jobs:
   include:
   - install: skip
-    name: "Serving 0.8.1 / Eventing 0.8.0"
+    name: "Serving 0.12.0 / Eventing 0.12.0"
     script:
-    - test/e2e.sh 0.8.1 0.8.0
+    - test/e2e.sh 0.12.0 0.12.0
   - install: skip
-    name: "Serving 0.9.0 / Eventing 0.9.0"
+    name: "Serving 0.13.2 / Eventing 0.13.6"
     script:
-    - test/e2e.sh 0.9.0 0.9.0
-  - install: skip
-    name: "Serving 0.10.0 / Eventing 0.10.0"
-    script:
-    - test/e2e.sh 0.10.0 0.10.0
-  - install: skip
-    name: "Serving 0.11.0 / Eventing 0.11.0"
-    script:
-    - test/e2e.sh 0.11.0 0.11.0
+    - test/e2e.sh 0.13.2 0.13.6
   - install: skip
     name: "Serving nightly / Eventing nightly"
     script:
