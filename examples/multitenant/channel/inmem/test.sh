@@ -14,22 +14,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ROOT=$(dirname $BASH_SOURCE[0])/../../..
+ROOT=$(dirname $BASH_SOURCE[0])/../../../..
 source $ROOT/hack/lib/library.sh
-NS=examples-kafka
-
-u::testsuite "Kafka"
+NS=examples-multitenant-channel-in-mem
 k8s::create_and_set_ns $NS
 
-cd $ROOT/examples/channels/kafka
+u::testsuite "Multi-tenant In-memory Channel"
 
-[[ $(kubectl get ns kafka) ]] || (echo "installing strimzi"; kafka::install_strimzi)
-
-echo "Connecting to my-cluster-kafka-bootstrap.kafka:9092."
+cd $ROOT/examples/multitenant/channel/inmem
 
 u::header "Deploying..."
+ko apply -f config/
 
-kubectl apply -f config/
+u::header "Testing..."
 
 
+# k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container '"id": 4579874,'
 
+# u::header "cleanup..."
+# kubectl delete -f config
+# k8s::delete_ns $NS

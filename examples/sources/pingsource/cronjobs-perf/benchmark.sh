@@ -14,13 +14,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ROOT=$(dirname $BASH_SOURCE[0])/../../..
+ROOT=$(dirname $BASH_SOURCE[0])/../../../../
 source $ROOT/hack/lib/library.sh
+NS=perf-cronjobs
 
-if [[ $1 == "" ]]; then
-  echo "usage: create-document.sh <service-key>"
-fi
+u::testsuite "CronJobs"
+k8s::create_and_set_ns $NS
 
-url=$(bx resource service-key $1 --output json | jq -r ".[0].credentials.url")
+cd $ROOT/examples/sources/pingsource/cronjobs-perf
 
-couchdb::create_document $url "photographers" '{"name": "John", "assigned": false}'
+u::header "Deploying 1000 jobs"
+
+for (( i = 0; i < 1000; ++i )); do
+    cat hello-cronjob.yaml | sed "s/hello/hello-${i}/g" | kubectl apply -f -
+done

@@ -1,0 +1,14 @@
+apiVersion: sources.knative.dev/v1alpha1
+kind: CouchDbSource
+metadata:
+  name: photographer
+spec:
+  database: photographers
+  feed: continuous
+  credentials:
+    name: couchdb-binding
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name:  event-display

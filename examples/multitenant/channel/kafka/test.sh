@@ -13,11 +13,26 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-set -e
 
-if [[ $1 == "" ]]; then
-  echo "usage: create-secret.sh <service-key>"
-fi
+ROOT=$(dirname $BASH_SOURCE[0])/../../../..
+source $ROOT/hack/lib/library.sh
+NS=examples-multitenant-channel-kafka
+k8s::create_and_set_ns $NS
 
-url=$(bx resource service-key $1 --output json | jq -r ".[0].credentials.url")
-kubectl create secret generic couchdb-binding --from-literal=url=$url
+u::testsuite "Multi-tenant Kafka Channel"
+
+cd $ROOT/examples/multitenant/channel/kafka
+
+[[ $(kubectl get ns kafka) ]] || (echo "installing strimzi"; kafka::install_strimzi)
+
+u::header "Deploying..."
+ko apply -f config/
+
+u::header "Testing..."
+
+
+# k8s::wait_log_contains "serving.knative.dev/configuration=event-display" user-container '"id": 4579874,'
+
+# u::header "cleanup..."
+# kubectl delete -f config
+# k8s::delete_ns $NS

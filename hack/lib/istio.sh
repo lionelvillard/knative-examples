@@ -16,6 +16,7 @@
 
 function istio::install_lean() {
   local ISTIO_VERSION=$1
+  local openshift=${2:-no}
 
   if [[ "$ISTIO_VERSION" == "" ]]; then
     u::fatal "usage istio::install <istio_version>: missing argument"
@@ -40,6 +41,13 @@ function istio::install_lean() {
   kubectl label ns istio-system istio-injection=disabled
   set -e
 
+  OPENSHIFT_EXTRA=
+
+  if [[ "${openshift}" == "yes" ]]; then
+    oc adm policy add-scc-to-group anyuid system:serviceaccounts -n istio-system
+    OPENSHIFT_EXTRA="--set cni.components.cni.namespace=kube-system --set values.cni.cniBinDir=/var/lib/cni/bin --set values.cni.cniConfDir=/var/run/multus/cni/net.d"
+  fi
+
   helm template --namespace=istio-system \
     --set prometheus.enabled=false \
     --set mixer.enabled=false \
@@ -63,7 +71,7 @@ function istio::install_lean() {
     --set gateways.istio-ingressgateway.autoscaleMin=1 \
     --set gateways.istio-ingressgateway.autoscaleMax=1 \
     `# Set pilot trace sampling to 100%` \
-    --set pilot.traceSampling=100 \
+    --set pilot.traceSampling=100 ${OPENSHIFT_EXTRA} \
     install/kubernetes/helm/istio \
     > ./istio-lean.yaml
 

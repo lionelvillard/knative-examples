@@ -16,14 +16,12 @@
 
 ROOT=$(dirname $BASH_SOURCE[0])/../../..
 source $ROOT/hack/lib/library.sh
-NS=examples-couchdb
+NS=examples-channels-inmemory
 
-u::testsuite "CouchDB"
+u::testsuite "in memory channel"
 k8s::create_and_set_ns $NS
 
-cd $ROOT/examples/cloudant/couchdb
-
-./create-secret.sh hello-retail
+cd $ROOT/examples/channels/inmemory
 
 u::header "Deploying..."
-kone apply -f config/
+kubectl apply -f config/

@@ -14,13 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ROOT=$(dirname $BASH_SOURCE[0])/../../..
+ROOT=$(dirname $BASH_SOURCE[0])/../../../..
 source $ROOT/hack/lib/library.sh
+NS=examples-couchdb
 
-if [[ $1 == "" ]]; then
-  echo "usage: create-document.sh <service-key> <doc_id>"
-fi
+u::testsuite "CouchDB"
+k8s::create_and_set_ns $NS
 
-url=$(bx resource service-key $1 --output json | jq -r ".[0].credentials.url")
+cd $ROOT/examples/cloudant/couchdb
 
-couchdb::delete_document $url "photographers" $2
+create-secret.sh hello-retail
+
+u::header "Deploying..."
+kone apply -f config/

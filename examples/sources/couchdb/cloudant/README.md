@@ -47,5 +47,5 @@ event-display-jmf2r-deployment-547688c664-wdlmb user-container  ]
 5. Add a document to the photographer database
 
 ```
-./create-document.sh <service-key-name>
+./create-document.sh <service-key-name> 
 ```

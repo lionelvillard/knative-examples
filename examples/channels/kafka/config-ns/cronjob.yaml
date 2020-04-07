@@ -1,0 +1,12 @@
+apiVersion: sources.eventing.knative.dev/v1alpha1
+kind: CronJobSource
+metadata:
+  name: add-product
+spec:
+  schedule: "*/1 * * * *"
+  data: '{"brand":"POLO RALPH LAUREN", "name": "Polo Ralph Lauren 3-Pack Socks", "category": "Socks for Men"}'
+  sink:
+    ref:
+      apiVersion: messaging.knative.dev/v1alpha1
+      kind: KafkaChannel
+      name: products
