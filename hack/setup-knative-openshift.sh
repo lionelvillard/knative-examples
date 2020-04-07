@@ -14,22 +14,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ROOT=$(dirname $BASH_SOURCE[0])/../../..
+set -e
+
+ROOT=$(dirname $BASH_SOURCE[0])/..
 source $ROOT/hack/lib/library.sh
-NS=examples-kafka
 
-u::testsuite "Kafka"
-k8s::create_and_set_ns $NS
+KNATIVE_SERVING_VERSION=$1
+KNATIVE_EVENTING_VERSION=$2
+if [[ $KNATIVE_SERVING_VERSION == "" || $KNATIVE_EVENTING_VERSION == "" ]]; then
+  u::fatal "usage: setup-knative.sh <knative-serving-version> <knative-eventing-version>"
+fi
 
-cd $ROOT/examples/channels/kafka
+echo "targeting $(kubectl config current-context)"
 
-[[ $(kubectl get ns kafka) ]] || (echo "installing strimzi"; kafka::install_strimzi)
-
-echo "Connecting to my-cluster-kafka-bootstrap.kafka:9092."
-
-u::header "Deploying..."
-
-kubectl apply -f config/
-
-
+istio::install_lean 1.3.6 yes
+knative::install $KNATIVE_SERVING_VERSION $KNATIVE_EVENTING_VERSION
+knative::install_functions 0.1.0
 

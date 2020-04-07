@@ -14,22 +14,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ROOT=$(dirname $BASH_SOURCE[0])/../../..
+ROOT=$(dirname $BASH_SOURCE[0])/../../../../
 source $ROOT/hack/lib/library.sh
-NS=examples-kafka
+NS=perf-pingsource
 
-u::testsuite "Kafka"
+u::testsuite "PingSources"
 k8s::create_and_set_ns $NS
 
-cd $ROOT/examples/channels/kafka
+cd $ROOT/examples/sources/pingsource/pingsource-perf
 
-[[ $(kubectl get ns kafka) ]] || (echo "installing strimzi"; kafka::install_strimzi)
+u::header "Deploying 1000 pingsource"
 
-echo "Connecting to my-cluster-kafka-bootstrap.kafka:9092."
+kubectl apply -f event-display-svc.yaml
 
-u::header "Deploying..."
+touch pingsources.yaml
 
-kubectl apply -f config/
-
-
-
+for (( i = 0; i < 1000; ++i )); do
+    cat hello-pingsource.yaml | sed "s/hello/hello-${i}/g" >> pingsources.yaml
+    echo "---" >> pingsources.yaml
+done

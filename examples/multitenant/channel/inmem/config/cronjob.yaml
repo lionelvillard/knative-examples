@@ -1,0 +1,18 @@
+apiVersion: sources.eventing.knative.dev/v1alpha1
+kind: CronJobSource
+metadata:
+  name: default
+spec:
+  schedule: "*/1 * * * *"
+  data: '{"scope":"default"}'
+  sink:
+    apiVersion: messaging.knative.dev/v1alpha1
+    kind: InMemoryChannel
+    name:  default
+  resources:
+    limits:
+      cpu: 10m
+      memory: 25Mi
+    requests:
+      cpu: 10m
+      memory: 25Mi

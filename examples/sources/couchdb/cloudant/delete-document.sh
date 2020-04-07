@@ -14,22 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ROOT=$(dirname $BASH_SOURCE[0])/../../..
+ROOT=$(dirname $BASH_SOURCE[0])/../../../..
 source $ROOT/hack/lib/library.sh
-NS=examples-kafka
 
-u::testsuite "Kafka"
-k8s::create_and_set_ns $NS
+if [[ "$1" == "" ]]; then
+  echo "usage: create-document.sh <service-key> <doc_id>"
+fi
 
-cd $ROOT/examples/channels/kafka
+url=$(bx resource service-key "$1" --output json | jq -r ".[0].credentials.url")
 
-[[ $(kubectl get ns kafka) ]] || (echo "installing strimzi"; kafka::install_strimzi)
-
-echo "Connecting to my-cluster-kafka-bootstrap.kafka:9092."
-
-u::header "Deploying..."
-
-kubectl apply -f config/
-
-
-
+couchdb::delete_document $url "photographers" $2
