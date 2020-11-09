@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-svc
+spec:
+  selector:
+    matchLabels:
+      app: client-svc
+  template:
+    metadata:
+      labels:
+        app: client-svc
+    spec:
+      containers:
+        - name: app
+          image: ko://http/limits/cmd/client
+          args:
+            - "--ips=server-1-svc.default,server-2-svc.default,server-3-svc.default"
+            - "--cc=30000"

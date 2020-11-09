@@ -1,0 +1,15 @@
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: fruits
+spec:
+  consumerGroup: fruits-group
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - fruits
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display

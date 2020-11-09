@@ -1,0 +1,9 @@
+apiVersion: sources.knative.dev/v1alpha2
+kind: PingSource
+metadata:
+  name: ping-error
+spec:
+  schedule: "*/1 * * * *"
+  jsonData: '{"msg": "hello"}'
+  sink:
+    uri: http://does-not-exist.cluster.svc.local

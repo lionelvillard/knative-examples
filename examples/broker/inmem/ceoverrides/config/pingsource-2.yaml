@@ -1,0 +1,15 @@
+apiVersion: sources.knative.dev/v1alpha2
+kind: PingSource
+metadata:
+  name: ping-source-2
+spec:
+  ceOverrides:
+    extensions:
+      sourcename: ping-source-2
+  schedule: "*/1 * * * *"
+  jsonData: '{"message": "Hello world! from 2"}'
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: broker

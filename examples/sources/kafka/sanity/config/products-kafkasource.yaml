@@ -1,0 +1,15 @@
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products
+spec:
+  consumerGroup: products-group
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display

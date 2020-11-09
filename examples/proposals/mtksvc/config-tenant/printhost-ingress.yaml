@@ -1,0 +1,19 @@
+apiVersion: networking.internal.knative.dev/v1alpha1
+kind: Ingress
+metadata:
+  annotations:
+    networking.knative.dev/ingress.class: istio.ingress.networking.knative.dev
+  name: print-host
+  namespace: examples-mtksvc-tenant
+spec:
+  rules:
+    - hosts:
+        - print-host.examples-mtksvc-tenant.kne-dev-cabc0de2dead38d7e19d28f77f8d6b64-0000.us-south.containers.appdomain.cloud
+      http:
+        paths:
+          - rewriteHost: print-host.examples-mtksvc.svc.cluster.local
+            appendHeaders:
+              name2: "n"
+            timeout: 10m0s
+      visibility: ExternalIP
+  visibility: ExternalIP

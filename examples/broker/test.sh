@@ -25,11 +25,6 @@ cd $ROOT/examples/broker
 
 u::header "Deploying..."
 
-kubectl label namespace $NS knative-eventing-injection=enabled
-sleep 5
-
-kubectl describe deployments default-broker-filter
-
 kubectl apply -f config
 k8s::wait_until_pods_running $NS
 sleep 5

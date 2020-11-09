@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wait-for-photo
+spec:
+  selector:
+    matchLabels:
+      app: wait-for-photo
+  template:
+    metadata:
+      labels:
+        app: wait-for-photo
+    spec:
+      containers:
+        - name: wait-for-photo
+          image: ../src/wait-for-photo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name:  wait-for-photo
+spec:
+  selector:
+    app:  wait-for-photo
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080

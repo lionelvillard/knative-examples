@@ -1,26 +1,26 @@
-apiVersion: flows.knative.dev/v1beta1
+apiVersion: flows.knative.dev/v1
 kind: Sequence
 metadata:
   name: acquire-photo
 spec:
   channelTemplate:
-    apiVersion: messaging.knative.dev/v1alpha1
+    apiVersion: messaging.knative.dev/v1beta1
     kind: InMemoryChannel
   steps:
   - ref:
-      apiVersion: serving.knative.dev/v1alpha1
+      apiVersion: v1
       kind: Service
       name: assign-photographer
   - ref:
-      apiVersion: serving.knative.dev/v1alpha1
+      apiVersion: v1
       kind: Service
       name: send-assignment-notice
   - ref:
-      apiVersion: serving.knative.dev/v1alpha1
+      apiVersion: v1
       kind: Service
       name: wait-for-photo
   reply:
     ref:
       kind: Service
-      apiVersion: serving.knative.dev/v1alpha1
+      apiVersion: v1
       name: event-display

@@ -1,0 +1,26 @@
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: fruits
+spec:
+  consumerGroup: fruits-group
+  bootstrapServers:
+    - broker-5-nxgt7l9rxcqqxvxm.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093
+  net:
+    sasl:
+      enable: true
+      user:
+        secretKeyRef:
+          name: secret-eventstream
+          key: user
+      password:
+        secretKeyRef:
+          name: secret-eventstream
+          key: password
+  topics:
+    - fruits
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display

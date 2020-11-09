@@ -31,3 +31,4 @@ source $LIBROOT/couchdb.sh
 source $LIBROOT/ic.sh
 source $LIBROOT/github.sh
 source $LIBROOT/kafka.sh
+source $LIBROOT/keda.sh

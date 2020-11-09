@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: assign-photographer
+spec:
+  selector:
+    matchLabels:
+      app: assign-photographer
+  template:
+    metadata:
+      labels:
+        app: assign-photographer
+    spec:
+      containers:
+        - name: assign-photographer
+          image: ../../../src/assign-photographer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: assign-photographer
+spec:
+  selector:
+    app: assign-photographer
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080

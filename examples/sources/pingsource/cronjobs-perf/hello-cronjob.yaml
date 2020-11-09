@@ -11,5 +11,5 @@ spec:
           containers:
             - name: hello
               image: bash
-              command: ["echo",  "Hello world"]
+              command: ["date"]
           restartPolicy: OnFailure

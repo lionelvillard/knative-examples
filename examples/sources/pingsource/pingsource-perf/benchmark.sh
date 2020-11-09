@@ -23,13 +23,18 @@ k8s::create_and_set_ns $NS
 
 cd $ROOT/examples/sources/pingsource/pingsource-perf
 
-u::header "Deploying 1000 pingsource"
+u::header "Deploying 10000 pingsources"
 
-kubectl apply -f event-display-svc.yaml
+kone apply -f event-counter-svc.yaml
 
+rm -f pingsources.yaml
 touch pingsources.yaml
 
-for (( i = 0; i < 1000; ++i )); do
+for (( i = 0; i < 10000; ++i )); do
     cat hello-pingsource.yaml | sed "s/hello/hello-${i}/g" >> pingsources.yaml
     echo "---" >> pingsources.yaml
 done
+
+
+kubectl apply -f pingsources.yaml
+#rm pingsources.yaml

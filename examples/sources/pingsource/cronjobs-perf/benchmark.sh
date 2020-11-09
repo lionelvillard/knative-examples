@@ -23,8 +23,8 @@ k8s::create_and_set_ns $NS
 
 cd $ROOT/examples/sources/pingsource/cronjobs-perf
 
-u::header "Deploying 1000 jobs"
+u::header "Deploying 200 jobs"
 
-for (( i = 0; i < 1000; ++i )); do
+for (( i = 0; i < 200; ++i )); do
     cat hello-cronjob.yaml | sed "s/hello/hello-${i}/g" | kubectl apply -f -
 done

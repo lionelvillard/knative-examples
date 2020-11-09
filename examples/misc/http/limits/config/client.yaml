@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client
+spec:
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+        - name: app
+          image: ko://http/limits/cmd/client
+          args:
+            - "--ips=172.30.246.123,172.30.246.123,172.30.246.123,172.30.246.123,172.30.246.123,172.30.246.123,172.30.246.123,172.30.246.123,172.30.246.123,172.30.246.123,172.30.246.125,172.30.151.190,172.30.151.191,172.30.151.132,172.30.187.106"

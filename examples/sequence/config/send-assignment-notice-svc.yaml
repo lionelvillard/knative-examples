@@ -1,0 +1,37 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: send-assignment-notice
+spec:
+  template:
+    spec:
+      containers:
+      - image: ../src/send-assignment-notice
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: send-assignment-notice
+spec:
+  selector:
+    matchLabels:
+      app: send-assignment-notice
+  template:
+    metadata:
+      labels:
+        app: send-assignment-notice
+    spec:
+      containers:
+        - name: send-assignment-notice
+          image: ../src/send-assignment-notice
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: send-assignment-notice
+spec:
+  selector:
+    app: send-assignment-notice
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080

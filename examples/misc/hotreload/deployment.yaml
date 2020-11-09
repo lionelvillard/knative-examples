@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - image: nginx
+          name: dispatcher
+          volumeMounts:
+            - mountPath: /etc/data
+              name: config-resources
+      volumes:
+        - configMap:
+            name: config-resources
+          name: config-resources

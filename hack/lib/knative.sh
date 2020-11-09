@@ -14,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 # install Knative
 function knative::install() {
   local serving_version=$1
@@ -22,10 +21,12 @@ function knative::install() {
   local openshift=${3:-no}
 
   local serving_base=https://github.com/knative/serving/releases/download/v${serving_version}
+  local netistio_base=https://github.com/knative/net-istio/releases/download/v${serving_version}
   local eventing_base=https://github.com/knative/eventing/releases/download/v${eventing_version}
   local eventing_file=eventing
+  local clone_root=$GOPATH/src/knative.dev
 
-  if [[ $(semver::lt ${eventing_version} 0.12.0) ]]; then
+  if [[ eventing_version != "source" && $(semver::lt ${eventing_version} 0.12.0) ]]; then
     eventing_file=release
   fi
 
@@ -34,6 +35,82 @@ function knative::install() {
     serving_base=https://storage.googleapis.com/knative-nightly/serving/latest
   fi
 
+  if [[ $eventing_version == "" || $eventing_version == "nightly" ]]; then
+    echo "install knative eventing nightly"
+    eventing_base=https://storage.googleapis.com/knative-nightly/eventing/latest
+  fi
+
+  if [[ $eventing_version == "source" ]]; then
+    echo "install knative eventing from source"
+  fi
+
+  if [[ $serving_version != "skip" ]]; then
+    u::header "installing Knative Serving ${serving_version}"
+
+    if [[ $(semver::lt ${serving_version} 0.16.0) ]]; then
+      # there is a bug in kubectl .. must do it twice.
+      set +e
+      kubectl apply --selector knative.dev/crd-install=true -f ${serving_base}/serving.yaml
+      kubectl apply --selector knative.dev/crd-install=true -f ${serving_base}/serving.yaml
+      set -e
+    else
+      kubectl apply  -f ${serving_base}/serving-crds.yaml
+    fi
+
+
+    sleep 2
+
+    if [[ $(semver::lt ${serving_version} 0.16.0) ]]; then
+      kubectl apply -f  ${serving_base}/serving.yaml
+    else
+      kubectl apply -f  ${serving_base}/serving-core.yaml
+      kubectl apply -f  ${netistio_base}/release.yaml
+    fi
+
+    k8s::wait_until_pods_running knative-serving
+    kubectl patch -n knative-serving deployments.apps activator -p '{"spec": {"template": {"spec": {"containers": [{"name": "activator", "resources": {"requests": {"cpu":"50m"}}}]}}}}'
+
+  fi
+
+  echo "installing Knative Eventing ${eventing_version}"
+
+  if [[ $eventing_version != "source" ]]; then
+   kubectl apply --selector knative.dev/crd-install=true -f ${eventing_base}/${eventing_file}.yaml
+  fi
+
+  if [[ "$eventing_version" == "source" ]]; then
+    echo "installing Knative from source ${clone_root}/eventing"
+    pushd ${clone_root}/eventing
+    ko apply -f config
+    ko apply -f config/channels/in-memory-channel/
+    ko apply -f config/brokers/mt-channel-broker/
+    ko apply -f config/sugar/
+    popd
+  else
+    if [[ $(semver::lt ${eventing_version} 0.16.0) ]]; then
+      kubectl apply -f ${eventing_base}//${eventing_file}.yaml
+    else
+      kubectl apply -f ${eventing_base}/eventing-crds.yaml
+      kubectl apply -f ${eventing_base}/eventing-core.yaml
+      kubectl apply -f ${eventing_base}/in-memory-channel.yaml
+      kubectl apply -f ${eventing_base}/mt-channel-broker.yaml
+    fi
+  fi
+  kubectl patch -n knative-eventing deployments.apps imc-dispatcher -p '{"spec": {"template": {"spec": {"containers": [{"name": "dispatcher", "resources": {"requests": {"cpu":"50m"}}}]}}}}'
+  kubectl patch -n knative-eventing deployments.apps eventing-webhook -p '{"spec": {"template": {"spec": {"containers": [{"name": "eventing-webhook", "env": [{"name": "SINK_BINDING_SELECTION_MODE", "value": "inclusion"}]}]}}}}'
+
+  k8s::wait_until_pods_running knative-eventing
+  return 0
+}
+
+
+# install Knative-eventing
+function knative::install_eventing() {
+  local eventing_version=${1:-0.18.3}
+
+  local eventing_base=https://github.com/knative/eventing/releases/download/v${eventing_version}
+  local eventing_file=eventing
+  local clone_root=$GOPATH/src/knative.dev
 
   if [[ $eventing_version == "" || $eventing_version == "nightly" ]]; then
     echo "install knative eventing nightly"
@@ -41,44 +118,34 @@ function knative::install() {
   fi
 
   if [[ $eventing_version == "source" ]]; then
-      echo "install knative eventing from source"
-      if [[ -z "$KNATIVE_EVENTING_ROOT" ]]; then
-        u::fatal "failed to install knative eventing from source, KNATIVE_EVENTING_ROOT is empty"
-      fi
+    echo "install knative eventing from source"
   fi
 
-  u::header "installing knative CRDS"
+  echo "installing Knative Eventing ${eventing_version}"
 
-  # there is a bug in kubectl .. must do it twice.
-  set +e
-  kubectl apply --selector knative.dev/crd-install=true -f ${serving_base}/serving.yaml
-  kubectl apply --selector knative.dev/crd-install=true -f ${serving_base}/serving.yaml
   if [[ $eventing_version != "source" ]]; then
-    kubectl apply --selector knative.dev/crd-install=true -f ${eventing_base}/${eventing_file}.yaml
+   kubectl apply --selector knative.dev/crd-install=true -f ${eventing_base}/${eventing_file}.yaml
   fi
-  set -e
-
-  sleep 2
-
-  u::header "installing knative"
-
-  kubectl apply -f  ${serving_base}/serving.yaml
-  k8s::wait_until_pods_running knative-serving
-  kubectl patch -n knative-serving deployments.apps activator -p '{"spec": {"template": {"spec": {"containers": [{"name": "activator", "resources": {"requests": {"cpu":"50m"}}}]}}}}'
 
   if [[ "$eventing_version" == "source" ]]; then
-    ko apply -f ${KNATIVE_EVENTING_ROOT}/config
-    ko apply -f ${KNATIVE_EVENTING_ROOT}/config/channels/in-memory-channel/
+    echo "installing Knative from source ${clone_root}/eventing"
+    pushd ${clone_root}/eventing
+    ko apply -f config
+    ko apply -f config/channels/in-memory-channel/
+    ko apply -f config/brokers/mt-channel-broker/
+    ko apply -f config/sugar/
+    popd
   else
-    kubectl apply -f ${eventing_base}//${eventing_file}.yaml
+    if [[ $(semver::lt ${eventing_version} 0.16.0) ]]; then
+      kubectl apply -f ${eventing_base}//${eventing_file}.yaml
+    else
+      kubectl apply -f ${eventing_base}/eventing-crds.yaml
+      kubectl apply -f ${eventing_base}/eventing.yaml
+    fi
   fi
-  kubectl patch -n knative-eventing deployments.apps imc-dispatcher -p '{"spec": {"template": {"spec": {"containers": [{"name": "dispatcher", "resources": {"requests": {"cpu":"50m"}}}]}}}}'
-
-  kubectl patch -n knative-eventing deployments.apps eventing-webhook -p '{"spec": {"template": {"spec": {"containers": [{"name": "eventing-webhook", "env": [{"name": "SINK_BINDING_SELECTION_MODE", "value": "inclusion"}]}]}}}}'
-
+  # kubectl patch -n knative-eventing deployments.apps eventing-webhook -p '{"spec": {"template": {"spec": {"containers": [{"name": "eventing-webhook", "env": [{"name": "SINK_BINDING_SELECTION_MODE", "value": "inclusion"}]}]}}}}'
 
   k8s::wait_until_pods_running knative-eventing
-
   return 0
 }
 
@@ -225,3 +292,4 @@ function knative::invoke_time() {
 
   curl -sw "%{time_total}" -X POST -H "Host: $host" http://${ISTIO_IP_ADDRESS}${querystr} "$data"
 }
+

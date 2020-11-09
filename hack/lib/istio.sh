@@ -103,3 +103,4 @@ function istio::install_lean() {
 
   return 0
 }
+

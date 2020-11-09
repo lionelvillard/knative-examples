@@ -1,0 +1,6 @@
+{
+  "name": "event-counter",
+  "kone": {
+    "defaultBaseImage": "docker.io/knativefunctions/function"
+  }
+}

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-3-svc
+spec:
+  selector:
+    matchLabels:
+      app: server-3-svc
+  template:
+    metadata:
+      labels:
+        app: server-3-svc
+    spec:
+      containers:
+        - name: app
+          image: ko://http/limits/cmd/server
+          args:
+            - "--count=2"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-3-svc
+spec:
+  selector:
+    app: server-3-svc
+  ports:
+    - name: m
+      port: 9000
+    - name: p50000
+      port: 50000
+    - name: p50001
+      port: 50001

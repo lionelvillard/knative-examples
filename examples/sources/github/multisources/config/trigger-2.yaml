@@ -1,0 +1,14 @@
+apiVersion: eventing.knative.dev/v1beta1
+kind: Trigger
+metadata:
+  name: trigger-2
+spec:
+  broker: broker
+  filter:
+    attributes:
+      type: dev.knative.source.github.issues
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display-2

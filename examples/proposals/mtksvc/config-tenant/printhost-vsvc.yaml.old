@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: printhost
+  namespace: examples-mtksvc-tenant
+spec:
+  gateways:
+  - knative-serving/knative-ingress-gateway
+  hosts:
+  - printhost.examples-mtksvc-tenant
+  - printhost.examples-mtksvc-tenant.kube-dev.us-south.containers.appdomain.cloud
+  http:
+  - match:
+    - authority:
+        regex: ^printhost\.examples-mtksvc-tenant\.kube-dev\.us-south\.containers\.appdomain\.cloud(?::\d{1,5})?$
+      gateways:
+      - knative-serving/knative-ingress-gateway
+    retries:
+      attempts: 3
+      perTryTimeout: 10m0s
+    route:
+    - destination:
+        host: print-host-xq4wz.examples-mtksvc.svc.cluster.local
+        port:
+          number: 80
+      headers:
+        request:
+          add:
+            Knative-Serving-Namespace: examples-mtksvc
+            Knative-Serving-Revision: print-host-xq4wz
+      weight: 100
+    timeout: 10m0s
+    websocketUpgrade: true

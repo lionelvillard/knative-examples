@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-http01-issuer
+  namespace: knative-serving
+spec:
+  acme:
+    email: villard@us.ibm.com
+    privateKeySecretRef:
+      name: letsencrypt
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers: {}

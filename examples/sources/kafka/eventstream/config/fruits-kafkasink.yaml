@@ -1,0 +1,20 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: fruits
+spec:
+
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  net:
+    sasl:
+      enable: true
+      user:
+        secretKeyRef:
+          name: secret-eventstream
+          key: user
+      password:
+        secretKeyRef:
+          name: secret-eventstream
+          key: password
+  topic: fruits

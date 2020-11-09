@@ -1,0 +1,137 @@
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proxy
+  namespace: rr
+spec:
+  selector:
+    matchLabels:
+     app: proxy
+  template:
+    metadata:
+      labels:
+        app: proxy
+    spec:
+      containers:
+      - name: proxy
+        image: ko://nlb2-rr
+        args:
+          - "--target=http://perf-consumer.rr.svc.cluster.local"
+        resources:
+          requests:
+            cpu: 10m
+            memory: 32Mi
+          limits:
+            cpu: 10m
+            memory: 64Mi
+
+---
+
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name:  proxy-hpa
+  namespace: rr
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: proxy
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: proxy
+  namespace: rr
+  annotations:
+    service.kubernetes.io/ibm-load-balancer-cloud-provider-ip-type: private
+    service.kubernetes.io/ibm-load-balancer-cloud-provider-enable-features: ipvs
+    service.kubernetes.io/ibm-load-balancer-cloud-provider-ipvs-scheduler: rr
+spec:
+  type: LoadBalancer
+  selector:
+    app: proxy
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+  externalTrafficPolicy: Local
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: perf
+  namespace: rr
+
+---
+
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: perf
+rules:
+  - apiGroups: [""]
+    resources: ["nodes", "pods"]
+    verbs: ["list"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: perf
+subjects:
+  - kind: ServiceAccount
+    name: perf
+    namespace: rr
+roleRef:
+  kind: ClusterRole
+  name: perf
+  apiGroup: rbac.authorization.k8s.io
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: perf-aggregator
+  namespace: rr
+spec:
+  selector:
+    role: perf-aggregator
+  ports:
+    - name: grpc
+      port: 10000
+      targetPort: grpc
+      protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: perf-consumer
+  namespace: rr
+spec:
+  selector:
+    role: perf-consumer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: cloudevents
+      name: http

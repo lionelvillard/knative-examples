@@ -21,15 +21,16 @@ source $ROOT/hack/lib/library.sh
 
 KNATIVE_SERVING_VERSION=$1
 KNATIVE_EVENTING_VERSION=$2
+ISTIO_VERSION=${3:-1.3.6}
 if [[ $KNATIVE_SERVING_VERSION == "" || $KNATIVE_EVENTING_VERSION == "" ]]; then
-  u::fatal "usage: setup-knative-kind.sh <knative-serving-version> <knative-eventing-version>"
+  u::fatal "usage: setup-knative-kind.sh  <knative-serving-version> <knative-eventing-version> <istio-version>"
 fi
 
 PROFILE=knative-s${KNATIVE_SERVING_VERSION}-e${KNATIVE_EVENTING_VERSION}
 
 # Check profile exists already
 if [[ "$(kind get clusters | grep ${PROFILE})" != "" ]]; then
-  kind::update-context $PROFILE
+  kubectx "kind-$PROFILE"
   set +e;  kubectl cluster-info 2>> /dev/null; set -e
   code=$?
   if [[ code != 0 ]]; then
@@ -37,12 +38,16 @@ if [[ "$(kind get clusters | grep ${PROFILE})" != "" ]]; then
     kind create cluster --name $PROFILE --config $ROOT/hack/kind-config.yaml
   fi
 else
+    echo "creating new kind cluster"
     kind create cluster --name $PROFILE --config $ROOT/hack/kind-config.yaml
 fi
 
-kind::update-context $PROFILE
+kubectx "kind-$PROFILE"
 echo "targeting $(kubectl config current-context)"
 
-istio::install_lean 1.3.6
+if [[ "$ISTIO_VERSION" != "skip" ]]; then
+    istio::install_lean $ISTIO_VERSION
+fi
 knative::install $KNATIVE_SERVING_VERSION $KNATIVE_EVENTING_VERSION
+
 knative::install_functions 0.1.0

@@ -1,68 +1,23 @@
 # Knative Eventing Examples
-[![Build Status](https://travis-ci.org/lionelvillard/knative-examples.svg?branch=master)](https://travis-ci.org/lionelvillard/knative-examples)
 
-This project contains various Knative Eventing examples.
+This project contains a collection of Knative Eventing examples.
 
 ## Prerequisites
 
-- A Kubernetes cluster with Knative installed. For local testing I recommend [kind](#kind).
-- [kone](https://github.com/ibm/kone) installed and configured. `kone` is like `ko` for Node.js (instead of go).
-- [stern](https://github.com/wercker/stern) for log tailing.
-
-### Kind
-
-To create a [kind](https://github.com/kubernetes-sigs/kind) cluster and install Knative, run:
-
-```sh
-bin/setup-knative-kind.sh <knative-serving-version> <knative-eventing-version>
-```
-
-For instance:
-
-```sh
-bin/setup-knative-kind.sh 0.10.0 0.10.0
-```
-
-This creates a kind cluster named `knative-s0.10.0-e0.10.0` and installs Knative (no monitoring).
-
-### Minikube
-
-To install Knative in minikube, run:
-
-```sh
-bin/setup-knative-minikube.sh <knative-serving-version> <knative-eventing-version>
-```
-
-`knative-version` must have 3 version digits, eg `0.8.0`
-
-This creates a minikube VM with the profile named `k-s<knative-serving-version>-e<knative-eventing-version>` and installs Knative.
-
-### Add-ons (optional)
-
-To install add-ons operators
-
-```sh
-bin/setup-addon-operators.sh
-```
+- [kind](https://kind.sigs.k8s.io)
+- Optional [ko](https://github.com/google/ko)
 
 ## Examples
 
-### Full Applications
+### Brokers
 
-- [Cloudant Data Processing with Knative](./examples/data-processing): showcase the CouchDB Event Source
-- [Hello Retail](./examples/helloretail): showcase Sequence, Parallel and eventing functions
+- **class**: MTChannelBasedBroker
+  - **config**: In-Memory Channel
+    - [Events from a specific source](./examples/broker/inmem/ceoverrides/README.md):
+      Show how to use `CEOverrides` to receive events from a specific source.
 
-### Composition
+### Sources
 
-- [Simple Sequence](./examples/sequence)
-- [Simple Parallel](./examples/parallel)
-
-### Event Source
-
-- [API Server Source Examples](./examples/apiserversource)
-- [CronJob Targeting "Plain" Kubernetes Service](./examples/k8sservice)
-- [CouchDB Event source with IBM Cloudant](examples/sources/couchdb/cloudant)
-
-### Misc.
-
-- [Node.js Knative Eventing Functions](https://github.com/lionelvillard/knative-functions/tree/master/proxies/nodejs), the easy way.
+- KafkaSource:
+  - [Basic configuration](./examples/sources/kafka/sanity/README.md)
+  - [Autoscaling with KEDA](./examples/sources/kafka/keda/README.md)

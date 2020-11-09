@@ -16,23 +16,30 @@
 
 # Create kind cluster
 function kind::start() {
-  local name=$1
+  local name="$1"
+  local config="$2"
 
   if [[ "$name" == "" ]]; then
     u::fatal "usage kind::create <name>: missing argument"
   fi
 
-  u::header "starting kind"
-  kind create cluster --name $name
-  return 0
-}
-
-function kind::update-context() {
-  local name=$1
-
-  if [[ "$name" == "" ]]; then
-    u::fatal "usage kind::update-context <name>: missing argument"
+  local configflag=""
+  if [[ "$config" != "" ]]; then
+    configflag="--config"
   fi
 
-  export KUBECONFIG="$(kind get kubeconfig-path --name=$name)"
+  if [[ "$(kind get clusters | grep "${name}")" != "" ]]; then
+    kubectx "kind-${name}" || echo 0
+    set +e;  kubectl cluster-info 2>> /dev/null; set -e
+    code=$?
+    if [[ "$code" != "0" ]]; then
+      kind delete cluster --name "${name}"
+      kind create cluster --name "${name}" $configflag "${config}"
+    fi
+  else
+      echo "creating new kind cluster"
+      kind create cluster --name "${name}" $configflag "${config}"
+  fi
+
+  return 0
 }

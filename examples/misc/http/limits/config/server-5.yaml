@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: server-5
+spec:
+  containers:
+  - name: app
+    image: ko://http/limits/cmd/server
+    args:
+    - "--count=10000"

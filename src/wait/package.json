@@ -1,0 +1,6 @@
+{
+  "name": "wait",
+  "kone": {
+    "defaultBaseImage": "docker.io/knativefunctions/function"
+  }
+}

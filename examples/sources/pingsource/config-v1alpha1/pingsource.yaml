@@ -1,0 +1,12 @@
+apiVersion: sources.knative.dev/v1alpha1
+kind: PingSource
+metadata:
+  name: hello-unique-name
+spec:
+  schedule: "*/1 * * * *"
+  data: '{"msg": "hello"}'
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display

@@ -1,0 +1,17 @@
+apiVersion: sources.knative.dev/v1alpha2
+kind: SinkBinding
+metadata:
+  name: sinkbinding
+spec:
+  ceOverrides:
+    extensions:
+      secret: fas
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: e2e-sink-binding-recordevent-pod
+  subject:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: e2e-sink-binding-deployment
