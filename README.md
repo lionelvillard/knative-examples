@@ -13,11 +13,11 @@ This project contains a collection of Knative Eventing examples.
 
 - **class**: MTChannelBasedBroker
   - **config**: In-Memory Channel
-    - [Events from a specific source](./examples/broker/inmem/ceoverrides/README.md):
-      Show how to use `CEOverrides` to receive events from a specific source.
+    - [Events from a specific source](./examples/broker/inmem/ceoverrides): Show
+      how to use `CEOverrides` to receive events from a specific source.
 
 ### Sources
 
 - KafkaSource:
-  - [Basic configuration](./examples/sources/kafka/sanity/README.md)
-  - [Autoscaling with KEDA](./examples/sources/kafka/keda/README.md)
+  - [Basic configuration](./examples/sources/kafka/sanity)
+  - [Autoscaling with KEDA](./examples/sources/kafka/keda)
