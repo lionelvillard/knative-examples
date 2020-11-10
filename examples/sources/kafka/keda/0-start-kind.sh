@@ -14,13 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+set -e
+
 ROOT=$(dirname $BASH_SOURCE[0])/../../../..
 source $ROOT/hack/lib/library.sh
 
-kafka::install_strimzi
-knative::install_eventing # TODO: should not be needed
-kafka::install_source source
-kafka::install_sink
+kind::start "kafka" $ROOT/hack/kind-config-kourier.yaml
 
-keda::install_keda
-keda::install_eventing_keda

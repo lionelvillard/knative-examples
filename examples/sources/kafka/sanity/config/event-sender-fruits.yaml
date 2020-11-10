@@ -9,7 +9,7 @@ spec:
       - name: event-sender
         image: docker.io/knativeexamples/event-sender
         args:
-          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/source-kafka-sanity/fruits'
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/sources-kafka-sanity/fruits'
           - '-event={"specversion":"1.0", "source":"event-sender-fruits", "type" : "event-sender-fruits"}'
           - '-period=2000'
           - '-delay=100'

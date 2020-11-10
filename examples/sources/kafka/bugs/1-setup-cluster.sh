@@ -17,10 +17,5 @@
 ROOT=$(dirname $BASH_SOURCE[0])/../../../..
 source $ROOT/hack/lib/library.sh
 
-kafka::install_strimzi
-knative::install_eventing # TODO: should not be needed
-kafka::install_source source
-kafka::install_sink
-
-keda::install_keda
-keda::install_eventing_keda
+# kafka::install_strimzi
+kafka::install_source

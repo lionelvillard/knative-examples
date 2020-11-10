@@ -16,7 +16,7 @@
 
 set -e
 
-ROOT=$(dirname $BASH_SOURCE[0])/../../..
+ROOT=$(dirname $BASH_SOURCE[0])/../../../..
 source $ROOT/hack/lib/library.sh
 
 kind delete cluster --name=broker
