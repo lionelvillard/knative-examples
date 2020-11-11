@@ -214,8 +214,7 @@ function k8s::init_auth() {
 # curl a k8s service
 function k8s::curl() {
     if [[ -z "${k8s_certfile}" ]]; then
-        echo "init_auth not called. Exiting"
-        exit 1
+        k8s::init_auth
     fi
 
     local svcns="$1"
@@ -228,4 +227,3 @@ function k8s::curl() {
     curl -s --cacert ${k8s_cafile} --cert ${k8s_certfile} --key ${k8s_keyfile} $url
 }
 
-k8s::init_auth
