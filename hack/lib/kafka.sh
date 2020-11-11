@@ -57,6 +57,8 @@ function kafka::install_source() {
     kubectl create ns knative-eventing || echo 0 # due to bug
     kubectl apply -f https://github.com/knative/eventing-contrib/releases/download/v${version}/kafka-source.yaml
   fi
+
+  k8s::wait_until_pods_running knative-sources
 }
 
 function kafka::install_sink() {
@@ -144,6 +146,8 @@ EOF
 
   kubectl apply -f https://github.com/knative-sandbox/eventing-kafka-broker/releases/download/v0.18.1/eventing-kafka-controller.yaml
   kubectl apply -f https://github.com/knative-sandbox/eventing-kafka-broker/releases/download/v0.18.1/eventing-kafka-sink.yaml
+
+  k8s::wait_until_pods_running knative-eventing
 }
 
 function kafka::install_channel() {
