@@ -201,9 +201,9 @@ function k8s::init_auth() {
     local key=$(kubectl config view --minify --raw -ojsonpath="{@.users[?(@.name=='${kctx}')].user.client-key-data}")
     local cert=$(kubectl config view --minify --raw -ojsonpath="{@.users[?(@.name=='${kctx}')].user.client-certificate-data}")
 
-    k8s_cafile=$(mktemp -t cacert)
-    k8s_keyfile=$(mktemp -t key)
-    k8s_certfile=$(mktemp -t cert)
+    k8s_cafile=$(mktemp -t cacert.XXX)
+    k8s_keyfile=$(mktemp -t key.XXX)
+    k8s_certfile=$(mktemp -t cert.XXX)
 
     echo "${cacert}" | base64 -D > $k8s_cafile
     echo "${key}" | base64 -D > $k8s_keyfile
