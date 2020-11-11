@@ -44,26 +44,47 @@ function test::fatal() {
     exit 1
 }
 
-# print test suite description
+test_logfile=
+
+# print test suite description and initialize log
 function test::suite() {
     typing::check_arguments 1 "$@"
+
+    test_logfile=$(mktemp -t log.XXX)
+    echo log file is $test_logfile >&2
+
     u::header "$1"
     u::header "${BOLD}====${NORMAL}"
+
 }
 
 # start a test case
 function test::case() {
     typing::check_arguments 1 "$@"
     printf " ${BOLD}${1}${NORMAL} "
+    test::log "== starting test case $1"
 }
 
 # Mark test case as failed and exit
-function test::failed() {
+function test::fail() {
     printf "${CROSSMARK}\n"
+    test::log "== test case failed"
     exit 1
 }
 
 # Mark test case as suceeded
-function test::success() {
+function test::pass() {
     printf "${CHECKMARK}\n"
+    test::log "== test case pass"
+}
+
+# log message
+function test::log() {
+    typing::check_arguments 1 "$@"
+
+    if [[ -z "$test_logfile" ]]; then
+        echo "$1" >&2
+    else
+        echo "$1" >> $test_logfile
+    fi
 }

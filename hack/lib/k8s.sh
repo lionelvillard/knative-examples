@@ -225,6 +225,14 @@ function k8s::curl() {
 
     local url="${k8s_server}/api/v1/namespaces/${svcns}/services/${svcname}:${portname}/proxy${path}"
 
-    curl -s -X ${verb} --cacert ${k8s_cafile} --cert ${k8s_certfile} --key ${k8s_keyfile} $url
+    local output=$(curl -s -X ${verb} --cacert ${k8s_cafile} --cert ${k8s_certfile} --key ${k8s_keyfile} $url)
+    local failure=$(echo ${output} | grep Failure)
+
+    if [[ -z ${failure} ]]; then
+        echo $output
+    else
+        test::log "$output"
+        return 1
+    fi
 }
 
