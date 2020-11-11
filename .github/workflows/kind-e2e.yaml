@@ -71,3 +71,9 @@ jobs:
         [[ -f "1-setup-cluster.sh" ]] && ./1-setup-cluster.sh
         [[ -f "3-deploy.sh" ]] && ./3-deploy.sh
         [[ -f "4-test.sh" ]] && ./4-test.sh
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-log
+        path: /tmp/log.*
