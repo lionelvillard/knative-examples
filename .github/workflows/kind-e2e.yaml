@@ -59,11 +59,15 @@ jobs:
         chmod +x ./kind
         sudo mv kind /usr/local/bin
 
+    - name: Start KinD
+      run: |
+        cd  ${{ matrix.test }}
+        [[ -f "0-start-kind.sh" ]] && ./0-start-kind.sh
+
     - name: Run e2e Tests
       run: |
         cd  ${{ matrix.test }}
         echo running test in ${{ matrix.test }}
-        [[ -f "0-start-kind.sh" ]] && ./0-start-kind.sh
-        [[ -f "1-setup-cluster.sh" ]] && ./0-setup-cluster.sh
-        [[ -f "3-deploy.sh" ]] && ./0-deploy.sh
-        [[ -f "4-test.sh" ]] && ./0-test.sh
+        [[ -f "1-setup-cluster.sh" ]] && ./1-setup-cluster.sh
+        [[ -f "3-deploy.sh" ]] && ./3-deploy.sh
+        [[ -f "4-test.sh" ]] && ./4-test.sh
