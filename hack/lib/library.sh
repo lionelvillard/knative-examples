@@ -18,8 +18,9 @@
 set -euo pipefail
 
 LIBROOT=$(dirname $BASH_SOURCE[0])
-source $LIBROOT/utils.sh
+source $LIBROOT/test.sh
 LIBROOT=$(u::abs_path $LIBROOT)
+source $LIBROOT/typing.sh
 source $LIBROOT/string.sh
 source $LIBROOT/istio.sh
 source $LIBROOT/k8s.sh
@@ -32,3 +33,4 @@ source $LIBROOT/ic.sh
 source $LIBROOT/github.sh
 source $LIBROOT/kafka.sh
 source $LIBROOT/keda.sh
+source $LIBROOT/event.sh

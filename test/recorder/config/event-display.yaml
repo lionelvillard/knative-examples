@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-recorder
+spec:
+  selector:
+    matchLabels:
+     app: event-recorder
+  template:
+    metadata:
+      labels:
+        app: event-recorder
+    spec:
+      containers:
+      - name: event-recorder
+        image: docker.io/villardl/event-recorder
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-recorder
+spec:
+  selector:
+      app: event-recorder
+  ports:
+    - name: receiver
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+    - name: db
+      port: 81
+      protocol: TCP
+      targetPort: 8081

@@ -20,7 +20,6 @@ ROOT=$(dirname $BASH_SOURCE[0])/../../../..
 source $ROOT/hack/lib/library.sh
 
 
-kind::start "kafka" $ROOT/hack/kind-config-kourier.yaml
 knative::install_eventing
 kafka::install_strimzi
-kafka::install_channel
+kafka::install_channel source

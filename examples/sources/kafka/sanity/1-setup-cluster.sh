@@ -22,4 +22,3 @@ source $ROOT/hack/lib/library.sh
 kafka::install_strimzi
 kafka::install_sink
 kafka::install_source
-

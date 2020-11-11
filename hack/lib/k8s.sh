@@ -45,6 +45,18 @@ function k8s::delete_ns() {
     return 0
 }
 
+
+# Gets the current namespace
+function k8s::get_current_ns() {
+    local kctx=$(kubectl config current-context)
+    local ns=$(kubectl config view --minify -ojsonpath="{@.contexts[?(@.name=='${kctx}')].context.namespace}")
+    if [[ -z "$ns" ]]; then
+        echo "default"
+    else
+        echo $ns
+    fi
+}
+
 function k8s::force_delete_ns() {
     set +e
     local ns="$1"
@@ -174,3 +186,46 @@ function k8s::wait_log_contains() {
     echo -e "ERROR: timeout waiting for pod log to contain \b${str}"
     return 1
 }
+
+k8s_server=
+k8s_certfile=
+k8s_cafile=
+k8s_keyfile=
+
+# Initialize auth files
+function k8s::init_auth() {
+    # TODO: only work for kind at the moment
+    local kctx=$(kubectl config current-context)
+    k8s_server=$(kubectl config view --minify -ojsonpath="{@.clusters[?(@.name=='${kctx}')].cluster.server}")
+    local cacert=$(kubectl config view --minify --raw -ojsonpath="{@.clusters[?(@.name=='${kctx}')].cluster.certificate-authority-data}")
+    local key=$(kubectl config view --minify --raw -ojsonpath="{@.users[?(@.name=='${kctx}')].user.client-key-data}")
+    local cert=$(kubectl config view --minify --raw -ojsonpath="{@.users[?(@.name=='${kctx}')].user.client-certificate-data}")
+
+    k8s_cafile=$(mktemp -t cacert)
+    k8s_keyfile=$(mktemp -t key)
+    k8s_certfile=$(mktemp -t cert)
+
+    echo "${cacert}" | base64 -D > $k8s_cafile
+    echo "${key}" | base64 -D > $k8s_keyfile
+    echo "${cert}" | base64 -D > $k8s_certfile
+}
+
+
+# curl a k8s service
+function k8s::curl() {
+    if [[ -z "${k8s_certfile}" ]]; then
+        echo "init_auth not called. Exiting"
+        exit 1
+    fi
+
+    local svcns="$1"
+    local svcname="$2"
+    local portname="$3"
+    local path="$4"
+
+    local url="${k8s_server}/api/v1/namespaces/${svcns}/services/${svcname}:${portname}/proxy${path}"
+
+    curl -s --cacert ${k8s_cafile} --cert ${k8s_certfile} --key ${k8s_keyfile} $url
+}
+
+k8s::init_auth

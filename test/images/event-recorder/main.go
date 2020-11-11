@@ -18,17 +18,56 @@ package main
 
 import (
 	"context"
-	"encoding/base64"
-	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
+	"sync"
 
 	cloudeventsbindings "github.com/cloudevents/sdk-go/v2/binding"
+	cloudevents "github.com/cloudevents/sdk-go/v2/event"
 	cloudeventshttp "github.com/cloudevents/sdk-go/v2/protocol/http"
 )
 
-type logger struct{}
+// --- event db
+
+type eventDB struct {
+	events      []cloudevents.Event
+	eventsMutex sync.RWMutex
+}
+
+func (db *eventDB) RecordEvent(event cloudevents.Event) {
+	db.eventsMutex.Lock()
+	db.events = append(db.events, event)
+	db.eventsMutex.Unlock()
+}
+
+func (db *eventDB) Events(w http.ResponseWriter, r *http.Request) {
+	if summary, ok := r.URL.Query()["summary"]; ok {
+		if len(summary) != 1 {
+			http.Error(w, "multiple summary found", 400)
+			return
+		}
+		if summary[0] != "count" {
+			http.Error(w, fmt.Sprintf("invalid summary %s", summary[0]), 400)
+			return
+		}
+
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+		w.WriteHeader(200)
+		db.eventsMutex.RLock()
+		fmt.Fprintln(w, len(db.events))
+		db.eventsMutex.RUnlock()
+		return
+	}
+
+	http.Error(w, "not implemented", http.StatusNotImplemented)
+}
+
+// --- event display
+
+type logger struct {
+	db *eventDB
+}
 
 func (o *logger) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
 	m := cloudeventshttp.NewMessageFromHttpRequest(request)
@@ -40,22 +79,43 @@ func (o *logger) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
 	if eventErr != nil {
 		fmt.Println(eventErr.Error())
 	} else {
-		b, err := json.Marshal(event)
-		if err != nil {
-			fmt.Printf("error marshalling event to json: %v\n", err)
-		}
-		sEnc := base64.StdEncoding.EncodeToString(b)
-		fmt.Println(sEnc)
+		fmt.Println(event)
+
 	}
+	o.db.RecordEvent(*event)
 
 	writer.WriteHeader(http.StatusAccepted)
 }
 
 func main() {
-	server := &http.Server{Addr: ":8080", Handler: &logger{}}
-	if err := server.ListenAndServe(); err != nil {
-		log.Fatalf("failed to create server, %v", err)
+	db := &eventDB{
+		eventsMutex: sync.RWMutex{},
 	}
 
-	server.Close()
+	wg := new(sync.WaitGroup)
+	wg.Add(2)
+
+	go func() {
+		server := &http.Server{Addr: ":8080", Handler: &logger{db: db}}
+		if err := server.ListenAndServe(); err != nil {
+			log.Fatalf("failed to create server, %v", err)
+		}
+		server.Close()
+		wg.Done()
+	}()
+
+	go func() {
+		mux := http.NewServeMux()
+
+		mux.HandleFunc("/events", db.Events)
+
+		server := &http.Server{Addr: ":8081", Handler: mux}
+		if err := server.ListenAndServe(); err != nil {
+			log.Fatalf("failed to create server, %v", err)
+		}
+		server.Close()
+		wg.Done()
+	}()
+
+	wg.Wait()
 }

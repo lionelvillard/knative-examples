@@ -1,0 +1,64 @@
+name: KinD e2e tests
+
+on:
+  pull_request:
+    branches: [ 'master' ]
+
+  schedule:
+  - cron: '0 */4 * * *'
+
+defaults:
+  run:
+    shell: bash
+      working-directory: ./src/github.com/lionelvillard/knative-examples
+
+jobs:
+  e2e-tests:
+    name: e2e tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test:
+          - ./examples/sources/kafka/sanity
+
+    env:
+      GOPATH: ${{ github.workspace }}
+      GO111MODULE: off
+      KO_DOCKER_REPO: kind.local
+
+    steps:
+    - name: Set up Go 1.15.x
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.15.x
+
+    - name: Install Dependencies
+      working-directory: ./
+      run: |
+        GO111MODULE=on go get github.com/google/ko/cmd/ko@master
+
+    - name: Check out code onto GOPATH
+      uses: actions/checkout@v2
+      with:
+        path: ./src/github.com/lionelvillard/knative-examples
+
+    - name: Install KinD
+      run: |
+        set -x
+
+        # Disable swap otherwise memory enforcement doesn't work
+        # See: https://kubernetes.slack.com/archives/CEKK1KTN2/p1600009955324200
+        sudo swapoff -a
+        sudo rm -f /swapfile
+
+        curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/${{ matrix.kind-version }}/kind-$(uname)-amd64
+        chmod +x ./kind
+        sudo mv kind /usr/local/bin
+
+    - name: Run e2e Tests
+      run: |
+        cd  ${{ matrix.test }}
+        [[ -f "0-start-kind.sh" ]] && ./0-start-kind.sh
+        [[ -f "1-setup-cluster.sh" ]] && ./0-setup-cluster.sh
+        [[ -f "3-deploy.sh" ]] && ./0-deploy.sh
+        [[ -f "4-test.sh" ]] && ./0-test.sh
