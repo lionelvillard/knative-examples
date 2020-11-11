@@ -58,6 +58,7 @@ jobs:
     - name: Run e2e Tests
       run: |
         cd  ${{ matrix.test }}
+        echo running test in ${{ matrix.test }}
         [[ -f "0-start-kind.sh" ]] && ./0-start-kind.sh
         [[ -f "1-setup-cluster.sh" ]] && ./0-setup-cluster.sh
         [[ -f "3-deploy.sh" ]] && ./0-deploy.sh
