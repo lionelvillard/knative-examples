@@ -42,6 +42,17 @@ func (db *eventDB) RecordEvent(event cloudevents.Event) {
 }
 
 func (db *eventDB) Events(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case http.MethodGet:
+		db.getEvents(w, r)
+	case http.MethodDelete:
+		db.deleteEvents(w, r)
+	default:
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+	}
+}
+
+func (db *eventDB) getEvents(w http.ResponseWriter, r *http.Request) {
 	if summary, ok := r.URL.Query()["summary"]; ok {
 		if len(summary) != 1 {
 			http.Error(w, "multiple summary found", 400)
@@ -61,6 +72,13 @@ func (db *eventDB) Events(w http.ResponseWriter, r *http.Request) {
 	}
 
 	http.Error(w, "not implemented", http.StatusNotImplemented)
+}
+
+func (db *eventDB) deleteEvents(w http.ResponseWriter, r *http.Request) {
+	db.eventsMutex.Lock()
+	db.events = nil
+	db.eventsMutex.Unlock()
+	w.WriteHeader(200)
 }
 
 // --- event display

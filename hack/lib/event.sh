@@ -42,3 +42,16 @@ function event::count() {
 
     k8s::curl $ns $name db /events?summary=count
 }
+
+
+# reset the database
+function event::reset() {
+    local name="$1"
+    local ns="${2:-}"
+
+    if [[ -z "$ns" ]]; then
+      ns=$(k8s::get_current_ns)
+    fi
+
+    k8s::curl $ns $name db /events DELETE
+}

@@ -205,9 +205,9 @@ function k8s::init_auth() {
     k8s_keyfile=$(mktemp -t key.XXX)
     k8s_certfile=$(mktemp -t cert.XXX)
 
-    echo "${cacert}" | base64 -D > $k8s_cafile
-    echo "${key}" | base64 -D > $k8s_keyfile
-    echo "${cert}" | base64 -D > $k8s_certfile
+    echo "${cacert}" | base64 --decode > $k8s_cafile
+    echo "${key}" | base64 --decode > $k8s_keyfile
+    echo "${cert}" | base64 --decode > $k8s_certfile
 }
 
 
@@ -221,9 +221,10 @@ function k8s::curl() {
     local svcname="$2"
     local portname="$3"
     local path="$4"
+    local verb="${5:-GET}"
 
     local url="${k8s_server}/api/v1/namespaces/${svcns}/services/${svcname}:${portname}/proxy${path}"
 
-    curl -s --cacert ${k8s_cafile} --cert ${k8s_certfile} --key ${k8s_keyfile} $url
+    curl -s -X ${verb} --cacert ${k8s_cafile} --cert ${k8s_certfile} --key ${k8s_keyfile} $url
 }
 

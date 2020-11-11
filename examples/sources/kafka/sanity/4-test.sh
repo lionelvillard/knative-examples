@@ -23,10 +23,29 @@ NS=sources-kafka-sanity
 
 test::case "check event-display is receiving events"
 
-count=$(event::count event-display)
+    count=$(event::count event-display)
 
-if [[ $count -ge 0 ]]; then
-    test::failed
-fi
+    if [[ $count -le 0 ]]; then
+        test::failed
+    fi
+
+test::success
+
+
+test::case "check event-display does not receive events after stopping the producers"
+
+    kubectl delete jobs.batch --all >> /dev/null
+
+    sleep 2 # wait for events to drain
+
+    event::reset event-display
+
+    sleep 5
+
+    count=$(event::count event-display)
+
+    if [[ $count -gt 0 ]]; then
+        test::failed
+    fi
 
 test::success
