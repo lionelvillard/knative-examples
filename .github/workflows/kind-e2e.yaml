@@ -73,6 +73,7 @@ jobs:
         [[ -f "4-test.sh" ]] && ./4-test.sh
 
     - name: Upload artifacts
+      if: failure()
       uses: actions/upload-artifact@v2
       with:
         name: test-log
