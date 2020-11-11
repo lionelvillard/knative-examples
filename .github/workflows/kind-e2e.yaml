@@ -10,7 +10,7 @@ on:
 defaults:
   run:
     shell: bash
-      working-directory: ./src/github.com/lionelvillard/knative-examples
+    working-directory: ./src/github.com/lionelvillard/knative-examples
 
 jobs:
   e2e-tests:
