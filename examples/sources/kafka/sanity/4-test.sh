@@ -27,6 +27,8 @@ test::suite "testing KafkaSource"
 
 test::case "check event-display is receiving events"
 
+    sleep 3 # wait a bit to receive some events
+
     count=$(event::count event-display)
 
     if [[ "$count" -le 0 ]]; then
