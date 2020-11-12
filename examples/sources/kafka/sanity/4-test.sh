@@ -21,6 +21,8 @@ source $ROOT/hack/lib/library.sh
 
 NS=sources-kafka-sanity
 
+k8s::wait_until_pods_running "$NS"
+
 test::suite "testing KafkaSource"
 
 test::case "check event-display is receiving events"
@@ -28,16 +30,16 @@ test::case "check event-display is receiving events"
     count=$(event::count event-display)
 
     if [[ "$count" -le 0 ]]; then
-        test::failed
+        test::fail
     fi
 
-test::success
+test::pass
 
 test::case "check when killing the receive adapter pods, no events are lost"
 
 
 
-test::success
+test::pass
 
 test::case "check event-display does not receive events after stopping the producers"
 
@@ -52,7 +54,7 @@ test::case "check event-display does not receive events after stopping the produ
     count=$(event::count event-display)
 
     if [[ $count -gt 0 ]]; then
-        test::failed
+        test::fail
     fi
 
-test::success
+test::pass
