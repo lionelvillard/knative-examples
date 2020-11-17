@@ -19,11 +19,7 @@ set -e
 ROOT=$(dirname $BASH_SOURCE[0])/../../../..
 source $ROOT/hack/lib/library.sh
 
-# kafka::install_sink # no SASL/TLS support yet.
-knative::install_eventing # required by Keda
+NS=sources-pingsource-sanity
+k8s::create_and_set_ns $NS
 
-kafka::install_source source # to pick up scale subresource
-
-
-keda::install_keda
-keda::install_eventing_keda
+kubectl apply -f config

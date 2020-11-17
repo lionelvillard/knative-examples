@@ -45,16 +45,16 @@ function kafka::install_source() {
     pushd $GOPATH/src/knative.dev/eventing-kafka
     ko apply -f config/source
     popd
-  elif [ "$version" == "mtsource" ]; then
+  elif [ "$version" == "multi" ]; then
     pushd $GOPATH/src/knative.dev/eventing-kafka
     ko apply -f config/source/multi
     popd
-  elif [ "$version" == "stsource" ]; then
+  elif [ "$version" == "single" ]; then
     pushd $GOPATH/src/knative.dev/eventing-kafka
     ko apply -f config/source/single
     popd
   else
-    kubectl create ns knative-eventing || echo 0 # due to bug
+    kubectl create ns knative-eventing || true # due to bug
     kubectl apply -f https://github.com/knative/eventing-contrib/releases/download/v${version}/kafka-source.yaml
   fi
 

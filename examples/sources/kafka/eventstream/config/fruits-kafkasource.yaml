@@ -2,7 +2,15 @@ apiVersion: sources.knative.dev/v1beta1
 kind: KafkaSource
 metadata:
   name: fruits
+  annotations:
+    autoscaling.knative.dev/class: keda.autoscaling.knative.dev
+    autoscaling.knative.dev/minScale: "0"
+    autoscaling.knative.dev/maxScale: "10"
+    keda.autoscaling.knative.dev/pollingInterval: "10"
+    keda.autoscaling.knative.dev/cooldownPeriod: "10"
+    keda.autoscaling.knative.dev/kafkaLagThreshold: "30"
 spec:
+  consumers: 1
   consumerGroup: fruits-group
   bootstrapServers:
     - broker-5-nxgt7l9rxcqqxvxm.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093
@@ -17,6 +25,8 @@ spec:
         secretKeyRef:
           name: secret-eventstream
           key: password
+    tls:
+      enable: true
   topics:
     - fruits
   sink:

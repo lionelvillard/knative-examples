@@ -20,4 +20,4 @@ credentials=$(bx resource service-key "$id" --output json)
 user=$(echo $credentials | jq -r ".[0].credentials.user")
 password=$(echo $credentials | jq -r ".[0].credentials.password")
 
-kubectl create secret generic secret-eventstream --from-literal=user=$user --from-literal=password=$password
+kubectl create secret  generic secret-eventstream --from-literal=user=$user --from-literal=password=$password -n sources-kafka-eventstream

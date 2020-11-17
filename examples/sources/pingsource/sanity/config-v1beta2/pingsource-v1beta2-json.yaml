@@ -1,0 +1,15 @@
+apiVersion: sources.knative.dev/v1beta2
+kind: PingSource
+metadata:
+  name: hello-json
+spec:
+  schedule: "*/1 * * * *"
+  data: |
+    {
+      "msg": "hello"
+    }
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display

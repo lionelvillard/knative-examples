@@ -18,6 +18,9 @@ This project contains a collection of Knative Eventing examples.
 
 ### Sources
 
+- PingSource
+  - [Basic configuration](./examples/sources/kafka/sanity): shows how to use PingSource to send events of various content types (json, xml) on a regular schedule to the event display service.
 - KafkaSource:
-  - [Basic configuration](./examples/sources/kafka/sanity)
-  - [Autoscaling with KEDA](./examples/sources/kafka/keda)
+  - [Basic configuration](./examples/sources/kafka/sanity): use KafkaSink to send events to two different Kafka topics and use KafkaSource to consume these events and forward them to the event display service.
+  - [Autoscaling with KEDA](./examples/sources/kafka/keda): same example as above with KEDA autoscaling enabled
+  - [IBM Cloud Event Streams](./examples/sources/kafka/eventstream): shows how to use KafkaSource to consume events coming from [IBM Cloud Event Streams](https://www.ibm.com/cloud/event-streams)

@@ -1,0 +1,12 @@
+apiVersion: sources.knative.dev/v1beta2
+kind: PingSource
+metadata:
+  name: hello-no-wrapper
+spec:
+  schedule: "*/1 * * * *"
+  data: "hello"
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display

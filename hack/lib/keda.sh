@@ -17,7 +17,7 @@
 
 # install keda
 function keda::install_keda() {
-  kubectl apply -f https://github.com/kedacore/keda/releases/download/v2.0.0-rc/keda-2.0.0-rc.yaml
+  kubectl apply -f https://github.com/kedacore/keda/releases/download/v2.0.0/keda-2.0.0.yaml
   return 0
 }
 
