@@ -24,6 +24,5 @@ knative::install_eventing # required by Keda
 
 kafka::install_source source # to pick up scale subresource
 
-
-keda::install_keda
+# keda::install_keda
 keda::install_eventing_keda

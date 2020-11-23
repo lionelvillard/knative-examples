@@ -106,7 +106,7 @@ function knative::install() {
 
 # install Knative-eventing
 function knative::install_eventing() {
-  local eventing_version=${1:-0.18.3}
+  local eventing_version=${1:-0.19.1}
 
   local eventing_base=https://github.com/knative/eventing/releases/download/v${eventing_version}
   local eventing_file=eventing

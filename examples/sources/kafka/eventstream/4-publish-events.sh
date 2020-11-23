@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-kafkacat -F kafka.cfg -P -t fruits
+kafkacat -F kafka.cfg -Xsasl.password=$PWD -P -t fruits

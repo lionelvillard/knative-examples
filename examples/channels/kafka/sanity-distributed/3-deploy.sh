@@ -20,7 +20,23 @@ ROOT=$(dirname $BASH_SOURCE[0])/../../../..
 source $ROOT/hack/lib/library.sh
 
 NS=channels-kafka-sanity-distributed
-k8s::delete_ns $NS
+k8s::create_and_set_ns $NS
 
-kubectl delete secret -n knative-eventing   kafka-credentials
+kubectl create secret -n knative-eventing generic kafka-credentials \
+    --from-literal=brokers=my-cluster-kafka-bootstrap.kafka:9092 \
+    --from-literal=username= \
+    --from-literal=password=
+
+kubectl label secret -n knative-eventing kafka-credentials eventing-kafka.knative.dev/kafka-secret="true"
+
+
+kubectl create secret -n knative-eventing generic kafka-credentials-2 \
+    --from-literal=brokers=my-cluster-kafka-bootstrap.kafka:9092 \
+    --from-literal=username= \
+    --from-literal=password=
+
+kubectl label secret -n knative-eventing kafka-credentials-2 eventing-kafka.knative.dev/kafka-secret="true"
+
+kubectl apply -f config
+
 

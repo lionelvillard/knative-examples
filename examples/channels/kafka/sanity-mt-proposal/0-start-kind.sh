@@ -19,6 +19,4 @@ set -e
 ROOT=$(dirname $BASH_SOURCE[0])/../../../..
 source $ROOT/hack/lib/library.sh
 
-knative::install_eventing
-kafka::install_strimzi
-kafka::install_distributed_channel
+kind::start "kafka" $ROOT/hack/kind-config-kourier.yaml

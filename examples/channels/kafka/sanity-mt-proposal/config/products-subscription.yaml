@@ -11,5 +11,9 @@ spec:
     ref:
       apiVersion: v1
       kind: Service
+      name:  event-display
+  reply:
+    ref:
+      kind: Service
+      apiVersion: v1
       name: event-display
-

@@ -19,9 +19,7 @@ set -e
 ROOT=$(dirname $BASH_SOURCE[0])/../../../..
 source $ROOT/hack/lib/library.sh
 
-NS=channel-kafka-sanity
-k8s::create_and_set_ns $NS
 
-ko apply -f config
-
-
+knative::install_eventing
+kafka::install_strimzi
+kafka::install_channel source
