@@ -33,3 +33,4 @@ This project contains a collection of Knative Eventing examples.
   - [IBM Cloud Event Streams](./examples/sources/kafka/eventstream): shows how
     to use KafkaSource to consume events coming from
     [IBM Cloud Event Streams](https://www.ibm.com/cloud/event-streams)
+
