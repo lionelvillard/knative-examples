@@ -19,7 +19,7 @@ source $ROOT/hack/lib/library.sh
 
 kafka::install_strimzi
 knative::install_eventing # TODO: should not be needed
-kafka::install_source source
+kafka::install_mt_source
 kafka::install_sink
 
 keda::install_keda

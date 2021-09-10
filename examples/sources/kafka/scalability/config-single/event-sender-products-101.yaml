@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-101
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-101'
+          - '-event={"specversion":"1.0", "source":"event-sender-products", "type" : "event-sender-products-101"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never

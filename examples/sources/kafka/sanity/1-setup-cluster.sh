@@ -20,5 +20,6 @@ ROOT=$(dirname $0)/../../../..
 source $ROOT/hack/lib/library.sh
 
 kafka::install_strimzi
-kafka::install_sink
-kafka::install_source multi
+#knative::install_eventing
+#kafka::install_sink
+#kafka::install_mt_source source

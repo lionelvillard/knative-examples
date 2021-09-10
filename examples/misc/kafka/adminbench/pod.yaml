@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: adminbench
+spec:
+  template:
+    spec:
+      containers:
+      - image: ko://adminbench
+        name: adaminbench
+        env:
+        - name: "TOPIC"
+          value: p1000
+        - name: "BROKERS"
+          value: kafka-0.mh-lbnyvywmvwwvpcmssqgl-4c201a12d7add7c99d2b22e361c6f175-0000.us-south.containers.appdomain.cloud:9093
+        - name: GROUP
+          value: g1
+        - name: APIKEY
+          value: PWM0Tw-ovo6ILH24Avc-PmFDX3KvaGwb1OKAyGy-7mRZ
+      restartPolicy: Never

@@ -11,6 +11,7 @@ spec:
       apiVersion: v1
       kind: Service
       name: e2e-sink-binding-recordevent-pod
+      namespace: boo
   subject:
     apiVersion: apps/v1
     kind: Deployment

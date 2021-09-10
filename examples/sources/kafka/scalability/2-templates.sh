@@ -20,9 +20,21 @@ ROOT=$(dirname $BASH_SOURCE[0])/../../../..
 source $ROOT/hack/lib/library.sh
 
 rm -f config/products-kafkasource.yaml
+rm -f config/event-sender-products.yaml
+rm -f config/products-topic.yaml
+rm -f config/products-kafkasink.yaml
 touch config/products-kafkasource.yaml
+touch config/event-sender-products.yaml
+touch config/products-topic.yaml
+touch config/products-kafkasink.yaml
 
-for (( i = 0; i < 10; ++i )); do
+for (( i = 0; i < 100; ++i )); do
     cat templates/products-kafkasource.yaml | sed "s/products/products-${i}/g" >> config/products-kafkasource.yaml
     echo "---" >> config/products-kafkasource.yaml
+    cat templates/event-sender-products.yaml | sed "s/products/products-${i}/g" >> config/event-sender-products.yaml
+    echo "---" >> config/event-sender-products.yaml
+    cat templates/products-topic.yaml | sed "s/products/products-${i}/g" >> config/products-topic.yaml
+    echo "---" >> config/products-topic.yaml
+    cat templates/products-kafkasink.yaml| sed "s/products/products-${i}/g" >> config/products-kafkasink.yaml
+    echo "---" >> config/products-kafkasink.yaml
 done

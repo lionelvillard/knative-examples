@@ -11,9 +11,9 @@ metadata:
     keda.autoscaling.knative.dev/kafkaLagThreshold: "30"
 spec:
   consumers: 1
-  consumerGroup: fruits-group
+  consumerGroup: sd-1
   bootstrapServers:
-    - broker-5-nxgt7l9rxcqqxvxm.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093
+    - broker-0-ys5snp917xwwz1yw.kafka.svc09.us-south.eventstreams.cloud.ibm.com:9093
   net:
     sasl:
       enable: true
@@ -28,7 +28,7 @@ spec:
     tls:
       enable: true
   topics:
-    - fruits
+    - sd-1
   sink:
     ref:
       apiVersion: v1

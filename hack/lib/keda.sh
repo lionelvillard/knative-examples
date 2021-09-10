@@ -17,13 +17,32 @@
 
 # install keda
 function keda::install_keda() {
-  kubectl apply -f https://github.com/kedacore/keda/releases/download/v2.0.0/keda-2.0.0.yaml
+  kubectl apply -f https://github.com/kedacore/keda/releases/download/v2.1.0/keda-2.1.0.yaml
   return 0
 }
 
 function keda::install_eventing_keda() {
-  pushd $GOPATH/src/knative.dev/eventing-autoscaler-keda/
-  ko apply -f config
-  popd
+  local version=${1:-0.21.0}
+
+  local base=https://github.com/knative-sandbox/eventing-autoscaler-keda/releases/download/v${version}
+  local file=autoscaler-keda.yaml
+  local clone_root=$GOPATH/src/knative.dev
+
+  if [[ $version == "" || $version == "nightly" ]]; then
+    echo "install eventing autoscaler keda nightly"
+    base=https://storage.googleapis.com/knative-nightly/eventing-autoscaler-keda/latest
+  fi
+
+  if [[ $version == "source" ]]; then
+    echo "install eventing autoscaler keda from source"
+    pushd $GOPATH/src/knative.dev/eventing-autoscaler-keda/
+    ko apply -f config
+    popd
+  else
+      echo "installing eventing autoscaler keda ${version}"
+      kubectl apply -f ${base}/autoscaler-keda.yaml
+  fi
+
+  k8s::wait_until_pods_running eventing-autoscaler-keda
   return 0
 }

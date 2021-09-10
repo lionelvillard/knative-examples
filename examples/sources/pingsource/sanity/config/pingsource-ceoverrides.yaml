@@ -1,0 +1,15 @@
+apiVersion: sources.knative.dev/v1
+kind: PingSource
+metadata:
+  name: hello-ce-overrides
+spec:
+  ceOverrides:
+    extensions:
+      type: "my-type"
+  schedule: "*/1 * * * *"
+  data: '{"msg": "hello"}'
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display

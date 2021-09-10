@@ -1,0 +1,29 @@
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: ks-2
+spec:
+  consumers: 100
+  bootstrapServers:
+  - broker-0-ys5snp917xwwz1yw.kafka.svc09.us-south.eventstreams.cloud.ibm.com:9093
+  topics:
+  - sd-1
+  net:
+    sasl:
+      enable: true
+      user:
+        secretKeyRef:
+          name: secret-eventstream
+          key: user
+      password:
+        secretKeyRef:
+          name: secret-eventstream
+          key: password
+      type: {}
+    tls:
+      enable: true
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display

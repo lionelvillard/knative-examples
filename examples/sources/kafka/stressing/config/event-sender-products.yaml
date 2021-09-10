@@ -1,0 +1,190 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-0
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: ko://github.com/lionelvillard/knative-examples/test/images/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/{{.Namespace}}/products-0'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-0", "type" : "event-sender-products-0"}'
+          - '-period=1000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-1
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: ko://github.com/lionelvillard/knative-examples/test/images/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/{{.Namespace}}/products-1'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-1", "type" : "event-sender-products-1"}'
+          - '-period=1000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-2
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: ko://github.com/lionelvillard/knative-examples/test/images/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/{{.Namespace}}/products-2'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-2", "type" : "event-sender-products-2"}'
+          - '-period=1000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-3
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: ko://github.com/lionelvillard/knative-examples/test/images/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/{{.Namespace}}/products-3'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-3", "type" : "event-sender-products-3"}'
+          - '-period=1000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-4
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: ko://github.com/lionelvillard/knative-examples/test/images/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/{{.Namespace}}/products-4'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-4", "type" : "event-sender-products-4"}'
+          - '-period=1000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-5
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: ko://github.com/lionelvillard/knative-examples/test/images/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/{{.Namespace}}/products-5'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-5", "type" : "event-sender-products-5"}'
+          - '-period=1000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-6
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: ko://github.com/lionelvillard/knative-examples/test/images/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/{{.Namespace}}/products-6'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-6", "type" : "event-sender-products-6"}'
+          - '-period=1000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-7
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: ko://github.com/lionelvillard/knative-examples/test/images/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/{{.Namespace}}/products-7'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-7", "type" : "event-sender-products-7"}'
+          - '-period=1000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-8
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: ko://github.com/lionelvillard/knative-examples/test/images/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/{{.Namespace}}/products-8'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-8", "type" : "event-sender-products-8"}'
+          - '-period=1000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-9
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: ko://github.com/lionelvillard/knative-examples/test/images/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/{{.Namespace}}/products-9'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-9", "type" : "event-sender-products-9"}'
+          - '-period=1000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---

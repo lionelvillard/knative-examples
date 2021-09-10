@@ -1,0 +1,22 @@
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: product
+spec:
+  scaleTargetRef:
+    apiVersion: sources.knative.dev/v1beta1
+    kind: KafkaSource
+    name: products
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: External
+    external:
+      metric:
+        name: "kafka-products-knative-group"
+        selector:
+          matchLabels:
+            scaledObjectName: so-d4affa18-d871-42b9-94d1-40358e2f8129
+      target:
+        type: AverageValue
+        value: 30

@@ -1,18 +1,1900 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: event-sender-products
+  name: event-sender-products-0
 spec:
   template:
     spec:
       containers:
       - name: event-sender
-        image: ko://github.com/lionelvillard/knative-examples/test/images/event-sender
+        image: docker.io/knativeexamples/event-sender
         args:
-          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/{{.Namespace}}/products'
-          - '-event={"specversion":"1.0", "source":"event-sender-products", "type" : "event-sender-products"}'
-          - '-period=1000'
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-0'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-0", "type" : "event-sender-products-0"}'
+          - '-period=10000'
           - '-delay=200'
           - '-incremental-id=true'
           - '-max-messages=0'
       restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-1
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-1'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-1", "type" : "event-sender-products-1"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-2
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-2'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-2", "type" : "event-sender-products-2"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-3
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-3'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-3", "type" : "event-sender-products-3"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-4
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-4'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-4", "type" : "event-sender-products-4"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-5
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-5'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-5", "type" : "event-sender-products-5"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-6
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-6'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-6", "type" : "event-sender-products-6"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-7
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-7'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-7", "type" : "event-sender-products-7"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-8
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-8'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-8", "type" : "event-sender-products-8"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-9
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-9'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-9", "type" : "event-sender-products-9"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-10
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-10'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-10", "type" : "event-sender-products-10"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-11
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-11'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-11", "type" : "event-sender-products-11"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-12
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-12'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-12", "type" : "event-sender-products-12"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-13
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-13'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-13", "type" : "event-sender-products-13"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-14
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-14'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-14", "type" : "event-sender-products-14"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-15
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-15'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-15", "type" : "event-sender-products-15"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-16
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-16'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-16", "type" : "event-sender-products-16"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-17
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-17'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-17", "type" : "event-sender-products-17"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-18
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-18'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-18", "type" : "event-sender-products-18"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-19
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-19'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-19", "type" : "event-sender-products-19"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-20
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-20'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-20", "type" : "event-sender-products-20"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-21
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-21'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-21", "type" : "event-sender-products-21"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-22
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-22'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-22", "type" : "event-sender-products-22"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-23
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-23'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-23", "type" : "event-sender-products-23"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-24
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-24'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-24", "type" : "event-sender-products-24"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-25
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-25'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-25", "type" : "event-sender-products-25"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-26
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-26'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-26", "type" : "event-sender-products-26"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-27
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-27'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-27", "type" : "event-sender-products-27"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-28
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-28'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-28", "type" : "event-sender-products-28"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-29
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-29'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-29", "type" : "event-sender-products-29"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-30
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-30'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-30", "type" : "event-sender-products-30"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-31
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-31'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-31", "type" : "event-sender-products-31"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-32
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-32'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-32", "type" : "event-sender-products-32"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-33
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-33'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-33", "type" : "event-sender-products-33"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-34
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-34'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-34", "type" : "event-sender-products-34"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-35
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-35'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-35", "type" : "event-sender-products-35"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-36
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-36'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-36", "type" : "event-sender-products-36"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-37
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-37'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-37", "type" : "event-sender-products-37"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-38
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-38'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-38", "type" : "event-sender-products-38"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-39
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-39'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-39", "type" : "event-sender-products-39"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-40
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-40'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-40", "type" : "event-sender-products-40"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-41
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-41'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-41", "type" : "event-sender-products-41"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-42
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-42'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-42", "type" : "event-sender-products-42"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-43
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-43'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-43", "type" : "event-sender-products-43"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-44
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-44'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-44", "type" : "event-sender-products-44"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-45
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-45'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-45", "type" : "event-sender-products-45"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-46
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-46'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-46", "type" : "event-sender-products-46"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-47
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-47'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-47", "type" : "event-sender-products-47"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-48
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-48'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-48", "type" : "event-sender-products-48"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-49
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-49'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-49", "type" : "event-sender-products-49"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-50
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-50'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-50", "type" : "event-sender-products-50"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-51
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-51'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-51", "type" : "event-sender-products-51"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-52
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-52'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-52", "type" : "event-sender-products-52"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-53
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-53'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-53", "type" : "event-sender-products-53"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-54
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-54'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-54", "type" : "event-sender-products-54"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-55
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-55'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-55", "type" : "event-sender-products-55"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-56
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-56'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-56", "type" : "event-sender-products-56"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-57
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-57'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-57", "type" : "event-sender-products-57"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-58
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-58'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-58", "type" : "event-sender-products-58"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-59
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-59'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-59", "type" : "event-sender-products-59"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-60
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-60'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-60", "type" : "event-sender-products-60"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-61
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-61'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-61", "type" : "event-sender-products-61"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-62
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-62'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-62", "type" : "event-sender-products-62"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-63
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-63'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-63", "type" : "event-sender-products-63"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-64
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-64'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-64", "type" : "event-sender-products-64"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-65
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-65'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-65", "type" : "event-sender-products-65"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-66
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-66'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-66", "type" : "event-sender-products-66"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-67
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-67'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-67", "type" : "event-sender-products-67"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-68
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-68'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-68", "type" : "event-sender-products-68"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-69
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-69'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-69", "type" : "event-sender-products-69"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-70
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-70'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-70", "type" : "event-sender-products-70"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-71
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-71'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-71", "type" : "event-sender-products-71"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-72
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-72'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-72", "type" : "event-sender-products-72"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-73
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-73'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-73", "type" : "event-sender-products-73"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-74
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-74'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-74", "type" : "event-sender-products-74"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-75
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-75'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-75", "type" : "event-sender-products-75"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-76
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-76'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-76", "type" : "event-sender-products-76"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-77
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-77'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-77", "type" : "event-sender-products-77"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-78
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-78'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-78", "type" : "event-sender-products-78"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-79
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-79'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-79", "type" : "event-sender-products-79"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-80
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-80'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-80", "type" : "event-sender-products-80"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-81
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-81'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-81", "type" : "event-sender-products-81"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-82
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-82'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-82", "type" : "event-sender-products-82"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-83
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-83'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-83", "type" : "event-sender-products-83"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-84
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-84'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-84", "type" : "event-sender-products-84"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-85
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-85'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-85", "type" : "event-sender-products-85"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-86
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-86'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-86", "type" : "event-sender-products-86"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-87
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-87'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-87", "type" : "event-sender-products-87"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-88
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-88'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-88", "type" : "event-sender-products-88"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-89
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-89'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-89", "type" : "event-sender-products-89"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-90
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-90'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-90", "type" : "event-sender-products-90"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-91
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-91'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-91", "type" : "event-sender-products-91"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-92
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-92'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-92", "type" : "event-sender-products-92"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-93
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-93'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-93", "type" : "event-sender-products-93"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-94
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-94'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-94", "type" : "event-sender-products-94"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-95
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-95'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-95", "type" : "event-sender-products-95"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-96
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-96'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-96", "type" : "event-sender-products-96"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-97
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-97'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-97", "type" : "event-sender-products-97"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-98
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-98'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-98", "type" : "event-sender-products-98"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: event-sender-products-99
+spec:
+  template:
+    spec:
+      containers:
+      - name: event-sender
+        image: docker.io/knativeexamples/event-sender
+        args:
+          - '-sink=http://kafka-sink-ingress.knative-eventing.svc.cluster.local/default/products-99'
+          - '-event={"specversion":"1.0", "source":"event-sender-products-99", "type" : "event-sender-products-99"}'
+          - '-period=10000'
+          - '-delay=200'
+          - '-incremental-id=true'
+          - '-max-messages=0'
+      restartPolicy: Never
+---

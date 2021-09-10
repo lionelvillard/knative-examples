@@ -1,0 +1,6 @@
+apiVersion: messaging.knative.dev/v1beta1
+kind: InMemoryChannel
+metadata:
+  name: ns
+  annotations:
+    eventing.knative.dev/scope: namespace

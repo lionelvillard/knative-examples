@@ -1,0 +1,12 @@
+apiVersion: sources.knative.dev/v1beta2
+kind: PingSource
+metadata:
+  name: ns
+spec:
+  schedule: "*/1 * * * *"
+  data: ns
+  sink:
+    ref:
+      apiVersion: messaging.knative.dev/v1
+      kind: InMemoryChannel
+      name: ns

@@ -1,0 +1,13 @@
+apiVersion: sources.knative.dev/v1beta2
+kind: PingSource
+metadata:
+  name: hello-json-base64
+spec:
+  schedule: "*/1 * * * *"
+  contentType: application/json
+  dataBase64: e30K
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display

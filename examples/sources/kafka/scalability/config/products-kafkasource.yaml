@@ -158,3 +158,1443 @@ spec:
       kind: Service
       name: event-display
 ---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-10
+spec:
+  consumerGroup: group-products-10
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-10
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-11
+spec:
+  consumerGroup: group-products-11
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-11
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-12
+spec:
+  consumerGroup: group-products-12
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-12
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-13
+spec:
+  consumerGroup: group-products-13
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-13
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-14
+spec:
+  consumerGroup: group-products-14
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-14
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-15
+spec:
+  consumerGroup: group-products-15
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-15
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-16
+spec:
+  consumerGroup: group-products-16
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-16
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-17
+spec:
+  consumerGroup: group-products-17
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-17
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-18
+spec:
+  consumerGroup: group-products-18
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-18
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-19
+spec:
+  consumerGroup: group-products-19
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-19
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-20
+spec:
+  consumerGroup: group-products-20
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-20
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-21
+spec:
+  consumerGroup: group-products-21
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-21
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-22
+spec:
+  consumerGroup: group-products-22
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-22
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-23
+spec:
+  consumerGroup: group-products-23
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-23
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-24
+spec:
+  consumerGroup: group-products-24
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-24
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-25
+spec:
+  consumerGroup: group-products-25
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-25
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-26
+spec:
+  consumerGroup: group-products-26
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-26
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-27
+spec:
+  consumerGroup: group-products-27
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-27
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-28
+spec:
+  consumerGroup: group-products-28
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-28
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-29
+spec:
+  consumerGroup: group-products-29
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-29
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-30
+spec:
+  consumerGroup: group-products-30
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-30
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-31
+spec:
+  consumerGroup: group-products-31
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-31
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-32
+spec:
+  consumerGroup: group-products-32
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-32
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-33
+spec:
+  consumerGroup: group-products-33
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-33
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-34
+spec:
+  consumerGroup: group-products-34
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-34
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-35
+spec:
+  consumerGroup: group-products-35
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-35
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-36
+spec:
+  consumerGroup: group-products-36
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-36
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-37
+spec:
+  consumerGroup: group-products-37
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-37
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-38
+spec:
+  consumerGroup: group-products-38
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-38
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-39
+spec:
+  consumerGroup: group-products-39
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-39
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-40
+spec:
+  consumerGroup: group-products-40
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-40
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-41
+spec:
+  consumerGroup: group-products-41
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-41
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-42
+spec:
+  consumerGroup: group-products-42
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-42
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-43
+spec:
+  consumerGroup: group-products-43
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-43
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-44
+spec:
+  consumerGroup: group-products-44
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-44
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-45
+spec:
+  consumerGroup: group-products-45
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-45
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-46
+spec:
+  consumerGroup: group-products-46
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-46
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-47
+spec:
+  consumerGroup: group-products-47
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-47
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-48
+spec:
+  consumerGroup: group-products-48
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-48
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-49
+spec:
+  consumerGroup: group-products-49
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-49
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-50
+spec:
+  consumerGroup: group-products-50
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-50
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-51
+spec:
+  consumerGroup: group-products-51
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-51
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-52
+spec:
+  consumerGroup: group-products-52
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-52
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-53
+spec:
+  consumerGroup: group-products-53
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-53
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-54
+spec:
+  consumerGroup: group-products-54
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-54
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-55
+spec:
+  consumerGroup: group-products-55
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-55
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-56
+spec:
+  consumerGroup: group-products-56
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-56
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-57
+spec:
+  consumerGroup: group-products-57
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-57
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-58
+spec:
+  consumerGroup: group-products-58
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-58
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-59
+spec:
+  consumerGroup: group-products-59
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-59
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-60
+spec:
+  consumerGroup: group-products-60
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-60
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-61
+spec:
+  consumerGroup: group-products-61
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-61
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-62
+spec:
+  consumerGroup: group-products-62
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-62
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-63
+spec:
+  consumerGroup: group-products-63
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-63
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-64
+spec:
+  consumerGroup: group-products-64
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-64
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-65
+spec:
+  consumerGroup: group-products-65
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-65
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-66
+spec:
+  consumerGroup: group-products-66
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-66
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-67
+spec:
+  consumerGroup: group-products-67
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-67
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-68
+spec:
+  consumerGroup: group-products-68
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-68
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-69
+spec:
+  consumerGroup: group-products-69
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-69
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-70
+spec:
+  consumerGroup: group-products-70
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-70
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-71
+spec:
+  consumerGroup: group-products-71
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-71
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-72
+spec:
+  consumerGroup: group-products-72
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-72
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-73
+spec:
+  consumerGroup: group-products-73
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-73
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-74
+spec:
+  consumerGroup: group-products-74
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-74
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-75
+spec:
+  consumerGroup: group-products-75
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-75
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-76
+spec:
+  consumerGroup: group-products-76
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-76
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-77
+spec:
+  consumerGroup: group-products-77
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-77
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-78
+spec:
+  consumerGroup: group-products-78
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-78
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-79
+spec:
+  consumerGroup: group-products-79
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-79
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-80
+spec:
+  consumerGroup: group-products-80
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-80
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-81
+spec:
+  consumerGroup: group-products-81
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-81
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-82
+spec:
+  consumerGroup: group-products-82
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-82
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-83
+spec:
+  consumerGroup: group-products-83
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-83
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-84
+spec:
+  consumerGroup: group-products-84
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-84
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-85
+spec:
+  consumerGroup: group-products-85
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-85
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-86
+spec:
+  consumerGroup: group-products-86
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-86
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-87
+spec:
+  consumerGroup: group-products-87
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-87
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-88
+spec:
+  consumerGroup: group-products-88
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-88
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-89
+spec:
+  consumerGroup: group-products-89
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-89
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-90
+spec:
+  consumerGroup: group-products-90
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-90
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-91
+spec:
+  consumerGroup: group-products-91
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-91
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-92
+spec:
+  consumerGroup: group-products-92
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-92
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-93
+spec:
+  consumerGroup: group-products-93
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-93
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-94
+spec:
+  consumerGroup: group-products-94
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-94
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-95
+spec:
+  consumerGroup: group-products-95
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-95
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-96
+spec:
+  consumerGroup: group-products-96
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-96
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-97
+spec:
+  consumerGroup: group-products-97
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-97
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-98
+spec:
+  consumerGroup: group-products-98
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-98
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: products-99
+spec:
+  consumerGroup: group-products-99
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - products-99
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display
+---

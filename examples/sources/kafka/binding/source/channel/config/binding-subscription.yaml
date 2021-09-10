@@ -1,0 +1,15 @@
+apiVersion: bindings.knative.dev/v1beta1
+kind: KafkaBinding
+spec:
+  subject:
+    kind: KafkaChannel
+    name: product
+
+  # broker does not apply
+  #broker:
+
+  config: |-
+    Consumer:
+      Offsets:
+        AutoCommit:
+          Interval: 5000000000  # 5 seconds

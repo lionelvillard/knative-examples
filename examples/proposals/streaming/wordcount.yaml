@@ -1,0 +1,32 @@
+apiVersion: flows.knative.dev/v1alpha1
+kind: Function
+metadata:
+  name: split
+spec:
+  template:
+    spec:
+      containers:
+        - image: wordsplit
+  reply:
+    ref:
+      apiVersion: flows.knative.dev/v1alpha1
+      kind: GroupBy
+      name: wordcount
+---
+apiVersion: flows.knative.dev/v1alpha1
+kind: GroupBy
+metadata:
+  name: wordcount
+spec:
+  key: word
+  aggregate:
+    dialect: ce-expr
+    value: sum(data)
+  window:
+    type: tumbling
+    period: 10s
+  reply:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: broker

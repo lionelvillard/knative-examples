@@ -22,6 +22,8 @@ source $ROOT/hack/lib/library.sh
 NS=sources-kafka-sanity
 k8s::create_and_set_ns $NS
 
+kubectl apply -f config/topics
+sleep 1
 kubectl apply -f config
 
 

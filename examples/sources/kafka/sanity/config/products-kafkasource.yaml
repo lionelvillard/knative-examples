@@ -8,6 +8,9 @@ spec:
     - my-cluster-kafka-bootstrap.kafka:9092
   topics:
     - products
+  ceOverrides:
+    extensions:
+      hello: world
   sink:
     ref:
       apiVersion: v1

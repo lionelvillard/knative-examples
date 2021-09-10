@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kafkacat
+spec:
+  containers:
+  - image: docker.io/edenhill/kafkacat:1.6.0
+    name: producer-container
+    command:
+    - kafkacat
+    args:
+    - "-P"
+    - "-b"
+    - "my-cluster-kafka-bootstrap.kafka:9092"
+    - "-T"
+    - "-l"
+    - "-t"
+    - "topic-cxxxzggs"
+    - "/etc/mounted/payload"
+
+    # - "-T"
+    volumeMounts:
+      - name: event-payload
+        mountPath: /etc/mounted
+  restartPolicy: Never
+  volumes:
+    - name: event-payload
+      configMap:
+        name: kafkacat-payload

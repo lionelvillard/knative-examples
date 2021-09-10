@@ -1,0 +1,13 @@
+apiVersion: sources.knative.dev/v1
+kind: PingSource
+metadata:
+  name: pingsource-to-pod
+spec:
+  schedule: "*/1 * * * *"
+  data: '{"msg": "hello"}'
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Pod
+      name: apod
+

@@ -1,0 +1,13 @@
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: trigger-2
+  annotations:
+    knative.dev/dependency: '{"kind":"PingSource", "name":"ping-source-2","apiVersion":"sources.knative.dev/v1beta2"}'
+spec:
+  broker: broker
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display-2

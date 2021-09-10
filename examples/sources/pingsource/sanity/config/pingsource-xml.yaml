@@ -1,0 +1,14 @@
+apiVersion: sources.knative.dev/v1
+kind: PingSource
+metadata:
+  name: hello-xml
+spec:
+  schedule: "*/1 * * * *"
+  contentType: text/xml
+  data: |
+    <elem attr="bold">Hello</elem>
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display

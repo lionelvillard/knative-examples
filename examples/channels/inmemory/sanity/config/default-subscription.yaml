@@ -1,0 +1,14 @@
+apiVersion: messaging.knative.dev/v1
+kind: Subscription
+metadata:
+  name: default
+spec:
+  channel:
+    apiVersion: messaging.knative.dev/v1
+    kind: InMemoryChannel
+    name: default
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-display

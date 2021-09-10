@@ -1,12 +1,1400 @@
 apiVersion: kafka.strimzi.io/v1beta1
 kind: KafkaTopic
 metadata:
-  name: products
+  name: products-0
+  namespace: kafka
   labels:
     strimzi.io/cluster: my-cluster
 spec:
-  partitions: 10
-  replicas: 1
+  partitions: 1000
+  replicas: 2
   config:
     retention.ms: 7200000
     segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-1
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-2
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-3
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-4
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-5
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-6
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-7
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-8
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-9
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-10
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-11
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-12
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-13
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-14
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-15
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-16
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-17
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-18
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-19
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-20
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-21
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-22
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-23
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-24
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-25
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-26
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-27
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-28
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-29
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-30
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-31
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-32
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-33
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-34
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-35
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-36
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-37
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-38
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-39
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-40
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-41
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-42
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-43
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-44
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-45
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-46
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-47
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-48
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-49
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-50
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-51
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-52
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-53
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-54
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-55
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-56
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-57
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-58
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-59
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-60
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-61
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-62
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-63
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-64
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-65
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-66
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-67
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-68
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-69
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-70
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-71
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-72
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-73
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-74
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-75
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-76
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-77
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-78
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-79
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-80
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-81
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-82
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-83
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-84
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-85
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-86
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-87
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-88
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-89
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-90
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-91
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-92
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-93
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-94
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-95
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-96
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-97
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-98
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: products-99
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 1000
+  replicas: 2
+  config:
+    retention.ms: 7200000
+    segment.bytes: 1073741824
+---

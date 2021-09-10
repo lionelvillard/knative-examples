@@ -103,10 +103,70 @@ function knative::install() {
   return 0
 }
 
+function knative::install_serving() {
+  local version=${1:-0.22.0}
+  local clone_root=$GOPATH/src/knative.dev
 
-# install Knative-eventing
+  if [[ $version == "" || $version == "nightly" ]]; then
+    echo "install knative serving nightly"
+    eventing_base=https://storage.googleapis.com/knative-nightly/serving/latest
+  fi
+
+  if [[ $version == "source" ]]; then
+    echo "install knative serving from source"
+  fi
+
+  echo "installing Knative Serving ${version}"
+
+  if [[ $version != "source" ]]; then
+    kubectl apply -f https://github.com/knative/serving/releases/download/v${version}/serving-crds.yaml
+  fi
+
+  if [[ "$version" == "source" ]]; then
+    echo "installing Knative from source ${clone_root}/serving"
+    pushd ${clone_root}/serving
+    ko apply -f config
+    popd
+  else
+    kubectl apply -f https://github.com/knative/serving/releases/download/v${version}/serving-crds.yaml
+    kubectl apply -f https://github.com/knative/serving/releases/download/v${version}/serving-core.yaml
+    kubectl apply -f https://github.com/knative/net-kourier/releases/download/v${version}/kourier.yaml
+    kubectl patch configmap/config-network \
+      --namespace knative-serving \
+      --type merge \
+      --patch '{"data":{"ingress.class":"kourier.ingress.networking.knative.dev"}}'
+
+    KNATIVE_DOMAIN=127.0.0.1.nip.io
+    kubectl patch configmap -n knative-serving config-domain -p "{\"data\": {\"$KNATIVE_DOMAIN\": \"\"}}"
+
+    cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+  name: kourier-ingress
+  namespace: kourier-system
+  labels:
+    networking.knative.dev/ingress-provider: kourier
+spec:
+  type: NodePort
+  selector:
+    app: 3scale-kourier-gateway
+  ports:
+    - name: http2
+      nodePort: 31080
+      port: 80
+      targetPort: 8080
+EOF
+
+  fi
+
+  k8s::wait_until_pods_running knative-serving
+  return 0
+}
+
+
 function knative::install_eventing() {
-  local eventing_version=${1:-0.19.1}
+  local eventing_version=${1:-0.22.0}
 
   local eventing_base=https://github.com/knative/eventing/releases/download/v${eventing_version}
   local eventing_file=eventing
@@ -133,7 +193,6 @@ function knative::install_eventing() {
     ko apply -f config
     ko apply -f config/channels/in-memory-channel/
     ko apply -f config/brokers/mt-channel-broker/
-    ko apply -f config/sugar/
     popd
   else
     if [[ $(semver::lt ${eventing_version} 0.16.0) ]]; then
@@ -148,6 +207,45 @@ function knative::install_eventing() {
   k8s::wait_until_pods_running knative-eventing
   return 0
 }
+
+function knative::install_eventing_crds() {
+  local eventing_version=${1:-0.21.0}
+  local eventing_base=https://github.com/knative/eventing/releases/download/v${eventing_version}
+  kubectl apply --selector knative.dev/crd-install=true -f ${eventing_base}/eventing.yaml
+}
+
+function knative::install_sugar() {
+  local eventing_version=${1:-0.20.1}
+
+  local eventing_base=https://github.com/knative/eventing/releases/download/v${eventing_version}
+  local eventing_file=eventing
+  local clone_root=$GOPATH/src/knative.dev
+
+  if [[ $eventing_version == "" || $eventing_version == "nightly" ]]; then
+    echo "install knative eventing sugar controller nightly"
+    eventing_base=https://storage.googleapis.com/knative-nightly/eventing/latest
+  fi
+
+  if [[ $eventing_version == "source" ]]; then
+    echo "install knative eventing sugar controller from source"
+  fi
+
+  echo "installing Knative Eventing sugar controller ${eventing_version}"
+
+
+  if [[ "$eventing_version" == "source" ]]; then
+    echo "installing Knative from source ${clone_root}/eventing"
+    pushd ${clone_root}/eventing
+    ko apply -f config/sugar/
+    popd
+  else
+    kubectl apply -f ${eventing_base}/eventing-sugar-controller.yaml
+  fi
+
+  k8s::wait_until_pods_running knative-eventing
+  return 0
+}
+
 
 # install Knative-function (not part of base knative)
 function knative::install_functions() {

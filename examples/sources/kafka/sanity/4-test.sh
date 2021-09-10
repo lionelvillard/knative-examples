@@ -37,8 +37,6 @@ test::pass
 
 test::case "check when killing the receive adapter pods, no events are lost"
 
-
-
 test::pass
 
 test::case "check event-display does not receive events after stopping the producers"
@@ -58,3 +56,5 @@ test::case "check event-display does not receive events after stopping the produ
     fi
 
 test::pass
+
+

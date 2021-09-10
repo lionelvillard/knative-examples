@@ -1,8 +1,900 @@
 apiVersion: eventing.knative.dev/v1alpha1
 kind: KafkaSink
 metadata:
-  name: products
+  name: products-0
 spec:
   bootstrapServers:
     - my-cluster-kafka-bootstrap.kafka:9092
-  topic: products
+  topic: products-0
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-1
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-1
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-2
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-2
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-3
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-3
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-4
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-4
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-5
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-5
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-6
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-6
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-7
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-7
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-8
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-8
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-9
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-9
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-10
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-10
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-11
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-11
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-12
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-12
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-13
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-13
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-14
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-14
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-15
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-15
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-16
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-16
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-17
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-17
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-18
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-18
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-19
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-19
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-20
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-20
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-21
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-21
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-22
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-22
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-23
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-23
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-24
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-24
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-25
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-25
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-26
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-26
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-27
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-27
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-28
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-28
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-29
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-29
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-30
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-30
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-31
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-31
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-32
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-32
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-33
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-33
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-34
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-34
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-35
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-35
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-36
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-36
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-37
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-37
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-38
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-38
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-39
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-39
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-40
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-40
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-41
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-41
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-42
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-42
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-43
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-43
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-44
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-44
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-45
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-45
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-46
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-46
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-47
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-47
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-48
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-48
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-49
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-49
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-50
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-50
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-51
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-51
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-52
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-52
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-53
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-53
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-54
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-54
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-55
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-55
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-56
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-56
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-57
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-57
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-58
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-58
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-59
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-59
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-60
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-60
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-61
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-61
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-62
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-62
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-63
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-63
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-64
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-64
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-65
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-65
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-66
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-66
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-67
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-67
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-68
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-68
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-69
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-69
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-70
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-70
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-71
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-71
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-72
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-72
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-73
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-73
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-74
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-74
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-75
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-75
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-76
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-76
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-77
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-77
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-78
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-78
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-79
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-79
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-80
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-80
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-81
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-81
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-82
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-82
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-83
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-83
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-84
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-84
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-85
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-85
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-86
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-86
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-87
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-87
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-88
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-88
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-89
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-89
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-90
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-90
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-91
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-91
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-92
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-92
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-93
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-93
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-94
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-94
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-95
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-95
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-96
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-96
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-97
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-97
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-98
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-98
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KafkaSink
+metadata:
+  name: products-99
+spec:
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topic: products-99
+---

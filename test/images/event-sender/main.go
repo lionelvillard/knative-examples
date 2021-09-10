@@ -158,7 +158,7 @@ func main() {
 			event.SetID(fmt.Sprintf("%d", sequence))
 		}
 
-		// log.Printf("I'm going to send\n%s\n", event)
+		log.Printf("I'm going to send\n%s\n", event)
 
 		responseEvent, responseResult := c.Request(ctx, event)
 		if cloudevents.IsUndelivered(responseResult) {
@@ -167,7 +167,7 @@ func main() {
 			if responseEvent != nil {
 				log.Printf("Got response from %s\n%s\n%s\n", sink, responseResult, *responseEvent)
 			} else {
-				// log.Printf("Got response from %s\n%s\n", sink, responseResult)
+				log.Printf("Got response from %s\n%s\n", sink, responseResult)
 			}
 
 			if responseSink != "" {

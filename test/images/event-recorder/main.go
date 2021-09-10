@@ -17,15 +17,13 @@ limitations under the License.
 package main
 
 import (
-	"context"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"sync"
 
-	cloudeventsbindings "github.com/cloudevents/sdk-go/v2/binding"
 	cloudevents "github.com/cloudevents/sdk-go/v2/event"
-	cloudeventshttp "github.com/cloudevents/sdk-go/v2/protocol/http"
 )
 
 // --- event db
@@ -88,19 +86,36 @@ type logger struct {
 }
 
 func (o *logger) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
-	m := cloudeventshttp.NewMessageFromHttpRequest(request)
-	defer m.Finish(nil)
+	//m := cloudeventshttp.NewMessageFromHttpRequest(request)
+	//defer m.Finish(nil)
+	//
+	//event, eventErr := cloudeventsbindings.ToEvent(context.TODO(), m)
+	//
+	//fmt.Println("–––")
+	//if eventErr != nil {
+	//	fmt.Println(eventErr.Error())
+	//} else {
+	//	fmt.Println(event)
+	//
+	//}
+	//o.db.RecordEvent(*event)
 
-	event, eventErr := cloudeventsbindings.ToEvent(context.TODO(), m)
-
-	fmt.Println("–––")
-	if eventErr != nil {
-		fmt.Println(eventErr.Error())
-	} else {
-		fmt.Println(event)
-
+	for name, values := range request.Header {
+		// Loop over all values for the name.
+		for _, value := range values {
+			fmt.Println(name, value)
+		}
 	}
-	o.db.RecordEvent(*event)
+
+	body, err := ioutil.ReadAll(request.Body)
+	if err != nil {
+		log.Printf("Error reading body: %v", err)
+		http.Error(writer, "can't read body", http.StatusBadRequest)
+		return
+	}
+	request.Body.Close()
+
+	fmt.Println(string(body))
 
 	writer.WriteHeader(http.StatusAccepted)
 }

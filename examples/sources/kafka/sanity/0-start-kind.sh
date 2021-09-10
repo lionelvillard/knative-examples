@@ -19,5 +19,5 @@ set -e
 ROOT=$(dirname $BASH_SOURCE[0])/../../../..
 source $ROOT/hack/lib/library.sh
 
-kind::start "kafka" $ROOT/hack/kind-config-kourier.yaml
+kind::start "default" $ROOT/hack/kind-config-kourier.yaml
 

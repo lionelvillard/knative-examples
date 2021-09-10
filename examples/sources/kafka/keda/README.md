@@ -49,3 +49,37 @@ Run a job sending events at a rate of 50 events/s
 ```
 kubectl apply -f config-2
 ```
+
+
+## Random notes
+
+The Sarama library creates 6 goroutines per partitions
+
+```
+100 @ 0x43a6a5 0x40676f 0x4063eb 0x185e9da 0x189c109 0x470141
+#	0x185e9d9	github.com/Shopify/sarama.(*partitionConsumer).dispatcher+0x59	github.com/Shopify/sarama@v1.27.2/consumer.go:341
+#	0x189c108	github.com/Shopify/sarama.withRecover+0x48			github.com/Shopify/sarama@v1.27.2/utils.go:43
+
+100 @ 0x43a6a5 0x40676f 0x4063eb 0x185f64e 0x189c109 0x470141
+#	0x185f64d	github.com/Shopify/sarama.(*partitionConsumer).responseFeeder+0x3ad	github.com/Shopify/sarama@v1.27.2/consumer.go:450
+#	0x189c108	github.com/Shopify/sarama.withRecover+0x48				github.com/Shopify/sarama@v1.27.2/utils.go:43
+
+100 @ 0x43a6a5 0x40676f 0x4063eb 0x189eb0e 0x470141
+#	0x189eb0d	github.com/Shopify/sarama.newConsumerGroupSession.func1+0xad	github.com/Shopify/sarama@v1.27.2/consumer_group.go:589
+
+100 @ 0x43a6a5 0x40676f 0x4063eb 0x189ecd1 0x470141
+#	0x189ecd0	github.com/Shopify/sarama.(*consumerGroupSession).consume.func1+0xb0	github.com/Shopify/sarama@v1.27.2/consumer_group.go:675
+
+100 @ 0x43a6a5 0x40676f 0x4063eb 0x189f02e 0x470141
+#	0x189f02d	github.com/Shopify/sarama.newConsumerGroupClaim.func1+0xad	github.com/Shopify/sarama@v1.27.2/consumer_group.go:848
+
+100 @ 0x43a6a5 0x40676f 0x4063eb 0x18f62e5 0x186708f 0x189ebc7 0x470141
+#	0x18f62e4	knative.dev/eventing-kafka/pkg/common/consumer.(*SaramaConsumerHandler).ConsumeClaim+0x284	knative.dev/eventing-kafka/pkg/common/consumer/consumer_handler.go:75
+#	0x186708e	github.com/Shopify/sarama.(*consumerGroupSession).consume+0x28e					github.com/Shopify/sarama@v1.27.2/consumer_group.go:690
+#	0x189ebc6	github.com/Shopify/sarama.newConsumerGroupSession.func2+0x86					github.com/Shopify/sarama@v1.27.2/consumer_group.go:615
+
+100 @ 0x43a6a5 0x44a80f 0x189edbe 0x470141
+#	0x189edbd	github.com/Shopify/sarama.(*consumerGroupSession).consume.func2+0xbd	github.com/Shopify/sarama@v1.27.2/consumer_group.go:682
+```
+
+

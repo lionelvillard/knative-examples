@@ -15,7 +15,7 @@
 # limitations under the License.
 set -e
 
-id=${1:-"crn:v1:bluemix:public:messagehub:us-south:a/9fe18499e7d53fe0d5b63ead02519393:a45803b6-525d-4aa5-82bf-c00176c4e821:resource-key:bc0d4719-9015-4e01-89f3-645ce0cd8c6e"}
+id=${1:-"crn:v1:bluemix:public:messagehub:us-south:a/e3a470d882f9e5b9a59f4c98b6cb2b40:92f9c965-9b5d-474d-9310-a054ab745b21:resource-key:1576eda6-f153-435e-9e03-6e6947fa53ec"}
 credentials=$(bx resource service-key "$id" --output json)
 user=$(echo $credentials | jq -r ".[0].credentials.user")
 password=$(echo $credentials | jq -r ".[0].credentials.password")

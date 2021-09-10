@@ -19,9 +19,9 @@ set -e
 ROOT=$(dirname $BASH_SOURCE[0])/../../../..
 source $ROOT/hack/lib/library.sh
 
-kind::start "kafka" $ROOT/hack/kind-config-kourier.yaml
-kafka::install_strimzi
-kafka::install_sink
-kafka::install_source mtsource
+#kafka::install_strimzi
+knative::install_eventing_crds
+#kafka::install_sink
+#kafka::install_mt_source source
 
-kubectl patch -n knative-sources cm config-observability -p '{"data": {"profiling.enable": "true"}}'
+#kubectl patch -n knative-sources cm config-observability -p '{"data": {"profiling.enable": "true"}}'

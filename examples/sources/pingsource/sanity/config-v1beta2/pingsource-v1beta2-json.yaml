@@ -4,6 +4,7 @@ metadata:
   name: hello-json
 spec:
   schedule: "*/1 * * * *"
+  contentType: application/json
   data: |
     {
       "msg": "hello"
