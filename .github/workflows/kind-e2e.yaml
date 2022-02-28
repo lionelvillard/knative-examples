@@ -31,6 +31,12 @@ jobs:
       TERM: xterm-256color
 
     steps:
+    - name: testing
+      working-directory: ./
+      run: |
+        tags=
+        echo "${tags}"
+        
     - name: Set up Go 1.15.x
       uses: actions/setup-go@v2
       with:
@@ -46,10 +52,7 @@ jobs:
       with:
         path: ./src/github.com/lionelvillard/knative-examples
 
-    - name: testing
-      run: |
-        tags=
-        echo "${tags}"
+   
 
     - name: Install KinD
       run: |
