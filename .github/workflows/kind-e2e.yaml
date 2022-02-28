@@ -31,6 +31,11 @@ jobs:
       TERM: xterm-256color
 
     steps:
+    - name: testing
+      run: |
+        tags=
+        echo ${tags}
+        
     - name: Set up Go 1.15.x
       uses: actions/setup-go@v2
       with:
