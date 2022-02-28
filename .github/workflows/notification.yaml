@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: testing
+      shell: bash
       run: |
         tags=
         echo "${tags}"
