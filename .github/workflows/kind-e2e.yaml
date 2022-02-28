@@ -35,7 +35,7 @@ jobs:
       working-directory: ./
       run: |
         tags=
-        echo "${tags}"
+        echo "Building with ${tags}"
         echo "${tas}"
         
         
