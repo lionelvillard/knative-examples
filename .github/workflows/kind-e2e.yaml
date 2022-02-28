@@ -38,7 +38,7 @@ jobs:
         T=
         if [[ $T == "T" ]]; then
           echo ${T}
-        elif
+        else
           echo nott
         fi
         
