@@ -35,7 +35,7 @@ jobs:
       working-directory: ./
       run: |
         tags=
-        echo $tags
+        echo "${tags}"
         
         
     - name: Set up Go 1.15.x
