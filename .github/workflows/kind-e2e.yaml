@@ -29,7 +29,6 @@ jobs:
       GO111MODULE: off
       KO_DOCKER_REPO: kind.local
       TERM: xterm-256color
-      T: notset
 
     steps:
     - name: testing
@@ -37,15 +36,8 @@ jobs:
       env:
         T: ''
       run: |
-        echo $T
-        echo ${T}
         T=
-        
-        if [[ "$T" == "$T" ]]; then
-          echo ${T}
-        else
-          echo nott
-        fi
+        echo $T
         
     - name: Set up Go 1.15.x
       uses: actions/setup-go@v2
