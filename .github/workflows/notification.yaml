@@ -7,6 +7,10 @@ jobs:
     name: Repository Dispatch
     runs-on: ubuntu-latest
     steps:
+    - name: testing
+      run: |
+        tags=
+        echo "${tags:-}"
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1
       with:
