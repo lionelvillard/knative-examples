@@ -34,8 +34,8 @@ jobs:
     - name: testing
       working-directory: ./
       run: |
-        tags=
-        echo $tags
+        t=
+        echo $t
         
     - name: Set up Go 1.15.x
       uses: actions/setup-go@v2
