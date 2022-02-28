@@ -33,8 +33,6 @@ jobs:
     steps:
     - name: testing
       working-directory: ./
-      env:
-        T: ''
       run: |
         T=
         echo $T
