@@ -1,6 +1,8 @@
 name: dispatch
 
-on: [pull_request]
+on:  
+ workflow_dispatch:
+
 
 jobs:
   notify:
@@ -10,7 +12,7 @@ jobs:
     - name: testing
       run: |
         tags=
-        echo "${tags:-}"
+        echo "${tags}"
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1
       with:
