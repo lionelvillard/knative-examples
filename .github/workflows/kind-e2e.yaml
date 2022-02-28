@@ -34,9 +34,14 @@ jobs:
     steps:
     - name: testing
       working-directory: ./
+      env:
+        T: ''
       run: |
+        echo $T
+        echo ${T}
         T=
-        if [[ $T == "T" ]]; then
+        
+        if [[ "$T" == "$T" ]]; then
           echo ${T}
         else
           echo nott
