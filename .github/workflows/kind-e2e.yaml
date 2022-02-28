@@ -35,7 +35,12 @@ jobs:
     - name: testing
       working-directory: ./
       run: |
-        echo ${T}
+        T=
+        if [[ $T == "T" ]]; then
+          echo ${T}
+        elif
+          echo nott
+        fi
         
     - name: Set up Go 1.15.x
       uses: actions/setup-go@v2
