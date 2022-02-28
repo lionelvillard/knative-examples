@@ -36,6 +36,7 @@ jobs:
       run: |
         tags=
         echo "${tags}"
+        echo "${tas}"
         
         
     - name: Set up Go 1.15.x
