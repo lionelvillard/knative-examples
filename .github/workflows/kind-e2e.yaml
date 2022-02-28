@@ -34,8 +34,6 @@ jobs:
     - name: testing
       working-directory: ./
       run: |
-        t=
-        env
         echo $t
         
     - name: Set up Go 1.15.x
