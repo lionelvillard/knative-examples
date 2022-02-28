@@ -35,7 +35,8 @@ jobs:
       working-directory: ./
       run: |
         T=
-        echo $T
+        echo ${T}
+        
         
     - name: Set up Go 1.15.x
       uses: actions/setup-go@v2
